@@ -1,0 +1,78 @@
+
+
+* {
+    --background: white;
+    --font-color: whitesmoke;
+    --first-color: #0059A3;
+    --second-color: #FEDD00;
+    --warning-color: rgba(255, 52, 52, 0.8);
+    --nav-bar-height: 2%;
+    --data-height: 90%;
+    /* --height-total: 100%; */
+    margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+    font-family: "Noto IKEA", "Noto Sans", "Roboto", "Open Sans", system-ui, sans-serif;
+    font-size: 16px;
+}
+
+/* ***** GENERAL STYLES  ***** */
+
+.no-visible {
+    display: none !important;
+}
+
+.container {
+    display: flex;
+}
+
+.container-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-bar {
+    position: fixed;
+    align-items: center;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--first-color);
+    height: var(--nav-bar-height);
+    min-height: 3em;
+    padding: 0 1em;
+}
+
+.logo {
+    display: inline-block;
+    width: auto;
+}
+
+.logo img {
+    display: block;
+}
+
+.page-title {
+    text-align: center;
+    width: 100%;
+}
+
+.page-title h1 {
+    font-size: 2em;
+    color: var(--font-color);
+}
+
+.page-title h1 span {
+    font-size: inherit;
+}
+
+
+
+
+
+
+
