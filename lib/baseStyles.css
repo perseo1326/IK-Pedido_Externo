@@ -6,8 +6,8 @@
     --first-color: #0059A3;
     --second-color: #FEDD00;
     --warning-color: rgba(255, 52, 52, 0.8);
-    --nav-bar-height: 2%;
-    --data-height: 90%;
+    --nav-bar-height: calc(100vh * 0.1);
+    --app-data-height: calc(100vh * 0.9);
     /* --height-total: 100%; */
     margin: 0;
 	padding: 0;
@@ -37,13 +37,12 @@
 }
 
 .nav-bar {
-    position: fixed;
     align-items: center;
     width: 100%;
-    z-index: 1;
-    background-color: var(--first-color);
+    z-index: 1; 
+    /* background-color: var(--first-color); */
+    background-color: rgba(255, 0, 0, 0.24);
     height: var(--nav-bar-height);
-    min-height: 3em;
     padding: 0 1em;
 }
 
@@ -70,6 +69,11 @@
     font-size: inherit;
 }
 
+.app-body {
+    background-color: aquamarine;
+    width: 100%;
+    min-height: var(--app-data-height);
+}
 
 
 
