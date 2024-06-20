@@ -30,7 +30,6 @@
         <!-- Loading panel definition -->
 
         <div id="auxiliar-panel" class="auxiliar-panel no-visible">
-            LOADING...
             <button id="cancel-aux-panel" class="custom-button">Cancelar</button>
         </div>
 
@@ -38,36 +37,65 @@
         <div class="app-body container-column">
             <!-- SDS0001 REPORT  -->
             <div class="app-body container-column">
-                <section id="load-files" class="app-body-section container-row">
+
+                <section id="sds0001-section" class="app-body-section container-row">
                     <div class="section-div-button">
                         <label for="sds0001" class="custom-button">SDS0001</label>
                         <input id="sds0001" class="no-visible" type="file">
                     </div>
                     <div class="section-div-file">
-                        <p id="sds0001-file-name" class="">IK-Packing_List.code-workspace.xlsx</p>
+                        <p id="sds0001-file-name" class=""></p>
                     </div>
                 </section>
         
-            <!-- SG010 REPORT -->
-            <section id="load-files" class="app-body-section container-row">
-                <div class="section-div-button">
-                    <label for="sg010" class="custom-button">SG010</label>
-                    <input id="sg010" class="no-visible" type="file">
-                </div>
-                <div class="section-div-file">
-                    <p id="sg010-file-name" class="">IK-Packing_List.code-workspace.xlsx</p>
-                </div>
-            </section>
+                <!-- SA021 REPORT  -->
+                <section id="SA021-section" class="app-body-section container-row no-visible_">
+                    <div class="section-div-button">
+                        <label for="SA021" class="custom-button">SA021</label>
+                        <input id="SA021" class="no-visible" type="file">
+                    </div>
+                    <div class="section-div-file">
+                        <p id="SA021-file-name" class=""></p>
+                    </div>
+                </section>
 
-            <section id="load-files" class="app-body-section container-row">
-                <div class="section-div-button">
-                    <label for="sg010" class="custom-button">SG010</label>
-                    <input id="sg010" class="no-visible" type="file">
+                <!-- SG010 REPORT -->
+                <section id="sg010-section" class="app-body-section container-row no-visible_">
+                    <div class="section-div-button">
+                        <label for="sg010" class="custom-button">SG010</label>
+                        <input id="sg010" class="no-visible" type="file">
+                    </div>
+                    <div class="section-div-file">
+                        <p id="sg010-file-name" class=""></p>
+                    </div>
+                </section>
+
+                <!-- PACKING LIST REPORT -->
+                <section id="packing-section" class="app-body-section container-row no-visible_">
+                    <div class="section-div-button">
+                        <label for="packing" class="custom-button">Packing List</label>
+                        <input id="packing" class="no-visible" type="file">
+                    </div>
+                    <div class="section-div-file">
+                        <p id="packing-file-name" class=""></p>
+                    </div>
+                </section>
+
+                <!-- ESPECIAL OBSERVATIONS/NOTES FILE -->
+                <section id="especial-notes-section" class="app-body-section container-row no-visible_">
+                    <div class="section-div-button">
+                        <label for="notes" class="custom-button">Obs Especiales</label>
+                        <input id="notes" class="no-visible" type="file">
+                    </div>
+                    <div class="section-div-file">
+                        <p id="notes-file-name" class=""></p>
+                    </div>
+                </section>
+
+                <div class="app-body-div">
+                    <button class="custom-button app-body-div-button">Continuar</button>
                 </div>
-                <div class="section-div-file">
-                    <p id="sg010-file-name" class="">IK-Packing_List.code-workspace.xlsx</p>
-                </div>
-            </section>
+
         </div>
 
     </div>

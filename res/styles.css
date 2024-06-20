@@ -21,7 +21,13 @@
     display: block;
 }
 
+.app-body-div {
+    margin-top: 2em;
+}
 
+.app-body-div-button {
+    width: 60%;
+}
 
 
 
