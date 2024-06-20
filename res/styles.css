@@ -1,0 +1,27 @@
+
+
+
+.app-body-section {
+    padding: 0.5em 1em ;
+    margin-bottom: 1em;
+}
+
+.section-div-button {
+    width: 30%;
+}
+
+.section-div-file {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5em;
+}
+
+.section-div-file p {
+    display: block;
+}
+
+
+
+
+
