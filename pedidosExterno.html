@@ -34,10 +34,11 @@
         </div>
 
         <!-- App content -->
-        <div class="app-body container-column">
-            <!-- SDS0001 REPORT  -->
-            <div class="app-body container-column">
-
+        <div id="" class="app-body container-column">
+            
+            <!-- buttons panel -->
+            <div id="reports-panel" class="app-body container-column no-visible">
+                <!-- SDS0001 REPORT  -->
                 <section id="sds0001-section" class="app-body-section container-row">
                     <div class="section-div-button">
                         <label for="sds0001" class="custom-button">SDS0001</label>
@@ -93,17 +94,32 @@
                 </section>
 
                 <div class="app-body-div">
-                    <button class="custom-button app-body-div-button">Continuar</button>
+                    <button id="process-reports-go" class="custom-button app-body-div-button">Continuar</button>
                 </div>
+            </div>
 
+            <!-- table results panel -->
+            <div id="table-results-panel" class="app-body container-column">
+                
+                <table>
+                    <thead>
+
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+        
+            </div>
         </div>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="./lib/excelReportsFunctions.js"></script>
+    <script src="./res/viewFunctions.js"></script>
 
-    <script src="./lib/app.js"></script>
+    <script src="./res/app.js"></script>
     <script>
 
     </script>

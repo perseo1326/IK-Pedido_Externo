@@ -1,5 +1,5 @@
 
-
+/* ***** REPORTS PANEL STYLES ***** */
 
 .app-body-section {
     padding: 0.5em 1em ;
@@ -8,6 +8,11 @@
 
 .section-div-button {
     width: 30%;
+}
+
+.section-div-button label{
+    max-width: 50%;
+    min-width: 7em;
 }
 
 .section-div-file {
@@ -26,8 +31,27 @@
 }
 
 .app-body-div-button {
-    width: 60%;
+    width: 30%;
+    height: 3em;
 }
+
+/* ***** REPORTS PANEL STYLES ENDS ***** */
+
+/* ***** TABLE RESULTS PANEL STYLES ***** */
+
+/* TODO: remove background color */
+#table-results-panel {
+    background-color: burlywood;
+}
+
+.app-body table {
+    margin: 1em;
+    border: 2px solid black;
+}
+
+
+/* ***** TABLE RESULTS PANEL STYLES ENDS ***** */
+
 
 
 

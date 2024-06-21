@@ -6,8 +6,15 @@
 // VARIABLES AND CONSTANTS
 
 const auxPanel = document.getElementById("auxiliar-panel");
+
+// reports panel 
+const reportsPanel = document.getElementById("reports-panel");
 const cancelButton = document.getElementById("cancel-aux-panel");
 const sds0001Button = document.getElementById("sds0001");
+const loadReportsB = document.getElementById("process-reports-go");
+
+// table results panel
+const tableResultsPanel = document.getElementById("table-results-panel");
 
 
 
@@ -40,6 +47,8 @@ cancelButton.addEventListener("click", () => {
 });
 
 sds0001Button.addEventListener("change", loadSDS0001File);
+
+loadReportsB.addEventListener("click", ProcessReports );
 
 // *********************************************************
 
@@ -106,7 +115,11 @@ function showFileNameReport  ( idElement, text ) {
 }
 
 // *********************************************************
+function ProcessReports() {
 
+    reportsPanel.classList.add("no-visible"),
+    console.log("ProcessReports function!");
 
+}
 
 // *********************************************************
