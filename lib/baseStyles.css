@@ -22,6 +22,10 @@
     display: none !important;
 }
 
+.centrar {
+    text-align: center;
+}
+
 .container {
     display: flex;
 }
