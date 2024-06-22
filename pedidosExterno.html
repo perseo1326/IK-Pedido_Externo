@@ -6,15 +6,15 @@
     <title>Pedidos Almacen Externo</title>
     <link rel="shortcut icon" href="./lib/favicon.ico" type="image/x-icon">
     <meta name="autor" content="https://github.com/perseo1326" />
-    <link rel="stylesheet" href="./lib/baseStyles.css">
-    <link rel="stylesheet" href="./res/styles.css">
+    <link rel="stylesheet" type="text/css" href="./lib/baseStyles.css">
+    <link rel="stylesheet" type="text/css" href="./res/styles.css">
 </head>
 <body>
     
     <div class="">
 
         <!-- navigation bar / title bar -->
-        <nav class="container-row nav-bar">
+        <nav class="container-row nav-bar no-visible_">
             <div class="logo">
                 <img src="./lib/company-logo.svg" alt="IKEA Logo" srcset="">
             </div>
@@ -37,11 +37,11 @@
         <div id="" class="app-body container-column">
             
             <!-- buttons panel -->
-            <div id="reports-panel" class="app-body container-column no-visible">
+            <div id="reports-panel" class="app-body container-column no-visible_">
                 <!-- SDS0001 REPORT  -->
                 <section id="sds0001-section" class="app-body-section container-row">
                     <div class="section-div-button">
-                        <label for="sds0001" class="custom-button">SDS0001</label>
+                        <label for="sds0001" class="custom-button" tabindex="">SDS0001</label>
                         <input id="sds0001" class="no-visible" type="file">
                     </div>
                     <div class="section-div-file">
@@ -99,14 +99,15 @@
             </div>
 
             <!-- table results panel -->
-            <div id="table-results-panel" class="app-body container-column">
+            <div id="table-results-panel" class="app-body container-column_">
                 
-                <table>
-                    <thead>
-
+                <table id="table">
+                    <!-- Table Headers -->
+                    <thead id="table-headers">
                     </thead>
-                    <tbody>
 
+                    <!-- Table Data -->
+                    <tbody id="table-data" tabindex="0">
                     </tbody>
                 </table>
         
@@ -115,11 +116,12 @@
 
     </div>
 
+    <script src="./res/datos.js" type=""></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="./lib/excelReportsFunctions.js"></script>
+    <script src="./res/app.js"></script>
     <script src="./res/viewFunctions.js"></script>
 
-    <script src="./res/app.js"></script>
     <script>
 
     </script>

@@ -16,6 +16,12 @@ const loadReportsB = document.getElementById("process-reports-go");
 // table results panel
 const tableResultsPanel = document.getElementById("table-results-panel");
 
+// Table Elements
+const table = document.getElementById("table");
+const tableHeaders = document.getElementById("table-headers");
+const tableData = document.getElementById("table-data");
+
+
 
 
 
@@ -32,13 +38,19 @@ const FILE_MYME_TYPE_ARRAY = ["application/vnd.ms-excel.sheet.macroenabled.12"];
 // EVENT LISTENERS
 
 auxPanel.addEventListener("wheel", ( evento ) => {
+    console.log("Evento RUEDA.");
     evento.preventDefault();
 });
 
 document.addEventListener("keydown", ( evento ) => {
     if( teclas.includes(evento.key) && auxPanel.hidden === false){
-        evento.preventDefault();
+        console.log("Key down");
+        // evento.preventDefault();
     }
+});
+
+table.addEventListener("keydown", () => {
+    console.log("EVENTO TABLE Keydown: ");
 });
 
 cancelButton.addEventListener("click", () => {
