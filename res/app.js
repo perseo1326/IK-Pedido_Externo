@@ -76,7 +76,11 @@ cancelButton.addEventListener("click", () => {
 });
 
 
-SDS0001_Button.addEventListener("change", loadSDS0001_File);
+SDS0001_Button.addEventListener("change", loadSDS0001_File) ;
+SA021_Button.addEventListener("change", loadSA021_File );
+SG010_Button.addEventListener("change", loadSG010_File );
+// PACKING_LIST_Button.addEventListener("change", );
+// OBS_ESPECIAL_Button.addEventListener("change", );
 
 loadReportsB.addEventListener("click", ProcessReports );
 
@@ -87,7 +91,7 @@ initialize();
 
 // *********************************************************
 function initialize() {
-    console.log("Procediendo a cargar datos de configuración.")
+    console.log("Procediendo a cargar datos de configuración...")
 
     fetch( configDataURL )
     .then((response) => response.json())
@@ -105,40 +109,54 @@ function initialize() {
 
         // reportsConfig hacerlo global para acceso
         reportsMap = reportsConfig;
-
     })
     .catch((error) => {
         console.log("ERROR:initialize: " + error.message );
         alert("Error procesando Datos de configuración inicial.");
     });
-
-
-
 }
+
+
 // *********************************************************
 // *********************************************************
-// Function to read 'SDS0001' Report selected file
-function loadSDS0001_File ( evento ) {
+function loadFile ( evento, reportName ){
+
     const file = evento.target.files[0];
     auxPanel.classList.remove("no-visible");
 
-    const report = reportsMap.get(REPO_SDS0001);
+    const report = reportsMap.get(reportName);
     const filePointer = new ExcelFileOpen(file, report.FILE_EXTENSION_ARRAY, report.FILE_WORKBOOK_SHEET, report.FILE_MYME_TYPE_ARRAY );
-    // console.log("FILE: ", filePointer.file );
 
-    showFileNameReport( report.name + "-file-name" , filePointer.file.name);
+    return new Promise( ( resolve, reject ) => {
+        const promiseData = loadExcelFile(filePointer);
+        promiseData.then( (response) => {
+            console.log("Carga \"" + filePointer.file.name + "\" Finalizada!", response.length); 
+            
+            // TODO: limpiar y preparar los datos
+            showFileNameReport( report.name + "-file-name" , filePointer.file.name);
+            resolve( response );
+        })
+        .catch( (error) => {
+            // Delete the file name in the view
+            showFileNameReport( report.name + "-file-name" , "");
+            reject( error );
+        });
+    });
+}
 
-    const promiseData = loadExcelFile(filePointer);
-    promiseData.then( (response) => {
-        console.log("Carga \"" + filePointer.file.name + "\" Finalizada!", response); 
-        report.data = response;
-        reportsMap.set(report.name, report);
+
+// *********************************************************
+// Function to read 'SDS0001' Report selected file
+function loadSDS0001_File ( evento ) {
+    
+    const promise = loadFile( evento, REPO_SDS0001 );
+    promise.then( ( response ) => {
+
+        console.log("VALORES DE RETORNO: ", response);
     })
     .catch( (error) => {
-        console.log("ERROR:loadSDS0001_File: ", error);
+        console.log("NEW ERROR:loadSA021_File: ", error );
         alert(error.message);
-        // TODO: inicializar la variable del contenido para evitar errores
-    //     // initializePage();
     })
     .finally( () => {
         auxPanel.classList.add("no-visible");
@@ -149,24 +167,14 @@ function loadSDS0001_File ( evento ) {
 // *********************************************************
 // Function to read 'SA021' Report selected file
 function loadSA021_File ( evento ) {
-    const file = evento.target.files[0];
-    auxPanel.classList.remove("no-visible");
-    const filePointer = new ExcelFileOpen(file, FILE_EXTENSION_ARRAY, FILE_WORKBOOK_SHEET, FILE_MYME_TYPE_ARRAY );
-    // console.log("FILE: ", filePointer.file );
+    const promise = loadFile( evento, REPO_SA021 );   
+    promise.then( ( response ) => {
 
-    showFileNameReport( this.id + "-file-name" , filePointer.file.name);
-
-    const promiseData = loadExcelFile(filePointer);
-    promiseData.then( (response) => {
-        // let contentData = validateShipmentsFile( response );
-        console.log("Carga \"" + filePointer.file.name + "\" Finalizada!", response); 
-        // SDS0001 = response;
+        console.log("VALORES DE RETORNO: ", response);
     })
     .catch( (error) => {
-        console.log("ERROR:loadSA021_File: ", error);
+        console.log("NEW ERROR:loadSA021_File: ", error );
         alert(error.message);
-        // TODO: inicializar la variable del contenido para evitar errores
-    //     // initializePage();
     })
     .finally( () => {
         auxPanel.classList.add("no-visible");
@@ -175,6 +183,22 @@ function loadSA021_File ( evento ) {
 
 
 // *********************************************************
+function loadSG010_File( evento ) {
+    const promise = loadFile( evento, REPO_SA021 );   
+    promise.then( ( response ) => {
+
+        console.log("VALORES DE RETORNO: ", response);
+    })
+    .catch( (error) => {
+        console.log("NEW ERROR:loadSA021_File: ", error );
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+
+}
+
 
 // *********************************************************
 function ProcessReports() {
