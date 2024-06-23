@@ -1,0 +1,21 @@
+
+{
+    "Reports": [
+        {
+            "name": "SDS0001", 
+            "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
+            "FILE_WORKBOOK_SHEET": "SDS0001",
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"]
+
+        }
+
+
+    ]
+
+
+
+
+
+}
+
+
