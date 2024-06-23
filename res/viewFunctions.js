@@ -55,8 +55,8 @@ function showTable() {
 
     tableData.innerHTML = drawTableData( datos );
     // tableData.isContentEditable = true;
-    console.log("Tabla focus: ", tableData);
-    tableData.focus();
+    // console.log("Tabla focus: ", tableData);
+    // tableData.focus();
 }
 
 // *********************************************************
