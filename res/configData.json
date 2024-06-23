@@ -1,20 +1,33 @@
 
 {
-    "Reports": [
+    "reports": [
         {
             "name": "SDS0001", 
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
-            "FILE_WORKBOOK_SHEET": "SDS0001",
-            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"]
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
+            "FILE_WORKBOOK_SHEET": "SDS0001"
+        },
 
+        {
+            "name": "SA021", 
+            "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
+            "FILE_WORKBOOK_SHEET": "SDS0001"
+        },
+
+        {
+            "name": "SG010"
+        },
+
+        {
+            "name": "Packing List"
+        },
+
+        {
+            "name": "Obs Especiales"
         }
 
-
     ]
-
-
-
-
 
 }
 

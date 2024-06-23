@@ -8,12 +8,31 @@
 // *********************************************************
 // VARIABLES AND CONSTANTS
 
+// Data Variables
+let reportsMap = new Map();
+
+const configDataURL = "./res/configData.json";
+const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
+
+const REPO_SDS0001 = "SDS0001";
+const REPO_SA021 = "SA021";
+const REPO_SG010 = "SG010";
+const REPO_PACKING_LIST = "Packing List";
+const REPO_OBS_ESPECIAL = "Obs Especiales";
+
+
+
+
 const auxPanel = document.getElementById("auxiliar-panel");
 
 // reports panel 
 const reportsPanel = document.getElementById("reports-panel");
 const cancelButton = document.getElementById("cancel-aux-panel");
-const sds0001Button = document.getElementById("sds0001");
+const SDS0001_Button = document.getElementById(REPO_SDS0001);
+const SA021_Button = document.getElementById(REPO_SA021);
+const SG010_Button = document.getElementById(REPO_SG010);
+const PACKING_LIST_Button = document.getElementById(REPO_PACKING_LIST);
+const OBS_ESPECIAL_Button = document.getElementById(REPO_OBS_ESPECIAL);
 const loadReportsB = document.getElementById("process-reports-go");
 
 // table results panel
@@ -25,10 +44,6 @@ const tableHeaders = document.getElementById("table-headers");
 const tableData = document.getElementById("table-data");
 
 
-
-
-const configDataURL = "./res/configData.json";
-const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
 
 
@@ -61,7 +76,7 @@ cancelButton.addEventListener("click", () => {
 });
 
 
-sds0001Button.addEventListener("change", loadSDS0001File);
+SDS0001_Button.addEventListener("change", loadSDS0001_File);
 
 loadReportsB.addEventListener("click", ProcessReports );
 
@@ -76,13 +91,25 @@ function initialize() {
 
     fetch( configDataURL )
     .then((response) => response.json())
-    .then((data) => {
-        // Aquí puedes trabajar con el objeto JavaScript resultante
-        console.log("JSON DATA: ", data);
+    .then(( jsonData ) => {
+        console.log("JSON DATA: ", jsonData);
+
+        const reportsConfig = new Map();
+        // console.log("OBJECT JSON ", jsonData.reports);
+
+        jsonData.reports.forEach( element => {
+            reportsConfig.set( element.name, element );
+        });
+
+        console.log("MAPA: ", reportsConfig );
+
+        // reportsConfig hacerlo global para acceso
+        reportsMap = reportsConfig;
+
     })
     .catch((error) => {
-        // const jsonObject = JSON.parse(jsonString);
-        console.log("Error procesando Datos de configuración inicial.");
+        console.log("ERROR:initialize: " + error.message );
+        alert("Error procesando Datos de configuración inicial.");
     });
 
 
@@ -91,7 +118,37 @@ function initialize() {
 // *********************************************************
 // *********************************************************
 // Function to read 'SDS0001' Report selected file
-function loadSDS0001File ( evento ) {
+function loadSDS0001_File ( evento ) {
+    const file = evento.target.files[0];
+    auxPanel.classList.remove("no-visible");
+
+    const report = reportsMap.get(REPO_SDS0001);
+    const filePointer = new ExcelFileOpen(file, report.FILE_EXTENSION_ARRAY, report.FILE_WORKBOOK_SHEET, report.FILE_MYME_TYPE_ARRAY );
+    // console.log("FILE: ", filePointer.file );
+
+    showFileNameReport( report.name + "-file-name" , filePointer.file.name);
+
+    const promiseData = loadExcelFile(filePointer);
+    promiseData.then( (response) => {
+        console.log("Carga \"" + filePointer.file.name + "\" Finalizada!", response); 
+        report.data = response;
+        reportsMap.set(report.name, report);
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadSDS0001_File: ", error);
+        alert(error.message);
+        // TODO: inicializar la variable del contenido para evitar errores
+    //     // initializePage();
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+}
+
+
+// *********************************************************
+// Function to read 'SA021' Report selected file
+function loadSA021_File ( evento ) {
     const file = evento.target.files[0];
     auxPanel.classList.remove("no-visible");
     const filePointer = new ExcelFileOpen(file, FILE_EXTENSION_ARRAY, FILE_WORKBOOK_SHEET, FILE_MYME_TYPE_ARRAY );
@@ -106,7 +163,7 @@ function loadSDS0001File ( evento ) {
         // SDS0001 = response;
     })
     .catch( (error) => {
-        console.log("ERROR:loadSDS0001File: ", error);
+        console.log("ERROR:loadSA021_File: ", error);
         alert(error.message);
         // TODO: inicializar la variable del contenido para evitar errores
     //     // initializePage();
@@ -117,12 +174,7 @@ function loadSDS0001File ( evento ) {
 }
 
 
-
 // *********************************************************
-function showFileNameReport  ( idElement, text ) {
-    document.getElementById(idElement).innerText = text;
-}
-
 
 // *********************************************************
 function ProcessReports() {

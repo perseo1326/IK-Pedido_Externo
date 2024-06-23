@@ -60,6 +60,9 @@ function showTable() {
 }
 
 // *********************************************************
+function showFileNameReport  ( idElement, text ) {
+    document.getElementById(idElement).innerText = text;
+}
 
 
 // *********************************************************
