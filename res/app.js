@@ -132,7 +132,6 @@ function loadFile ( evento, reportName ){
         promiseData.then( (response) => {
             console.log("Carga \"" + filePointer.file.name + "\" Finalizada!", response.length); 
             
-            // TODO: limpiar y preparar los datos
             showFileNameReport( report.name + "-file-name" , filePointer.file.name);
             resolve( response );
         })
@@ -155,7 +154,7 @@ function loadSDS0001_File ( evento ) {
         console.log("VALORES DE RETORNO: ", response);
     })
     .catch( (error) => {
-        console.log("NEW ERROR:loadSA021_File: ", error );
+        console.log("NEW ERROR:loadSDS0001_File: ", error );
         alert(error.message);
     })
     .finally( () => {
@@ -183,14 +182,15 @@ function loadSA021_File ( evento ) {
 
 
 // *********************************************************
+// Function to read 'SG010' Report selected file
 function loadSG010_File( evento ) {
-    const promise = loadFile( evento, REPO_SA021 );   
+    const promise = loadFile( evento, REPO_SG010 );   
     promise.then( ( response ) => {
 
         console.log("VALORES DE RETORNO: ", response);
     })
     .catch( (error) => {
-        console.log("NEW ERROR:loadSA021_File: ", error );
+        console.log("NEW ERROR:loadSG010_File: ", error );
         alert(error.message);
     })
     .finally( () => {
