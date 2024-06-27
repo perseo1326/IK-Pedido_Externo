@@ -96,16 +96,14 @@ function initialize() {
     fetch( configDataURL )
     .then((response) => response.json())
     .then(( jsonData ) => {
-        console.log("JSON DATA: ", jsonData);
 
         const reportsConfig = new Map();
-        // console.log("OBJECT JSON ", jsonData.reports);
 
         jsonData.reports.forEach( element => {
             reportsConfig.set( element.name, element );
         });
 
-        console.log("MAPA: ", reportsConfig );
+        // console.log("MAPA: ", reportsConfig );
 
         // reportsConfig hacerlo global para acceso
         reportsMap = reportsConfig;
@@ -126,6 +124,8 @@ function loadFile ( evento, reportName ){
 
     const report = reportsMap.get(reportName);
     const filePointer = new ExcelFileOpen(file, report.FILE_EXTENSION_ARRAY, report.FILE_WORKBOOK_SHEET, report.FILE_MYME_TYPE_ARRAY );
+
+    // console.log("FILE: ", filePointer.file );
 
     return new Promise( ( resolve, reject ) => {
         const promiseData = loadExcelFile(filePointer);
@@ -187,10 +187,17 @@ function loadSG010_File( evento ) {
     const promise = loadFile( evento, REPO_SG010 );   
     promise.then( ( response ) => {
 
-        console.log("VALORES DE RETORNO: ", response);
+        // validating data structure
+        if( !validateReportColumns( response, reportsMap.get( REPO_SG010 ).columns )) {
+            throw new Error("Validación de datos fallida!");
+        }
+
+        // console.log("Verificando columnas: ", x);
+
+        // console.log("VALORES DE RETORNO: ", response);
     })
     .catch( (error) => {
-        console.log("NEW ERROR:loadSG010_File: ", error );
+        console.log("ERROR:loadSG010_File: ", error );
         alert(error.message);
     })
     .finally( () => {
