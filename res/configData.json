@@ -5,14 +5,16 @@
             "name": "SDS0001", 
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
-            "FILE_WORKBOOK_SHEET": "Data"
+            "FILE_WORKBOOK_SHEET": "Data",
+            "columns": [ "H_SLID", "ARTNO", "ARTNAME_UNICODE", "ASSQ", "OP_FC_CURR", "AVGSALES", "AVAIL_STOCK", "SGF_STOCK", "ITEM_VOL", "PALQ"]
         },
 
         {
             "name": "SA021", 
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
-            "FILE_WORKBOOK_SHEET": "Data"
+            "FILE_WORKBOOK_SHEET": "Data",
+            "columns": [ "QTYSOLDTHISWEEK", "QTYSOLDLASTWEEK"]
         },
         
         {
@@ -27,16 +29,17 @@
             "name": "packing list",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
-            "FILE_WORKBOOK_SHEET": "Data"
+            "FILE_WORKBOOK_SHEET": "Data",
+            "columns": [ "Referencia", "observación"]
         },
         
         {
             "name": "obs especiales",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
-            "FILE_WORKBOOK_SHEET": "Data"
+            "FILE_WORKBOOK_SHEET": "BASE",
+            "columns": [ "Referencia", "observación"]
         }
-
     ]
 
 }
