@@ -5,26 +5,36 @@
             "name": "SDS0001", 
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
-            "FILE_WORKBOOK_SHEET": "SDS0001"
+            "FILE_WORKBOOK_SHEET": "Data"
         },
 
         {
             "name": "SA021", 
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
-            "FILE_WORKBOOK_SHEET": "SDS0001"
+            "FILE_WORKBOOK_SHEET": "Data"
         },
-
+        
         {
-            "name": "SG010"
+            "name": "SG010",
+            "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
+            "FILE_WORKBOOK_SHEET": "Data",
+            "columns": [ "SGFLOCATION", "STORAGE_UNICODE", "QTY_", "AVAIL_STOCK"]
         },
-
+        
         {
-            "name": "Packing List"
+            "name": "packing list",
+            "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
+            "FILE_WORKBOOK_SHEET": "Data"
         },
-
+        
         {
-            "name": "Obs Especiales"
+            "name": "obs especiales",
+            "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
+            "FILE_WORKBOOK_SHEET": "Data"
         }
 
     ]
