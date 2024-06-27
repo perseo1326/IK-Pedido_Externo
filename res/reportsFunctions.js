@@ -48,17 +48,26 @@ function compareColumnsArrays( objectKeysArray, mandatoryColumns ){
 
 
 // *********************************************************
-function filterByEsboLocation( dataArray, columnSgfLocation, reference, esboLocation ) {
+function filterByEsboLocation( dataArray, columnSgfLocation, reference, palletQuantity, esboLocation ) {
 
-    const referencesSet = new Set();
+    const referencesMap = new Map();
     for ( const row of dataArray ) {
         if( row[columnSgfLocation] === esboLocation ){
-            referencesSet.add( row[reference] );
-            console.log("ROW: ", row[reference], row[columnSgfLocation]);
+            if(!referencesMap.has( row[reference] )){
+
+                referencesMap.set( row[reference], new dataObjectElement() );
+            }
+
+            const palletLocation = { 
+                "palletLocation" : row[ columnSgfLocation ],
+                "palletQuantity" : row[ palletQuantity ] 
+            };
+            referencesMap.get( row[reference] ).locations.push( palletLocation );
+            // console.log("ROW: ", row[reference], row[columnSgfLocation]);
         }
     }
 
-    return referencesSet;
+    return referencesMap;
 }
 
 // *********************************************************

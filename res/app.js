@@ -1,15 +1,35 @@
 
 'use strict';
 
-    // EXCEL constantes
-    /* const FILE_MYME_TYPE_ARRAY = ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]; */
+class dataObjectElement {
 
+    constructor( ){
+        this.reference = "";
+        this.name = "";
+        this.salesLocation = "";
+        this.highestSales = 0;
+        this.averageSale = 0;
+        this.lastWkSales = 0;
+        this.thisWkSales = 0;
+        this.eoq = 0;
+        this.palletQty = 0;
+        this.locations = [];
+        this.stockEsbo = 0;
+        this.palletsSGF = 0;
+        this.shopStock = 0;
+        this.stockWeeks = 0;
+        this.eoqQty = 0;
+    }
+}
 
 // *********************************************************
 // VARIABLES AND CONSTANTS
 
-// Data Variables
-let reportsMap = new Map();
+// Configuration Data Map
+let reportsConfigMap;
+
+// Data object elements Map
+let dataObjectElementMap;
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
@@ -23,6 +43,7 @@ const REPO_OBS_ESPECIAL = "Obs Especiales";
 const SGF_LOCATION = "SGFLOCATION";
 const ESBO_LOCATION = 990501;
 const REFERENCE_SG010 = "STORAGE_UNICODE";
+const PALLET_QUANTITY = "QTY";
 
 
 
@@ -47,7 +68,6 @@ const tableResultsPanel = document.getElementById("table-results-panel");
 const table = document.getElementById("table");
 const tableHeaders = document.getElementById("table-headers");
 const tableData = document.getElementById("table-data");
-
 
 
 
@@ -98,6 +118,8 @@ initialize();
 function initialize() {
     console.log("Procediendo a cargar datos de configuración...")
 
+    dataObjectElementMap = new Map();
+
     fetch( configDataURL )
     .then((response) => response.json())
     .then(( jsonData ) => {
@@ -111,12 +133,13 @@ function initialize() {
         // console.log("MAPA de configuraion: ", reportsConfig );
 
         // reportsConfig hacerlo global para acceso
-        reportsMap = reportsConfig;
+        reportsConfigMap = reportsConfig;
     })
     .catch((error) => {
         console.log("ERROR:initialize: " + error.message );
         alert("Error procesando Datos de configuración inicial.");
     });
+
 }
 
 
@@ -152,7 +175,7 @@ function loadFile ( evento, report ){
 // Function to read 'SG010' Report selected file
 function loadSG010_File( evento ) {
 
-    const report = reportsMap.get( REPO_SG010 ); 
+    const report = reportsConfigMap.get( REPO_SG010 ); 
     const promise = loadFile( evento, report );   
     promise.then( ( response ) => {
 
@@ -161,16 +184,14 @@ function loadSG010_File( evento ) {
             throw new Error("Validación de datos fallida!");
         }
 
-        const referencesSet = filterByEsboLocation( response, SGF_LOCATION, REFERENCE_SG010, ESBO_LOCATION );
+        // global map variable for data
+        dataObjectElementMap = filterByEsboLocation( response, SGF_LOCATION, REFERENCE_SG010, PALLET_QUANTITY, ESBO_LOCATION );
 
-        
-        // console.log("VALORES DE RETORNO: ", response[2]);
-
-        // console.log("DATA ARRAY: ", dataArray);
-
+        console.log("DATA ARRAY: ", dataObjectElementMap );
     })
     .catch( (error) => {
         console.log("ERROR:loadSG010_File: ", error );
+        dataObjectElementMap = undefined;
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
