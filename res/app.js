@@ -28,8 +28,20 @@ class dataObjectElement {
 // Configuration Data Map
 let reportsConfigMap;
 
-// Data object elements Map
+// Data object elements Map (SG010 Data and references)
 let dataObjectElementMap;
+
+// data from 'SDS0001' report
+let dataSDS0001;
+
+// data from 'SA021' report 
+let dataSA021;
+
+// data from 'Packing List' report 
+let dataPackingList;
+
+// data from 'Obs Especiales' report 
+let dataObs;
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
@@ -101,9 +113,9 @@ cancelButton.addEventListener("click", () => {
 });
 
 
+SG010_Button.addEventListener("change", loadSG010_File );
 SDS0001_Button.addEventListener("change", loadSDS0001_File) ;
 SA021_Button.addEventListener("change", loadSA021_File );
-SG010_Button.addEventListener("change", loadSG010_File );
 // PACKING_LIST_Button.addEventListener("change", );
 // OBS_ESPECIAL_Button.addEventListener("change", );
 
@@ -119,6 +131,10 @@ function initialize() {
     console.log("Procediendo a cargar datos de configuración...")
 
     dataObjectElementMap = new Map();
+    dataSDS0001 = [];
+    dataSA021 = [];
+    dataPackingList = [];
+    dataObs = [];
 
     fetch( configDataURL )
     .then((response) => response.json())
@@ -181,13 +197,13 @@ function loadSG010_File( evento ) {
 
         // validating data structure
         if( !validateReportColumns( response, report.columns )) {
-            throw new Error("Validación de datos fallida!");
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
 
-        // global map variable for data
+        // global map variable for export data
         dataObjectElementMap = filterByEsboLocation( response, SGF_LOCATION, REFERENCE_SG010, PALLET_QUANTITY, ESBO_LOCATION );
 
-        console.log("DATA ARRAY: ", dataObjectElementMap );
+        console.log("DATA ARRAY '" + report.name + "': ", dataObjectElementMap );
     })
     .catch( (error) => {
         console.log("ERROR:loadSG010_File: ", error );
@@ -205,13 +221,23 @@ function loadSG010_File( evento ) {
 // Function to read 'SDS0001' Report selected file
 function loadSDS0001_File ( evento ) {
     
-    const promise = loadFile( evento, REPO_SDS0001 );
+    const report = reportsConfigMap.get( REPO_SDS0001 ); 
+    const promise = loadFile( evento, report );   
     promise.then( ( response ) => {
 
-        console.log("VALORES DE RETORNO: ", response);
+        // validating data structure
+        if( !validateReportColumns( response, report.columns )) {
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
+        }
+
+        // global map variable for export data
+        dataSDS0001 = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
     })
     .catch( (error) => {
-        console.log("NEW ERROR:loadSDS0001_File: ", error );
+        console.log("ERROR:loadSDS0001_File: ", error );
+        dataSDS0001 = undefined;
+        showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
     .finally( () => {
@@ -223,13 +249,24 @@ function loadSDS0001_File ( evento ) {
 // *********************************************************
 // Function to read 'SA021' Report selected file
 function loadSA021_File ( evento ) {
-    const promise = loadFile( evento, REPO_SA021 );   
+
+    const report = reportsConfigMap.get( REPO_SA021 ); 
+    const promise = loadFile( evento, report );   
     promise.then( ( response ) => {
 
-        console.log("VALORES DE RETORNO: ", response);
+        // validating data structure
+        if( !validateReportColumns( response, report.columns )) {
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
+        }
+
+        // global map variable for export data
+        dataSA021 = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
     })
     .catch( (error) => {
-        console.log("NEW ERROR:loadSA021_File: ", error );
+        console.log("ERROR:loadSA021_File: ", error );
+        dataSA021 = undefined;
+        showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
     .finally( () => {
