@@ -48,4 +48,18 @@ function compareColumnsArrays( objectKeysArray, mandatoryColumns ){
 
 
 // *********************************************************
+function filterByEsboLocation( dataArray, columnSgfLocation, reference, esboLocation ) {
+
+    const referencesSet = new Set();
+    for ( const row of dataArray ) {
+        if( row[columnSgfLocation] === esboLocation ){
+            referencesSet.add( row[reference] );
+            console.log("ROW: ", row[reference], row[columnSgfLocation]);
+        }
+    }
+
+    return referencesSet;
+}
+
+// *********************************************************
 // *********************************************************

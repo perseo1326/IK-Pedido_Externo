@@ -20,7 +20,7 @@
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
-            "columns": [ "SGFLOCATION", "STORAGE_UNICODE", "QTY_", "AVAIL_STOCK"]
+            "columns": [ "SGFLOCATION", "STORAGE_UNICODE", "QTY", "AVAIL_STOCK"]
         },
         
         {

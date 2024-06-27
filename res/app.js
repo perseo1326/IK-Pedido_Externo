@@ -20,6 +20,11 @@ const REPO_SG010 = "SG010";
 const REPO_PACKING_LIST = "Packing List";
 const REPO_OBS_ESPECIAL = "Obs Especiales";
 
+const SGF_LOCATION = "SGFLOCATION";
+const ESBO_LOCATION = 990501;
+const REFERENCE_SG010 = "STORAGE_UNICODE";
+
+
 
 
 
@@ -103,7 +108,7 @@ function initialize() {
             reportsConfig.set( element.name, element );
         });
 
-        // console.log("MAPA: ", reportsConfig );
+        // console.log("MAPA de configuraion: ", reportsConfig );
 
         // reportsConfig hacerlo global para acceso
         reportsMap = reportsConfig;
@@ -117,12 +122,11 @@ function initialize() {
 
 // *********************************************************
 // *********************************************************
-function loadFile ( evento, reportName ){
+function loadFile ( evento, report ){
 
     const file = evento.target.files[0];
     auxPanel.classList.remove("no-visible");
 
-    const report = reportsMap.get(reportName);
     const filePointer = new ExcelFileOpen(file, report.FILE_EXTENSION_ARRAY, report.FILE_WORKBOOK_SHEET, report.FILE_MYME_TYPE_ARRAY );
 
     // console.log("FILE: ", filePointer.file );
@@ -147,30 +151,32 @@ function loadFile ( evento, reportName ){
 // *********************************************************
 // Function to read 'SG010' Report selected file
 function loadSG010_File( evento ) {
-    const promise = loadFile( evento, REPO_SG010 );   
+
+    const report = reportsMap.get( REPO_SG010 ); 
+    const promise = loadFile( evento, report );   
     promise.then( ( response ) => {
 
-        console.log("EVENTO: ", evento);
-        // srcElement
-
         // validating data structure
-        if( !validateReportColumns( response, reportsMap.get( REPO_SG010 ).columns )) {
+        if( !validateReportColumns( response, report.columns )) {
             throw new Error("Validación de datos fallida!");
         }
 
-        // console.log("Verificando columnas: ", x);
+        const referencesSet = filterByEsboLocation( response, SGF_LOCATION, REFERENCE_SG010, ESBO_LOCATION );
 
-        // console.log("VALORES DE RETORNO: ", response);
+        
+        // console.log("VALORES DE RETORNO: ", response[2]);
+
+        // console.log("DATA ARRAY: ", dataArray);
+
     })
     .catch( (error) => {
         console.log("ERROR:loadSG010_File: ", error );
-        showFileNameReport( ( reportsMap.get(REPO_SG010).name ) + "-file-name" , "");
+        showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
     .finally( () => {
         auxPanel.classList.add("no-visible");
     });
-
 }
 
 
