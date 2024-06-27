@@ -145,6 +145,36 @@ function loadFile ( evento, reportName ){
 
 
 // *********************************************************
+// Function to read 'SG010' Report selected file
+function loadSG010_File( evento ) {
+    const promise = loadFile( evento, REPO_SG010 );   
+    promise.then( ( response ) => {
+
+        console.log("EVENTO: ", evento);
+        // srcElement
+
+        // validating data structure
+        if( !validateReportColumns( response, reportsMap.get( REPO_SG010 ).columns )) {
+            throw new Error("Validación de datos fallida!");
+        }
+
+        // console.log("Verificando columnas: ", x);
+
+        // console.log("VALORES DE RETORNO: ", response);
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadSG010_File: ", error );
+        showFileNameReport( ( reportsMap.get(REPO_SG010).name ) + "-file-name" , "");
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+
+}
+
+
+// *********************************************************
 // Function to read 'SDS0001' Report selected file
 function loadSDS0001_File ( evento ) {
     
@@ -178,32 +208,6 @@ function loadSA021_File ( evento ) {
     .finally( () => {
         auxPanel.classList.add("no-visible");
     });
-}
-
-
-// *********************************************************
-// Function to read 'SG010' Report selected file
-function loadSG010_File( evento ) {
-    const promise = loadFile( evento, REPO_SG010 );   
-    promise.then( ( response ) => {
-
-        // validating data structure
-        if( !validateReportColumns( response, reportsMap.get( REPO_SG010 ).columns )) {
-            throw new Error("Validación de datos fallida!");
-        }
-
-        // console.log("Verificando columnas: ", x);
-
-        // console.log("VALORES DE RETORNO: ", response);
-    })
-    .catch( (error) => {
-        console.log("ERROR:loadSG010_File: ", error );
-        alert(error.message);
-    })
-    .finally( () => {
-        auxPanel.classList.add("no-visible");
-    });
-
 }
 
 
