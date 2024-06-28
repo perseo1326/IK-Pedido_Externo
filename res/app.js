@@ -49,8 +49,8 @@ const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 const REPO_SDS0001 = "SDS0001";
 const REPO_SA021 = "SA021";
 const REPO_SG010 = "SG010";
-const REPO_PACKING_LIST = "Packing List";
-const REPO_OBS_ESPECIAL = "Obs Especiales";
+const REPO_PACKING_LIST = "Packing-List";
+const REPO_OBS_ESPECIAL = "Obs-Especiales";
 
 const SGF_LOCATION = "SGFLOCATION";
 const ESBO_LOCATION = 990501;
@@ -116,8 +116,8 @@ cancelButton.addEventListener("click", () => {
 SG010_Button.addEventListener("change", loadSG010_File );
 SDS0001_Button.addEventListener("change", loadSDS0001_File) ;
 SA021_Button.addEventListener("change", loadSA021_File );
-// PACKING_LIST_Button.addEventListener("change", );
-// OBS_ESPECIAL_Button.addEventListener("change", );
+PACKING_LIST_Button.addEventListener("change", loadPackingList_File );
+OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 
 loadReportsB.addEventListener("click", ProcessReports );
 
@@ -266,6 +266,63 @@ function loadSA021_File ( evento ) {
     .catch( (error) => {
         console.log("ERROR:loadSA021_File: ", error );
         dataSA021 = undefined;
+        showFileNameReport( ( report.name ) + "-file-name" , "");
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+}
+
+
+// *********************************************************
+// Function to read 'Packing List' Report selected file
+function loadPackingList_File( evento ){
+
+    const report = reportsConfigMap.get( REPO_PACKING_LIST ); 
+    const promise = loadFile( evento, report );   
+    promise.then( ( response ) => {
+
+        // validating data structure
+        if( !validateReportColumns( response, report.columns )) {
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
+        }
+
+        // global map variable for export data
+        dataPackingList = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadPackingList_File: ", error );
+        dataPackingList = undefined;
+        showFileNameReport( ( report.name ) + "-file-name" , "");
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+}
+
+
+// *********************************************************
+// Function to read 'Obs Especiales' Report selected file
+function loadObservations_File( evento ){
+
+    const report = reportsConfigMap.get( REPO_OBS_ESPECIAL ); 
+    const promise = loadFile( evento, report );   
+    promise.then( ( response ) => {
+
+        // validating data structure
+        if( !validateReportColumns( response, report.columns )) {
+        }
+
+        // global map variable for export data
+        dataObs = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadObservations_File: ", error );
+        dataObs = undefined;
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
