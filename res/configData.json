@@ -26,15 +26,15 @@
         },
         
         {
-            "name": "packing list",
+            "name": "Packing-List",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
-            "FILE_WORKBOOK_SHEET": "Data",
-            "columns": [ "Referencia", "observación"]
+            "FILE_WORKBOOK_SHEET": "Packing list",
+            "columns": [ "Referencia", "Código"]
         },
         
         {
-            "name": "obs especiales",
+            "name": "Obs-Especiales",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "BASE",
