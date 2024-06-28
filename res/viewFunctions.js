@@ -28,36 +28,123 @@ function drawTableRow ( row ) {
 
     let htmlRow = "";
 
-    row.forEach( ( value ) => {
-        htmlRow += "<td>" + value + "</td>";
-    });
+    htmlRow += "<td>";
+    htmlRow += row.salesLocation;
+    htmlRow += "</td>";
 
-    // console.log("VAlores: ", nueva);
+    htmlRow += "<td>";
+    htmlRow += row.reference;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.name;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.highestSale;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.averageSale;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.lastWkSales;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.thisWkSales;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.stockWeeks;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.eoq;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.palletQty;
+    htmlRow += "</td>";
+
+    // Stock ESBO
+    htmlRow += "<td>";
+    htmlRow += "X";
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.shopStock;
+    htmlRow += "</td>";
+
+    htmlRow += "<td>";
+    htmlRow += row.palletsSGF;
+    htmlRow += "</td>";
+
+    // Reservas
+    htmlRow += "<td>";
+    htmlRow += "Y";
+    htmlRow += "</td>";
+
+    // Pedir
+    htmlRow += "<td>";
+    htmlRow += "P";
+    htmlRow += "</td>";
+
+    // Packing List
+    htmlRow += "<td>";
+    htmlRow += "PL";
+    htmlRow += "</td>";
+
+    // Obs Especiales
+    htmlRow += "<td>";
+    htmlRow += "Obs.";
+    htmlRow += "</td>";
+
+    // Pallets ESBO
+    htmlRow += "<td>";
+    htmlRow += "Pall Esbo";
+    htmlRow += "</td>";
+
+    // Num EOQ
+    htmlRow += "<td>";
+    htmlRow += "EOQ";
+    htmlRow += "</td>";
+
+    // cabeceras
+    htmlRow += "<td>";
+    htmlRow += "Cab";
+    htmlRow += "</td>";
+
     return htmlRow;
 }
 
 
 // *********************************************************
-function drawTableData ( data ) {
-        
+function drawTableData ( dataMap ) {
+
+    // console.log("DATA MAP: ", dataMap );
     let htmlDataTable = "";
-    data.forEach( ( row ) => {
-        htmlDataTable += "<tr class='centrar'>" + drawTableRow( row ) + "</tr>";
-    });
+    
+    dataMap.forEach( ( object, key ) => {
         
+        // console.log("DATA object: ", key, object );
+        htmlDataTable += "<tr class='centrar' data-reference=" + key + " >" + drawTableRow( object ) + "</tr>";
+        
+    });
     return htmlDataTable;
 }
 
 
 // *********************************************************
-function showTable() {
+function showTable( dataElementsMap ) {
     tableHeaders.innerHTML = drawTableHeaders(cabeceras);
 
-    tableData.innerHTML = drawTableData( datos );
+    // tableData.innerHTML = drawTableData( datos );
+    tableData.innerHTML = drawTableData( dataElementsMap );
     // tableData.isContentEditable = true;
-    // console.log("Tabla focus: ", tableData);
-    // tableData.focus();
 }
+
 
 // *********************************************************
 function showFileNameReport  ( idElement, text ) {
@@ -67,7 +154,7 @@ function showFileNameReport  ( idElement, text ) {
 
 // *********************************************************
 
-showTable();
+
 
 
 
