@@ -241,7 +241,8 @@ function loadSDS0001_File ( evento ) {
             throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
 
-        response = normalizeReferences( response, report.columns[1] );
+        response = normalizeRecord( response, report.columns[1], 8 );
+        response = normalizeRecord( response, report.columns[0], 6 );
 
         // global map variable for export data
         dataSDS0001 = response;
@@ -363,16 +364,16 @@ try {
     // console.log("TAMAÑO de data obj map: ", dataObjectElementMap.size );
 
 
-
-
-
-
     if( dataObjectElementMap.size <= 0 ){
         console.log("WARNING:ProcessReports: No 'SG010' data loaded.");
         throw new Error("No se han cargado datos del reporte 'SG010'.");
     }
     const x = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
     console.log("VALOR DE X: ", x);
+
+    showTable( dataObjectElementMap );
+    // showTable( x );
+
 } catch (error) {
     console.log(error)
     alert(error.message);
