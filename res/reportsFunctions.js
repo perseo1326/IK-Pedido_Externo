@@ -88,13 +88,18 @@ function filterByEsboLocation( dataArray, columnSgfLocation, reference, palletQu
 
 // *********************************************************
 function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
+
+    // console.log("DATA OBJ: ", SDS0001DataArray, columns );
+    
     for (const row of SDS0001DataArray ) {
         
-        console.log("DATA OBJ: ", dataObjectElements, columns );
-        console.log("REf: ", typeof (row[ columns[1]] ), row[ columns[1]]);
-
+        
+        console.log("EXISTE? ", row[ columns[1]],  dataObjectElements.has( row[ columns[1]] ));
+        
         if( dataObjectElements.has( row[ columns[1]] ) ){
             
+            console.log("REf: ", row[ columns[1]], row );
+
             dataObjectElements.get( row[columns[1]]).setSDS0001Values( 
                 row[columns[0]],
                 row[columns[1]],
@@ -107,8 +112,8 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
                 );
             console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );
         }
-
-        return;
+        
+        console.log("OBJECT By REF:", dataObjectElements.get( "00102065") );
     }
     
 }
