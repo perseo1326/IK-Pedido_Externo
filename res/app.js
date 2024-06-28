@@ -7,7 +7,7 @@ class dataObjectElement {
         this.reference = "";
         this.name = "";
         this.salesLocation = "";
-        this.highestSales = 0;
+        this.highestSale = 0;
         this.averageSale = 0;
         this.lastWkSales = 0;
         this.thisWkSales = 0;
@@ -19,6 +19,17 @@ class dataObjectElement {
         this.shopStock = 0;
         this.stockWeeks = 0;
         this.eoqQty = 0;
+    }
+
+    setSDS0001Values( salesLocation, ref, name, highestSale, averageSale, eoq, volume, palletQty ) {
+        this.salesLocation = salesLocation;
+        this.reference = ref;
+        this.name = name;
+        this.highestSale = highestSale;
+        this.averageSale = averageSale;
+        this.eoq = eoq;
+        this.volume = volume;
+        this.palletQty = palletQty;
     }
 }
 
@@ -230,6 +241,8 @@ function loadSDS0001_File ( evento ) {
             throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
 
+        response = normalizeReferences( response, report.columns[1] );
+
         // global map variable for export data
         dataSDS0001 = response;
         console.log("DATA ARRAY '" + report.name + "': ", response );
@@ -335,8 +348,35 @@ function loadObservations_File( evento ){
 // *********************************************************
 function ProcessReports() {
 
-    reportsPanel.classList.add("no-visible"),
+    reportsPanel.classList.add("no-visible");
     console.log("ProcessReports function!");
+
+    /*
+    dataObjectElementMap
+    dataSDS0001
+    dataSA021
+    dataPackingList
+    dataObs
+    */
+
+try {
+    // console.log("TAMAÑO de data obj map: ", dataObjectElementMap.size );
+
+
+
+
+
+
+    if( dataObjectElementMap.size <= 0 ){
+        console.log("WARNING:ProcessReports: No 'SG010' data loaded.");
+        throw new Error("No se han cargado datos del reporte 'SG010'.");
+    }
+    const x = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
+    console.log("VALOR DE X: ", x);
+} catch (error) {
+    console.log(error)
+    alert(error.message);
+}
 
 }
 

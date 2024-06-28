@@ -48,10 +48,25 @@ function compareColumnsArrays( objectKeysArray, mandatoryColumns ){
 
 
 // *********************************************************
+function normalizeReferences ( dataArray, refColumn ){
+
+    for (let index = 0; index < dataArray.length; index++) {
+
+        const reference = String( dataArray[index][refColumn]).padStart( 8, "0");
+        dataArray[index][refColumn] = reference;
+    }
+    return dataArray;
+}
+
+
+// *********************************************************
 function filterByEsboLocation( dataArray, columnSgfLocation, reference, palletQuantity, esboLocation ) {
 
     const referencesMap = new Map();
     for ( const row of dataArray ) {
+
+        // console.log("SG010 Ref: ", typeof(row[reference]) , row[reference] );
+
         if( row[columnSgfLocation] === esboLocation ){
             if(!referencesMap.has( row[reference] )){
 
@@ -70,5 +85,39 @@ function filterByEsboLocation( dataArray, columnSgfLocation, reference, palletQu
     return referencesMap;
 }
 
+
 // *********************************************************
+function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
+    for (const row of SDS0001DataArray ) {
+        
+        console.log("DATA OBJ: ", dataObjectElements, columns );
+        console.log("REf: ", typeof (row[ columns[1]] ), row[ columns[1]]);
+
+        if( dataObjectElements.has( row[ columns[1]] ) ){
+            
+            dataObjectElements.get( row[columns[1]]).setSDS0001Values( 
+                row[columns[0]],
+                row[columns[1]],
+                row[columns[2]],
+                row[columns[4]],
+                row[columns[5]],
+                row[columns[3]],
+                row[columns[8]],
+                row[columns[9]]
+                );
+            console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );
+        }
+
+        return;
+    }
+    
+}
+
+
+// *********************************************************
+
+
+
+
+
 // *********************************************************
