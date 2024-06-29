@@ -305,28 +305,28 @@ function loadSA021_File ( evento ) {
 // Function to read 'Packing List' Report selected file
 function loadPackingList_File( evento ){
 
-    const report = reportsConfigMap.get( REPO_PACKING_LIST ); 
-    const promise = loadFile( evento, report );   
-    promise.then( ( response ) => {
+    // const report = reportsConfigMap.get( REPO_PACKING_LIST ); 
+    // const promise = loadFile( evento, report );   
+    // promise.then( ( response ) => {
 
-        // validating data structure
-        if( !validateReportColumns( response, report.columns )) {
-            throw new Error("Validación de datos en '" + report.name + "' fallida!");
-        }
+    //     // validating data structure
+    //     if( !validateReportColumns( response, report.columns )) {
+    //         throw new Error("Validación de datos en '" + report.name + "' fallida!");
+    //     }
 
-        // global map variable for export data
-        dataPackingList = response;
-        console.log("DATA ARRAY '" + report.name + "': ", response );
-    })
-    .catch( (error) => {
-        console.log("ERROR:loadPackingList_File: ", error );
-        dataPackingList = undefined;
-        showFileNameReport( ( report.name ) + "-file-name" , "");
-        alert(error.message);
-    })
-    .finally( () => {
-        auxPanel.classList.add("no-visible");
-    });
+    //     // global map variable for export data
+    //     dataPackingList = response;
+    //     console.log("DATA ARRAY '" + report.name + "': ", response );
+    // })
+    // .catch( (error) => {
+    //     console.log("ERROR:loadPackingList_File: ", error );
+    //     dataPackingList = undefined;
+    //     showFileNameReport( ( report.name ) + "-file-name" , "");
+    //     alert(error.message);
+    // })
+    // .finally( () => {
+    //     auxPanel.classList.add("no-visible");
+    // });
 }
 
 
@@ -339,8 +339,11 @@ function loadObservations_File( evento ){
     promise.then( ( response ) => {
 
         // validating data structure
-        if( !validateReportColumns( response, report.columns )) {
+        if( !compareColumnsArrays( Object.keys( response[0] ), report.columns )){
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
+
+        response = normalizeRecord( response, report.columns[0], 8 );
 
         // global map variable for export data
         dataObs = response;
@@ -379,14 +382,33 @@ try {
         throw new Error("No se han cargado datos del reporte 'SG010'.");
     }
 
-    // Integrate 'SDS0001' data into 'dataObjectElementMap'
-    if( dataSDS0001.length <= 0 ){
-        console.log(confirm("Reporte vacio!"));
+    // Ask to continue if some report is not provided
+    if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
+        return;
     }
+
+    if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
+        return;
+    }
+
+    // Integrate 'SDS0001' data into 'dataObjectElementMap'
     dataObjectElementMap = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
     
     // Integrate 'SA021' data into 'dataObjectElementMap'
     dataObjectElementMap = loadSA021Values( dataSA021, dataObjectElementMap, reportsConfigMap.get( REPO_SA021 ).columns );
+
+
+
+
+    
+    // Integrate 'Packing-List' data into 'dataObjectElementMap'
+    // dataObjectElementMap = loadPackingListValues( dataPackingList, dataObjectElementMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
+    
+    
+    // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
+    dataObjectElementMap = loadDataObsValues( dataObs, dataObjectElementMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
+
+
 
 
     reportsPanel.classList.add("no-visible");
@@ -441,6 +463,14 @@ function copyElement( element ){
     } catch (error) {
         console.log("ERROR:copyElement: Problema al copiar el elemento.", result);
         alert("Problema al copiar el elemento.");
+    }
+}
+
+
+// *********************************************************
+function alertNoReportProvided( dataArray, reportName ) {
+    if( dataArray.length <= 0 ){
+        return confirm(`No se ha cargado el reporte '${reportName}', Desea continuar?`);
     }
 }
 

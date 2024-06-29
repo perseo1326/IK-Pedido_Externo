@@ -9,8 +9,10 @@
 
 
 
+
 // *********************************************************
 // Compare if all mandatory columns exist into the data object(keys array)
+// And first and last row are the same
 function validateReportColumns( data, columnsArray ){
 
     const keys = [];
@@ -49,6 +51,8 @@ function compareColumnsArrays( objectKeysArray, mandatoryColumns ){
 
 // *********************************************************
 function normalizeRecord ( dataArray, refColumn, stringSize ){
+
+    console.log("normalizeRecord: ", refColumn, stringSize, dataArray);
 
     for (let index = 0; index < dataArray.length; index++) {
 
@@ -139,4 +143,50 @@ function loadSA021Values(SA021DataArray, dataMap, columns) {
 }
 
 
+// *********************************************************
+function loadPackingListValues( packingListDataArray, dataMap, columns ) {
+
+    for ( const row of packingListDataArray ) {
+        if( dataMap.has( row[ columns[0] ])) {
+
+            // console.log("ROW SA021: ", columns);
+            // console.log("ROW SA021: ", row );
+            dataMap.get( row[ columns[0] ]).
+                setSA021Values( 
+                    row[ columns[2] ], 
+                    row[ columns[3] ], 
+                    row[ columns[1] ]
+                );
+        }
+    }
+    return dataMap;
+}
+
+
+// *********************************************************
+function loadDataObsValues ( DataObsDataArray, dataMap, columns ) {
+    
+    console.log("ROW SA021: ", columns);
+    for ( const row of DataObsDataArray ) {
+
+        console.log("ROW OBSERVACIONES: ", row );
+
+        // if( dataMap.has( row[ columns[0] ])) {
+
+        //     dataMap.get( row[ columns[0] ]).
+        //         setSA021Values( 
+        //             row[ columns[2] ], 
+        //             row[ columns[3] ], 
+        //             row[ columns[1] ]
+        //         );
+        // }
+        return ;
+    }
+    return dataMap;
+}
+
+
+// *********************************************************
+// *********************************************************
+// *********************************************************
 // *********************************************************
