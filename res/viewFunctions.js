@@ -83,7 +83,7 @@ function drawTableRow ( row ) {
 
     // Reservas
     htmlRow += "<td>";
-    htmlRow += "Y";
+    htmlRow += "";
     htmlRow += "</td>";
 
     // Pedir
@@ -93,12 +93,12 @@ function drawTableRow ( row ) {
 
     // Packing List
     htmlRow += "<td>";
-    htmlRow += "PL";
+    htmlRow += row.packingListData;
     htmlRow += "</td>";
 
     // Obs Especiales
     htmlRow += "<td>";
-    htmlRow += "Obs.";
+    htmlRow += row.quotes;
     htmlRow += "</td>";
 
     // Pallets ESBO
@@ -113,7 +113,7 @@ function drawTableRow ( row ) {
 
     // cabeceras
     htmlRow += "<td>";
-    htmlRow += "Cab";
+    htmlRow += "'" + row.salesLocation.substr(2);
     htmlRow += "</td>";
 
     return htmlRow;

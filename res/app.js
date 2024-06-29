@@ -13,7 +13,9 @@ class dataObjectElement {
         this.thisWkSales = 0;
         this.eoq = 0;
         this.palletQty = 0;
+
         this.locations = [];
+        
         this.stockEsbo = 0;
         this.palletsSGF = 0;
         this.shopStock = 0;
@@ -327,12 +329,12 @@ function loadPackingList_File( evento ){
         response = normalizeRecord( response, report.columns[0], 8 );
 
         // global map variable for export data
-        dataObs = response;
+        dataPackingList = response;
         console.log("DATA ARRAY '" + report.name + "': ", response );
     })
     .catch( (error) => {
         console.log("ERROR:loadObservations_File: ", error );
-        dataObs = [];
+        dataPackingList = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -393,6 +395,7 @@ function ProcessReports() {
             return;
         }
 
+        // console.log("Validation packing list: ", dataPackingList );
         if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
             return;
         }

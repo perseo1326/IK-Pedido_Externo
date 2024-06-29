@@ -52,7 +52,7 @@ function compareColumnsArrays( objectKeysArray, mandatoryColumns ){
 // *********************************************************
 function normalizeRecord ( dataArray, refColumn, stringSize ){
 
-    console.log("normalizeRecord: ", refColumn, stringSize, dataArray);
+    // console.log("normalizeRecord: ", refColumn, stringSize, dataArray);
 
     for (let index = 0; index < dataArray.length; index++) {
 
@@ -146,10 +146,11 @@ function loadSA021Values(SA021DataArray, dataMap, columns) {
 // *********************************************************
 function loadPackingListValues( packingListDataArray, dataMap, columns ) {
 
+    // console.log("ROW Packing list: ", columns, packingListDataArray);
+
     for ( const row of packingListDataArray ) {
         if( dataMap.has( row[ columns[0] ])) {
 
-            // console.log("ROW SA021: ", columns);
             // console.log("ROW SA021: ", row );
             dataMap.get( row[ columns[0] ]).
                 setPackingListValues( 
