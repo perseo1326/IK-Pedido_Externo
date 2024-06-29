@@ -302,31 +302,33 @@ function loadSA021_File ( evento ) {
 
 
 // *********************************************************
-// Function to read 'Packing List' Report selected file
+// Function to read 'Packing-List' Report selected file
 function loadPackingList_File( evento ){
 
-    // const report = reportsConfigMap.get( REPO_PACKING_LIST ); 
-    // const promise = loadFile( evento, report );   
-    // promise.then( ( response ) => {
+    const report = reportsConfigMap.get( REPO_PACKING_LIST ); 
+    const promise = loadFile( evento, report );   
+    promise.then( ( response ) => {
 
-    //     // validating data structure
-    //     if( !validateReportColumns( response, report.columns )) {
-    //         throw new Error("Validación de datos en '" + report.name + "' fallida!");
-    //     }
+        // validating data structure
+        if( !validateReportColumns( response, report.columns )) {
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
+        }
 
-    //     // global map variable for export data
-    //     dataPackingList = response;
-    //     console.log("DATA ARRAY '" + report.name + "': ", response );
-    // })
-    // .catch( (error) => {
-    //     console.log("ERROR:loadPackingList_File: ", error );
-    //     dataPackingList = undefined;
-    //     showFileNameReport( ( report.name ) + "-file-name" , "");
-    //     alert(error.message);
-    // })
-    // .finally( () => {
-    //     auxPanel.classList.add("no-visible");
-    // });
+        response = normalizeRecord( response, report.columns[0], 8 );
+
+        // global map variable for export data
+        dataObs = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadObservations_File: ", error );
+        dataObs = undefined;
+        showFileNameReport( ( report.name ) + "-file-name" , "");
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
 }
 
 
