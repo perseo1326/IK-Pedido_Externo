@@ -26,6 +26,10 @@
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .container {
     display: flex;
 }

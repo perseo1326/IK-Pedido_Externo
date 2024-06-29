@@ -36,7 +36,7 @@ function drawTableRow ( row ) {
     htmlRow += row.reference;
     htmlRow += "</td>";
 
-    htmlRow += "<td>";
+    htmlRow += "<td class='text-left' >";
     htmlRow += row.name;
     htmlRow += "</td>";
 
