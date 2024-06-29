@@ -228,7 +228,7 @@ function loadSG010_File( evento ) {
     })
     .catch( (error) => {
         console.log("ERROR:loadSG010_File: ", error );
-        dataObjectElementMap = undefined;
+        dataObjectElementMap = new Map();
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -260,7 +260,7 @@ function loadSDS0001_File ( evento ) {
     })
     .catch( (error) => {
         console.log("ERROR:loadSDS0001_File: ", error );
-        dataSDS0001 = undefined;
+        dataSDS0001 = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -291,7 +291,7 @@ function loadSA021_File ( evento ) {
     })
     .catch( (error) => {
         console.log("ERROR:loadSA021_File: ", error );
-        dataSA021 = undefined;
+        dataSA021 = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -322,7 +322,7 @@ function loadPackingList_File( evento ){
     })
     .catch( (error) => {
         console.log("ERROR:loadObservations_File: ", error );
-        dataObs = undefined;
+        dataObs = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -353,7 +353,7 @@ function loadObservations_File( evento ){
     })
     .catch( (error) => {
         console.log("ERROR:loadObservations_File: ", error );
-        dataObs = undefined;
+        dataObs = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -368,60 +368,57 @@ function ProcessReports() {
 
     console.log("ProcessReports function!");
 
-    /*
-    dataObjectElementMap
-    dataSDS0001
-    dataSA021
-    dataPackingList
-    dataObs
-    */
+    try {
+        if( dataObjectElementMap.size <= 0 ){
+            console.log("WARNING:ProcessReports: No 'SG010' data loaded.");
+            throw new Error("No se han cargado datos del reporte 'SG010'.");
+        }
 
-try {
-    // console.log("TAMAÑO de data obj map: ", dataObjectElementMap.size );
+        // Ask to continue if some report is not provided
+        if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
+            return;
+        }
 
-    if( dataObjectElementMap.size <= 0 ){
-        console.log("WARNING:ProcessReports: No 'SG010' data loaded.");
-        throw new Error("No se han cargado datos del reporte 'SG010'.");
+        if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
+            return;
+        }
+
+        if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
+            return;
+        }
+
+        if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
+            return;
+        }
+
+        // Integrate 'SDS0001' data into 'dataObjectElementMap'
+        dataObjectElementMap = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
+        
+        // Integrate 'SA021' data into 'dataObjectElementMap'
+        dataObjectElementMap = loadSA021Values( dataSA021, dataObjectElementMap, reportsConfigMap.get( REPO_SA021 ).columns );
+
+
+
+
+        
+        // Integrate 'Packing-List' data into 'dataObjectElementMap'
+        // dataObjectElementMap = loadPackingListValues( dataPackingList, dataObjectElementMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
+        
+        
+        // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
+        dataObjectElementMap = loadDataObsValues( dataObs, dataObjectElementMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
+
+
+
+
+        reportsPanel.classList.add("no-visible");
+        tableDataButton.parentElement.classList.remove("no-visible");
+        showTable( dataObjectElementMap );
+
+    } catch (error) {
+        console.log(error)
+        alert(error.message);
     }
-
-    // Ask to continue if some report is not provided
-    if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
-        return;
-    }
-
-    if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
-        return;
-    }
-
-    // Integrate 'SDS0001' data into 'dataObjectElementMap'
-    dataObjectElementMap = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
-    
-    // Integrate 'SA021' data into 'dataObjectElementMap'
-    dataObjectElementMap = loadSA021Values( dataSA021, dataObjectElementMap, reportsConfigMap.get( REPO_SA021 ).columns );
-
-
-
-
-    
-    // Integrate 'Packing-List' data into 'dataObjectElementMap'
-    // dataObjectElementMap = loadPackingListValues( dataPackingList, dataObjectElementMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
-    
-    
-    // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
-    dataObjectElementMap = loadDataObsValues( dataObs, dataObjectElementMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
-
-
-
-
-    reportsPanel.classList.add("no-visible");
-    tableDataButton.parentElement.classList.remove("no-visible");
-    showTable( dataObjectElementMap );
-
-} catch (error) {
-    console.log(error)
-    alert(error.message);
-}
-
 }
 
 
@@ -429,16 +426,13 @@ try {
 function copyTable( evento ){
 
     console.log("EVENTO: ", evento );
-
     copyElement( document.getElementById("table") );
-        // copyElemen( element.parentNode.parentNode.nextSibling );
 
-        /*
-        setTimeout( () => {
-            element.parentNode.classList.remove("copy-shipment");
-        }, 1000 );
-        */
-    // }
+    /*
+    setTimeout( () => {
+        element.parentNode.classList.remove("copy-shipment");
+    }, 1000 );
+    */
 }
 
 
@@ -477,4 +471,10 @@ function alertNoReportProvided( dataArray, reportName ) {
 }
 
 
+// *********************************************************
+
+
+// *********************************************************
+// *********************************************************
+// *********************************************************
 // *********************************************************
