@@ -99,6 +99,7 @@ const tableResultsPanel = document.getElementById("table-results-panel");
 const table = document.getElementById("table");
 const tableHeaders = document.getElementById("table-headers");
 const tableData = document.getElementById("table-data");
+const tableDataButton = document.getElementById("copy-data-table");
 
 
 
@@ -139,6 +140,7 @@ PACKING_LIST_Button.addEventListener("change", loadPackingList_File );
 OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 
 loadReportsB.addEventListener("click", ProcessReports );
+tableDataButton.addEventListener("click", copyTable );
 
 // *********************************************************
 // *********************************************************
@@ -388,6 +390,7 @@ try {
 
 
     reportsPanel.classList.add("no-visible");
+    tableDataButton.parentElement.classList.remove("no-visible");
     showTable( dataObjectElementMap );
 
 } catch (error) {
@@ -395,6 +398,50 @@ try {
     alert(error.message);
 }
 
+}
+
+
+// *********************************************************
+function copyTable( evento ){
+
+    console.log("EVENTO: ", evento );
+
+    copyElement( document.getElementById("table") );
+        // copyElemen( element.parentNode.parentNode.nextSibling );
+
+        /*
+        setTimeout( () => {
+            element.parentNode.classList.remove("copy-shipment");
+        }, 1000 );
+        */
+    // }
+}
+
+
+// *********************************************************
+// Function to 'copy' a DOM node into the clipboard. 
+function copyElement( element ){
+    console.log("Copy ELEMENT: ", element);
+
+    // element.innerText = element.innerText.trim();
+    
+    // clear all selection made before
+    window.getSelection().removeAllRanges();
+
+    let result = false;
+
+    let range = document.createRange();
+    range.selectNode( element );
+    window.getSelection().addRange(range);
+    
+    try {
+        result = document.execCommand('copy');
+        console.log("Resultado de la copia: ", result );
+        window.getSelection().removeAllRanges();
+    } catch (error) {
+        console.log("ERROR:copyElement: Problema al copiar el elemento.", result);
+        alert("Problema al copiar el elemento.");
+    }
 }
 
 

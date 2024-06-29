@@ -111,5 +111,18 @@ td:nth-child( 8 ), th:nth-child( 8 ) {
 /* ***** TABLE RESULTS PANEL STYLES ENDS ***** */
 
 
+/* ***** COPY BUTTON  ***** */
+
+.div-copy-div {
+    position: absolute;
+    bottom: 3em;
+    right: 3em;
+    z-index: 10;
+}
+
+
+/* ***** COPY BUTTON ENDS ***** */
+
+
 
 
