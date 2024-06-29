@@ -31,6 +31,14 @@ class dataObjectElement {
         this.volume = volume;
         this.palletQty = palletQty;
     }
+
+    setSA021Values( thisWkSales, lastWkSales, expSale ){
+        this.thisWkSales = thisWkSales;
+        this.lastWkSales = lastWkSales;
+        if( this.highestSale !== expSale ){
+            console.log("Venta + Alta: ERROR! ");
+        }
+    }
 }
 
 // *********************************************************
@@ -272,6 +280,8 @@ function loadSA021_File ( evento ) {
         if( !validateReportColumns( response, report.columns )) {
             throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
+        
+        response = normalizeRecord( response, report.columns[0], 8 );
 
         // global map variable for export data
         dataSA021 = response;
@@ -349,7 +359,6 @@ function loadObservations_File( evento ){
 // *********************************************************
 function ProcessReports() {
 
-    reportsPanel.classList.add("no-visible");
     console.log("ProcessReports function!");
 
     /*
@@ -363,16 +372,23 @@ function ProcessReports() {
 try {
     // console.log("TAMAÑO de data obj map: ", dataObjectElementMap.size );
 
-
     if( dataObjectElementMap.size <= 0 ){
         console.log("WARNING:ProcessReports: No 'SG010' data loaded.");
         throw new Error("No se han cargado datos del reporte 'SG010'.");
     }
-    const x = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
-    console.log("VALOR DE X: ", x);
 
+    // Integrate 'SDS0001' data into 'dataObjectElementMap'
+    if( dataSDS0001.length <= 0 ){
+        console.log(confirm("Reporte vacio!"));
+    }
+    dataObjectElementMap = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
+    
+    // Integrate 'SA021' data into 'dataObjectElementMap'
+    dataObjectElementMap = loadSA021Values( dataSA021, dataObjectElementMap, reportsConfigMap.get( REPO_SA021 ).columns );
+
+
+    reportsPanel.classList.add("no-visible");
     showTable( dataObjectElementMap );
-    // showTable( x );
 
 } catch (error) {
     console.log(error)

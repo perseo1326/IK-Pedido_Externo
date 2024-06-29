@@ -93,36 +93,50 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
     
     for (const row of SDS0001DataArray ) {
         
-        
         // console.log("EXISTE? ", row[ columns[1]],  dataObjectElements.has( row[ columns[1]] ));
         
         if( dataObjectElements.has( row[ columns[1]] ) ){
             
             // console.log("REf: ", row[ columns[1]], row );
 
-            dataObjectElements.get( row[columns[1]]).setSDS0001Values( 
-                row[columns[0]],
-                row[columns[1]],
-                row[columns[2]],
-                row[columns[4]],
-                row[columns[5]],
-                row[columns[3]],
-                row[columns[8]],
-                row[columns[9]]
+            dataObjectElements.get( row[columns[1]])
+                .setSDS0001Values( 
+                    row[columns[0]],
+                    row[columns[1]],
+                    row[columns[2]],
+                    row[columns[4]],
+                    row[columns[5]],
+                    row[columns[3]],
+                    row[columns[8]],
+                    row[columns[9]]
                 );
             // console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );
         }
         
         // console.log("OBJECT By REF:", dataObjectElements.get( "00102065") );
     }
-    
+    return dataObjectElements;
 }
 
 
 // *********************************************************
+function loadSA021Values(SA021DataArray, dataMap, columns) {
 
+    for ( const row of SA021DataArray ) {
+        if( dataMap.has( row[ columns[0] ])) {
 
-
+            // console.log("ROW SA021: ", columns);
+            // console.log("ROW SA021: ", row );
+            dataMap.get( row[ columns[0] ]).
+                setSA021Values( 
+                    row[ columns[2] ], 
+                    row[ columns[3] ], 
+                    row[ columns[1] ]
+                );
+        }
+    }
+    return dataMap;
+}
 
 
 // *********************************************************
