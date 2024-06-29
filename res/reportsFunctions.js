@@ -152,9 +152,7 @@ function loadPackingListValues( packingListDataArray, dataMap, columns ) {
             // console.log("ROW SA021: ", columns);
             // console.log("ROW SA021: ", row );
             dataMap.get( row[ columns[0] ]).
-                setSA021Values( 
-                    row[ columns[2] ], 
-                    row[ columns[3] ], 
+                setPackingListValues( 
                     row[ columns[1] ]
                 );
         }
@@ -166,21 +164,14 @@ function loadPackingListValues( packingListDataArray, dataMap, columns ) {
 // *********************************************************
 function loadDataObsValues ( DataObsDataArray, dataMap, columns ) {
     
-    console.log("ROW SA021: ", columns);
     for ( const row of DataObsDataArray ) {
 
-        console.log("ROW OBSERVACIONES: ", row );
-
-        // if( dataMap.has( row[ columns[0] ])) {
-
-        //     dataMap.get( row[ columns[0] ]).
-        //         setSA021Values( 
-        //             row[ columns[2] ], 
-        //             row[ columns[3] ], 
-        //             row[ columns[1] ]
-        //         );
-        // }
-        return ;
+        if( dataMap.has( row[ columns[0] ])) {
+            dataMap.get( row[ columns[0] ]).
+                setDataObsValues( 
+                    row[ columns[1] ]
+                );
+        }
     }
     return dataMap;
 }

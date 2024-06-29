@@ -19,6 +19,8 @@ class dataObjectElement {
         this.shopStock = 0;
         this.stockWeeks = 0;
         this.eoqQty = 0;
+        this.quotes = "";
+        this.packingListData = 0;
     }
 
     setSDS0001Values( salesLocation, ref, name, highestSale, averageSale, eoq, volume, palletQty ) {
@@ -38,6 +40,14 @@ class dataObjectElement {
         if( this.highestSale !== expSale ){
             console.log("Venta + Alta: ERROR! ");
         }
+    }
+
+    setPackingListValues( packingListData ) {
+        this.packingListData = packingListData;
+    }
+
+    setDataObsValues( quotes ){
+        this.quotes = quotes;
     }
 }
 
@@ -397,13 +407,8 @@ function ProcessReports() {
         // Integrate 'SA021' data into 'dataObjectElementMap'
         dataObjectElementMap = loadSA021Values( dataSA021, dataObjectElementMap, reportsConfigMap.get( REPO_SA021 ).columns );
 
-
-
-
-        
         // Integrate 'Packing-List' data into 'dataObjectElementMap'
-        // dataObjectElementMap = loadPackingListValues( dataPackingList, dataObjectElementMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
-        
+        dataObjectElementMap = loadPackingListValues( dataPackingList, dataObjectElementMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
         
         // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
         dataObjectElementMap = loadDataObsValues( dataObs, dataObjectElementMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
@@ -466,8 +471,11 @@ function copyElement( element ){
 // *********************************************************
 function alertNoReportProvided( dataArray, reportName ) {
     if( dataArray.length <= 0 ){
-        return confirm(`No se ha cargado el reporte '${reportName}', Desea continuar?`);
+        const message = `No se ha cargado el reporte '${reportName}', Desea continuar?`;
+        console.log("WARNING:alertNoReportProvided: " + message);
+        return confirm(message);
     }
+    return true;
 }
 
 
