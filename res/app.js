@@ -13,16 +13,16 @@ class dataObjectElement {
         this.thisWkSales = 0;
         this.eoq = 0;
         this.palletQty = 0;
+        this.packingListData = "";
+        this.quotes = "";
 
         this.locations = [];
+        this.esboStock = {};
+        this.shopStock = {};
 
-        this.stockEsbo = 0;
-        this.palletsSGF = 0;
-        this.shopStock = 0;
+        this.palletsSGF = 9;
         this.stockWeeks = 0;
         this.eoqQty = 0;
-        this.quotes = "";
-        this.packingListData = 0;
     }
 
     setSDS0001Values( salesLocation, ref, name, highestSale, averageSale, eoq, volume, palletQty ) {
@@ -50,6 +50,14 @@ class dataObjectElement {
 
     setDataObsValues( quotes ){
         this.quotes = quotes;
+    }
+
+    setShopAndEsboStockPallets( shopStock, esboStock ){
+        this.shopStock.stock = shopStock.stock;
+        this.shopStock.pallets = shopStock.pallets;
+
+        this.esboStock.stock = esboStock.stock;
+        this.esboStock.pallets = esboStock.pallets;
     }
 }
 
@@ -241,6 +249,8 @@ function loadSG010_File( evento ) {
 
         dataObjectElementsMap = getLocationsByRef( response, referencesMap, REFERENCE_SG010, SGF_LOCATION, PALLET_QUANTITY );
 
+        dataObjectElementsMap = locationsSpliter( dataObjectElementsMap, ESBO_LOCATION );
+
         console.log("DATA ARRAY '" + report.name + "': ", dataObjectElementsMap );
     })
     .catch( (error) => {
@@ -422,7 +432,6 @@ function ProcessReports() {
         dataObjectElementsMap = loadDataObsValues( dataObs, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
 
         
-        locations( dataObjectElementsMap);
 
 
         reportsPanel.classList.add("no-visible");
@@ -489,28 +498,37 @@ function alertNoReportProvided( dataArray, reportName ) {
 
 
 // *********************************************************
-function locations( dataMap ) {
+function locationsSpliter( dataMap, esboLocation ) {
 
-    
-    
-    for (const element of dataMap.values() ) {
+    for (const element of dataMap.entries() ) {
         
-        let esboPalletCount = 0;
-        let shopPalletCount = 0;
-        
-        if( element.reference === "90574664"){
-            
-            for ( const location of element.locations ) {
-                
-                console.log("location: ", location );
-                
-            }
-
-            console.log("MAPA VALUES: LOCATION: ", element.locations.length, element.locations, element );
+        const esboStock = {
+            stock : 0,
+            pallets : 0
         }
-        // return;
+        
+        const shopStock = {
+            stock : 0,
+            pallets : 0
+        }
+        
+        for ( const location of element[1].locations ) {
+            
+            if( location.palletLocation === esboLocation ){
+                esboStock.stock += location.palletQuantity;
+                esboStock.pallets++;
+                
+            } else {
+                shopStock.stock += location.palletQuantity;
+                shopStock.pallets++;
+            }
+        }
+
+        dataMap.get( element[0] ).setShopAndEsboStockPallets( shopStock, esboStock );
     }
+    return dataMap;
 }
+
 
 // *********************************************************
 // *********************************************************

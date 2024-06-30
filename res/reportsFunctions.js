@@ -94,7 +94,7 @@ function getLocationsByRef( response, referencesMap, reference, columnSgfLocatio
             };
             
             referencesMap.get( row[reference] ).locations.push( palletLocation );
-            console.log("ROW: ", row[reference], row[columnSgfLocation]);
+            // console.log("ROW: ", row[reference], row[columnSgfLocation]);
         }
     }
     return referencesMap;
