@@ -73,9 +73,11 @@ function drawTableRow ( row ) {
     htmlRow += row.palletQty;
     htmlRow += "</td>";
 
-    htmlRow += "<td>";
-    htmlRow += row.shopStock.stock;
-    htmlRow += "</td>";
+    htmlRow += "<td title='Stock Disponible total en tienda (LV)' >";
+    htmlRow += row.availableShopStock;
+    htmlRow += "("
+    htmlRow += row.LVStock;
+    htmlRow += ")</td>";
 
     // pallets SGF
     htmlRow += "<td>";
@@ -114,7 +116,7 @@ function drawTableRow ( row ) {
 
     // Num EOQ
     htmlRow += "<td>";
-    htmlRow += "EOQ";
+    htmlRow += row.eoqQty;
     htmlRow += "</td>";
 
     // cabeceras

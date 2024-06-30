@@ -20,17 +20,21 @@ class dataObjectElement {
         this.esboStock = {};
         this.shopStock = {};
 
-        this.palletsSGF = 0;
-        this.stockWeeks = 0;
+        this.totalStock = 0;
+        this.LVStock = 0;
+        this.availableShopStock = 0;
+
         this.eoqQty = 0;
+        this.stockWeeks = 0;
     }
 
-    setSDS0001Values( salesLocation, ref, name, highestSale, averageSale, eoq, volume, palletQty ) {
+    setSDS0001Values( salesLocation, ref, name, highestSale, averageSale, availableStock, eoq, volume, palletQty ) {
         this.salesLocation = salesLocation;
         this.reference = ref;
         this.name = name;
         this.highestSale = highestSale;
         this.averageSale = averageSale;
+        this.totalStock = availableStock;
         this.eoq = eoq;
         this.volume = volume;
         this.palletQty = palletQty;
@@ -58,6 +62,22 @@ class dataObjectElement {
 
         this.esboStock.stock = esboStock.stock;
         this.esboStock.pallets = esboStock.pallets;
+    }
+
+    setLVStock(){
+        this.LVStock = this.totalStock - ( this.shopStock.stock + this.esboStock.stock );
+    }
+
+    setAvailableShopStock(){
+        this.availableShopStock = this.totalStock - this.esboStock.stock;
+    }
+
+    setEoqQty(){
+        this.eoqQty = this.availableShopStock / this.eoq;
+    }
+
+    setStockWeeks(){
+        this.stockWeeks = this.availableShopStock / this.highestSale;
     }
 }
 
@@ -454,9 +474,12 @@ function ProcessReports() {
         // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadDataObsValues( dataObs, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
 
-        
+        // Fill calculated data
+        dataObjectElementsMap = setShopAvailibility( dataObjectElementsMap );
+        dataObjectElementsMap = setEOQavailable( dataObjectElementsMap );
+        dataObjectElementsMap = setStockWeeks( dataObjectElementsMap );
 
-
+        // UI updates
         reportsPanel.classList.add("no-visible");
         tableDataButton.parentElement.classList.remove("no-visible");
         showTable( dataObjectElementsMap );
@@ -554,6 +577,42 @@ function locationsSpliter( dataMap, esboLocation ) {
 
 
 // *********************************************************
+function setShopAvailibility ( dataMap ){
+
+    for (const ref of dataMap.keys() ) {
+
+        dataMap.get( ref ).setLVStock();
+        dataMap.get( ref ).setAvailableShopStock();
+    }
+    return dataMap;
+}
+
+
+// *********************************************************
+function setEOQavailable( dataMap ){
+
+    for ( const ref of dataMap.keys() ) {
+
+        dataMap.get( ref ).setEoqQty();
+    }
+    return dataMap;
+}
+
+
+// *********************************************************
+function setStockWeeks( dataMap ){
+    
+    for (const ref of dataMap.keys() ) {
+
+        dataMap.get( ref ).setStockWeeks();
+    }
+    return dataMap;
+}
+
+
+// *********************************************************
+
+
 // *********************************************************
 // *********************************************************
 // *********************************************************

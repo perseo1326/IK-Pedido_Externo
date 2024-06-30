@@ -108,7 +108,7 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
     
     for (const row of SDS0001DataArray ) {
         
-        // console.log("EXISTE? ", row[ columns[1]],  dataObjectElements.has( row[ columns[1]] ));
+        // console.log("loadSDS0001Values: row: ", columns, row );
         
         if( dataObjectElements.has( row[ columns[1]] ) ){
             
@@ -121,6 +121,7 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
                     row[columns[2]],
                     row[columns[4]],
                     row[columns[5]],
+                    row[columns[6]],
                     row[columns[3]],
                     row[columns[8]],
                     row[columns[9]]
