@@ -28,22 +28,27 @@ function drawTableRow ( row ) {
 
     let htmlRow = "";
 
+    // LV
     htmlRow += "<td>";
     htmlRow += row.salesLocation;
     htmlRow += "</td>";
 
+    // Ref
     htmlRow += "<td>";
     htmlRow += row.reference;
     htmlRow += "</td>";
 
+    // Name
     htmlRow += "<td class='text-left' >";
     htmlRow += row.name;
     htmlRow += "</td>";
 
+    // highestSale
     htmlRow += "<td>";
     htmlRow += row.highestSale;
     htmlRow += "</td>";
 
+    // averageSale
     htmlRow += "<td>";
     htmlRow += row.averageSale;
     htmlRow += "</td>";
@@ -68,17 +73,13 @@ function drawTableRow ( row ) {
     htmlRow += row.palletQty;
     htmlRow += "</td>";
 
-    // Stock ESBO
     htmlRow += "<td>";
-    htmlRow += "X";
+    htmlRow += row.shopStock.stock;
     htmlRow += "</td>";
 
+    // pallets SGF
     htmlRow += "<td>";
-    htmlRow += row.shopStock;
-    htmlRow += "</td>";
-
-    htmlRow += "<td>";
-    htmlRow += row.palletsSGF;
+    htmlRow += row.shopStock.pallets;
     htmlRow += "</td>";
 
     // Reservas
@@ -88,7 +89,7 @@ function drawTableRow ( row ) {
 
     // Pedir
     htmlRow += "<td>";
-    htmlRow += "P";
+    htmlRow += "";
     htmlRow += "</td>";
 
     // Packing List
@@ -103,7 +104,12 @@ function drawTableRow ( row ) {
 
     // Pallets ESBO
     htmlRow += "<td>";
-    htmlRow += "Pall Esbo";
+    htmlRow += row.esboStock.pallets;
+    htmlRow += "</td>";
+
+    // Stock ESBO
+    htmlRow += "<td>";
+    htmlRow += row.esboStock.stock;
     htmlRow += "</td>";
 
     // Num EOQ
@@ -138,7 +144,7 @@ function drawTableData ( dataMap ) {
 
 // *********************************************************
 function showTable( dataElementsMap ) {
-    tableHeaders.innerHTML = drawTableHeaders(cabeceras);
+    tableHeaders.innerHTML = drawTableHeaders( tableHeadersView );
 
     // tableData.innerHTML = drawTableData( datos );
     tableData.innerHTML = drawTableData( dataElementsMap );

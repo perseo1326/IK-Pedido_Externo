@@ -20,7 +20,7 @@ class dataObjectElement {
         this.esboStock = {};
         this.shopStock = {};
 
-        this.palletsSGF = 9;
+        this.palletsSGF = 0;
         this.stockWeeks = 0;
         this.eoqQty = 0;
     }
@@ -84,6 +84,29 @@ let dataObs;
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
+
+const tableHeadersView = [
+    "LV Venta",
+    "Referencia",
+    "Nombre",
+    "V.Max",
+    "VMS",
+    "Ult Sem",
+    "Semana",
+    "Sem Stock",
+    "EOQ",
+    "Pallet Qty",
+    "Stock Tienda",
+    "Pall SGF Tienda",
+    "Reservas",
+    "Pedir",
+    "Prox Camión",
+    "Obs Especiales",
+    "Pall ESBO",
+    "Stock ESBO",
+    "EOQ %",
+    "Cabeceras"
+];
 
 const REPO_SDS0001 = "SDS0001";
 const REPO_SA021 = "SA021";
