@@ -15,7 +15,7 @@ class dataObjectElement {
         this.palletQty = 0;
 
         this.locations = [];
-        
+
         this.stockEsbo = 0;
         this.palletsSGF = 0;
         this.shopStock = 0;
@@ -60,7 +60,7 @@ class dataObjectElement {
 let reportsConfigMap;
 
 // Data object elements Map (SG010 Data and references)
-let dataObjectElementMap;
+let dataObjectElementsMap;
 
 // data from 'SDS0001' report
 let dataSDS0001;
@@ -84,7 +84,7 @@ const REPO_PACKING_LIST = "Packing-List";
 const REPO_OBS_ESPECIAL = "Obs-Especiales";
 
 const SGF_LOCATION = "SGFLOCATION";
-const ESBO_LOCATION = 990501;
+const ESBO_LOCATION = "990501";
 const REFERENCE_SG010 = "STORAGE_UNICODE";
 const PALLET_QUANTITY = "QTY";
 
@@ -163,7 +163,7 @@ initialize();
 function initialize() {
     console.log("Procediendo a cargar datos de configuración...")
 
-    dataObjectElementMap = new Map();
+    dataObjectElementsMap = new Map();
     dataSDS0001 = [];
     dataSA021 = [];
     dataPackingList = [];
@@ -233,14 +233,17 @@ function loadSG010_File( evento ) {
             throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
 
-        // global map variable for export data
-        dataObjectElementMap = filterByEsboLocation( response, SGF_LOCATION, REFERENCE_SG010, PALLET_QUANTITY, ESBO_LOCATION );
+        // convert sales locations from number to string
+        response = normalizeRecord( response, report.columns[0], 6 );
 
-        console.log("DATA ARRAY '" + report.name + "': ", dataObjectElementMap );
+        // global map variable for export data
+        dataObjectElementsMap = filterByEsboLocation( response, SGF_LOCATION, REFERENCE_SG010, PALLET_QUANTITY, ESBO_LOCATION );
+
+        console.log("DATA ARRAY '" + report.name + "': ", dataObjectElementsMap );
     })
     .catch( (error) => {
         console.log("ERROR:loadSG010_File: ", error );
-        dataObjectElementMap = new Map();
+        dataObjectElementsMap = new Map();
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -381,7 +384,7 @@ function ProcessReports() {
     console.log("ProcessReports function!");
 
     try {
-        if( dataObjectElementMap.size <= 0 ){
+        if( dataObjectElementsMap.size <= 0 ){
             console.log("WARNING:ProcessReports: No 'SG010' data loaded.");
             throw new Error("No se han cargado datos del reporte 'SG010'.");
         }
@@ -405,23 +408,24 @@ function ProcessReports() {
         }
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
-        dataObjectElementMap = loadSDS0001Values( dataSDS0001, dataObjectElementMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
+        dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
         
         // Integrate 'SA021' data into 'dataObjectElementMap'
-        dataObjectElementMap = loadSA021Values( dataSA021, dataObjectElementMap, reportsConfigMap.get( REPO_SA021 ).columns );
+        dataObjectElementsMap = loadSA021Values( dataSA021, dataObjectElementsMap, reportsConfigMap.get( REPO_SA021 ).columns );
 
         // Integrate 'Packing-List' data into 'dataObjectElementMap'
-        dataObjectElementMap = loadPackingListValues( dataPackingList, dataObjectElementMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
+        dataObjectElementsMap = loadPackingListValues( dataPackingList, dataObjectElementsMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
         
         // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
-        dataObjectElementMap = loadDataObsValues( dataObs, dataObjectElementMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
+        dataObjectElementsMap = loadDataObsValues( dataObs, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
 
 
+        locations( dataObjectElementsMap);
 
 
         reportsPanel.classList.add("no-visible");
         tableDataButton.parentElement.classList.remove("no-visible");
-        showTable( dataObjectElementMap );
+        showTable( dataObjectElementsMap );
 
     } catch (error) {
         console.log(error)
@@ -483,7 +487,13 @@ function alertNoReportProvided( dataArray, reportName ) {
 
 
 // *********************************************************
+function locations( dataMap ) {
 
+    for (const element of dataMap.values() ) {
+        console.log("MAPA VALUES: LOCATION: ", element.locations );
+        return;
+    }
+}
 
 // *********************************************************
 // *********************************************************
