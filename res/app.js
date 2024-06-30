@@ -237,7 +237,9 @@ function loadSG010_File( evento ) {
         response = normalizeRecord( response, report.columns[0], 6 );
 
         // global map variable for export data
-        dataObjectElementsMap = filterByEsboLocation( response, SGF_LOCATION, REFERENCE_SG010, PALLET_QUANTITY, ESBO_LOCATION );
+        const referencesMap = filterByEsboLocation( response, REFERENCE_SG010, SGF_LOCATION, ESBO_LOCATION );
+
+        dataObjectElementsMap = getLocationsByRef( response, referencesMap, REFERENCE_SG010, SGF_LOCATION, PALLET_QUANTITY );
 
         console.log("DATA ARRAY '" + report.name + "': ", dataObjectElementsMap );
     })
@@ -385,27 +387,27 @@ function ProcessReports() {
 
     try {
         if( dataObjectElementsMap.size <= 0 ){
-            console.log("WARNING:ProcessReports: No 'SG010' data loaded.");
-            throw new Error("No se han cargado datos del reporte 'SG010'.");
+            console.log(`WARNING:ProcessReports: No '${REPO_SG010}' data loaded.`);
+            throw new Error(`No se han cargado datos del reporte '${REPO_SG010}'.`);
         }
 
         // Ask to continue if some report is not provided
-        if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
-            return;
-        }
+        // if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
+        //     return;
+        // }
 
-        if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
-            return;
-        }
+        // if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
+        //     return;
+        // }
 
-        // console.log("Validation packing list: ", dataPackingList );
-        if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
-            return;
-        }
+        // // console.log("Validation packing list: ", dataPackingList );
+        // if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
+        //     return;
+        // }
 
-        if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
-            return;
-        }
+        // if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
+        //     return;
+        // }
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
@@ -419,7 +421,7 @@ function ProcessReports() {
         // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadDataObsValues( dataObs, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
 
-
+        
         locations( dataObjectElementsMap);
 
 
@@ -489,9 +491,24 @@ function alertNoReportProvided( dataArray, reportName ) {
 // *********************************************************
 function locations( dataMap ) {
 
+    
+    
     for (const element of dataMap.values() ) {
-        console.log("MAPA VALUES: LOCATION: ", element.locations );
-        return;
+        
+        let esboPalletCount = 0;
+        let shopPalletCount = 0;
+        
+        if( element.reference === "90574664"){
+            
+            for ( const location of element.locations ) {
+                
+                console.log("location: ", location );
+                
+            }
+
+            console.log("MAPA VALUES: LOCATION: ", element.locations.length, element.locations, element );
+        }
+        // return;
     }
 }
 

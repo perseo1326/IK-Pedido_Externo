@@ -64,28 +64,39 @@ function normalizeRecord ( dataArray, refColumn, stringSize ){
 
 
 // *********************************************************
-function filterByEsboLocation( dataArray, columnSgfLocation, reference, palletQuantity, esboLocation ) {
+function filterByEsboLocation( dataArray, reference, columnSgfLocation, esboLocation ) {
 
     const referencesMap = new Map();
     for ( const row of dataArray ) {
 
-        // console.log("SG010 Ref: ", typeof(row[reference]) , row[reference] );
-
         if( row[columnSgfLocation] === esboLocation ){
-            if(!referencesMap.has( row[reference] )){
 
-                referencesMap.set( row[reference], new dataObjectElement() );
-            }
+            referencesMap.set( row[reference], new dataObjectElement() );
+        }
+    }
+
+    // console.log("Tamaño SET: ", referencesMap.size );
+    return referencesMap;
+}
+
+
+// *********************************************************
+function getLocationsByRef( response, referencesMap, reference, columnSgfLocation, palletQuantity ) {
+
+    for ( const row of response ) {
+        // console.log("ROW SG010 Location: ", row );
+
+        if( referencesMap.has( row[reference] )){
 
             const palletLocation = { 
                 "palletLocation" : row[ columnSgfLocation ],
                 "palletQuantity" : row[ palletQuantity ] 
             };
+            
             referencesMap.get( row[reference] ).locations.push( palletLocation );
-            // console.log("ROW: ", row[reference], row[columnSgfLocation]);
+            console.log("ROW: ", row[reference], row[columnSgfLocation]);
         }
     }
-
     return referencesMap;
 }
 
