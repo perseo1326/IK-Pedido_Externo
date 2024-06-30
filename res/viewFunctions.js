@@ -62,7 +62,7 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     htmlRow += "<td>";
-    htmlRow += row.stockWeeks;
+    htmlRow += row.stockWeeks.toFixed(2);
     htmlRow += "</td>";
 
     htmlRow += "<td>";
@@ -90,7 +90,7 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // Pedir
-    htmlRow += "<td>";
+    htmlRow += "<td contenteditable='true' >"; 
     htmlRow += "";
     htmlRow += "</td>";
 
@@ -116,7 +116,7 @@ function drawTableRow ( row ) {
 
     // Num EOQ
     htmlRow += "<td>";
-    htmlRow += row.eoqQty;
+    htmlRow += row.eoqQty.toFixed(2);
     htmlRow += "</td>";
 
     // cabeceras
