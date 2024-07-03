@@ -4,7 +4,7 @@
         {
             "name": "SDS0001", 
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
-            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "H_SLID", "ARTNO", "ARTNAME_UNICODE", "ASSQ", "OP_FC_CURR", "AVGSALES", "AVAIL_STOCK", "SGF_STOCK", "ITEM_VOL", "PALQ"]
         },
@@ -12,7 +12,7 @@
         {
             "name": "SA021", 
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
-            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "ARTNO", "EXPSALE", "QTYSOLDTHISWEEK", "QTYSOLDLASTWEEK"]
         },
@@ -20,7 +20,7 @@
         {
             "name": "SG010",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
-            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12"],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "SGFLOCATION", "STORAGE_UNICODE", "QTY", "AVAIL_STOCK"]
         },
