@@ -56,7 +56,7 @@ function drawTableRow ( row ) {
     htmlRow += row.thisWkSales;
     htmlRow += "</td>";
 
-    htmlRow += "<td>";
+    htmlRow += "<td class='stockWeeksHighligter'>";
     htmlRow += row.stockWeeks.toFixed(2);
     htmlRow += "</td>";
 

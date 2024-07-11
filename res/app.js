@@ -117,7 +117,7 @@ const tableHeadersView = [
     "Pallet Qty",
     "Stock Tienda",
     "Stock LV",
-    "Pall SGF Tienda",
+    "Pall Tienda",
     "Reservas",
     "Pedir",
     "Prox Camión",
