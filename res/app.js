@@ -106,7 +106,6 @@ const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
 const tableHeadersView = [
-    "LV Venta",
     "Referencia",
     "Nombre",
     "V.Max",
@@ -117,14 +116,16 @@ const tableHeadersView = [
     "EOQ",
     "Pallet Qty",
     "Stock Tienda",
+    "Stock LV",
     "Pall SGF Tienda",
     "Reservas",
     "Pedir",
     "Prox Camión",
-    "Obs Especiales",
+    "Obs Esp.",
     "Pall ESBO",
     "Stock ESBO",
     "EOQ %",
+    "LV Venta",
     "Cabeceras"
 ];
 

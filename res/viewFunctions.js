@@ -28,11 +28,6 @@ function drawTableRow ( row ) {
 
     let htmlRow = "";
 
-    // LV
-    htmlRow += "<td>";
-    htmlRow += row.salesLocation;
-    htmlRow += "</td>";
-
     // Ref
     htmlRow += "<td>";
     htmlRow += row.reference;
@@ -75,9 +70,12 @@ function drawTableRow ( row ) {
 
     htmlRow += "<td title='Stock Disponible total en tienda (LV)' >";
     htmlRow += row.availableShopStock;
-    htmlRow += "("
+    htmlRow += "</td>";
+    
+    // LV stock
+    htmlRow += "<td>";
     htmlRow += row.LVStock;
-    htmlRow += ")</td>";
+    htmlRow += "</td>";
 
     // pallets SGF
     htmlRow += "<td>";
@@ -119,6 +117,11 @@ function drawTableRow ( row ) {
     htmlRow += row.eoqQty.toFixed(2);
     htmlRow += "</td>";
 
+    // LV
+    htmlRow += "<td>";
+    htmlRow += row.salesLocation;
+    htmlRow += "</td>";
+    
     // cabeceras
     htmlRow += "<td>";
     htmlRow += "'" + row.salesLocation.substr(2);
