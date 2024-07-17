@@ -96,6 +96,9 @@ let dataSDS0001;
 // data from 'SA021' report 
 let dataSA021;
 
+// data from 'OPEN ORDER LINE' report 
+let dataOOL;
+
 // data from 'Packing List' report 
 let dataPackingList;
 
@@ -134,6 +137,7 @@ const REPO_SA021 = "SA021";
 const REPO_SG010 = "SG010";
 const REPO_PACKING_LIST = "Packing-List";
 const REPO_OBS_ESPECIAL = "Obs-Especiales";
+const REPO_OPEN_ORDER_LINE = "OOL";
 
 const SGF_LOCATION = "SGFLOCATION";
 const ESBO_LOCATION = "990501";
@@ -152,6 +156,7 @@ const cancelButton = document.getElementById("cancel-aux-panel");
 const SDS0001_Button = document.getElementById(REPO_SDS0001);
 const SA021_Button = document.getElementById(REPO_SA021);
 const SG010_Button = document.getElementById(REPO_SG010);
+const OOL_Button = document.getElementById(REPO_OPEN_ORDER_LINE);
 const PACKING_LIST_Button = document.getElementById(REPO_PACKING_LIST);
 const OBS_ESPECIAL_Button = document.getElementById(REPO_OBS_ESPECIAL);
 const loadReportsB = document.getElementById("process-reports-go");
@@ -200,6 +205,7 @@ cancelButton.addEventListener("click", () => {
 SG010_Button.addEventListener("change", loadSG010_File );
 SDS0001_Button.addEventListener("change", loadSDS0001_File) ;
 SA021_Button.addEventListener("change", loadSA021_File );
+OOL_Button.addEventListener("change", loadOOL_File );
 PACKING_LIST_Button.addEventListener("change", loadPackingList_File );
 OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 
@@ -218,6 +224,7 @@ function initialize() {
     dataObjectElementsMap = new Map();
     dataSDS0001 = [];
     dataSA021 = [];
+    dataOOL = [];
     dataPackingList = [];
     dataObs = [];
 
@@ -363,6 +370,37 @@ function loadSA021_File ( evento ) {
     .catch( (error) => {
         console.log("ERROR:loadSA021_File: ", error );
         dataSA021 = [];
+        showFileNameReport( ( report.name ) + "-file-name" , "");
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+}
+
+
+// *********************************************************
+// Function to read 'OPEN_ORDER_LINE' Report selected file
+function loadOOL_File( evento ){
+
+    const report = reportsConfigMap.get( REPO_OPEN_ORDER_LINE ); 
+    const promise = loadFile( evento, report );   
+    promise.then( ( response ) => {
+
+        // validating data structure
+        if( !validateReportColumns( response, report.columns )) {
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
+        }
+        
+        response = normalizeRecord( response, report.columns[0], 8 );
+
+        // global map variable for export data
+        dataOOL = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadOOL_File: ", error );
+        dataOOL = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
