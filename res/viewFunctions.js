@@ -98,7 +98,7 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // Obs Especiales
-    htmlRow += "<td>";
+    htmlRow += "<td class='text-left'>";
     htmlRow += row.quotes;
     htmlRow += "</td>";
 
