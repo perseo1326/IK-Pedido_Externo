@@ -492,6 +492,10 @@ function ProcessReports() {
             return;
         }
 
+        if( !alertNoReportProvided( dataOOL, REPO_OPEN_ORDER_LINE )) {
+            return;
+        }
+
         // console.log("Validation packing list: ", dataPackingList );
         if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
             return;
