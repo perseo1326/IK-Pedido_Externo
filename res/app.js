@@ -484,22 +484,22 @@ function ProcessReports() {
         }
 
         // Ask to continue if some report is not provided
-        // if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
-        //     return;
-        // }
+        if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
+            return;
+        }
 
-        // if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
-        //     return;
-        // }
+        if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
+            return;
+        }
 
-        // // console.log("Validation packing list: ", dataPackingList );
-        // if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
-        //     return;
-        // }
+        // console.log("Validation packing list: ", dataPackingList );
+        if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
+            return;
+        }
 
-        // if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
-        //     return;
-        // }
+        if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
+            return;
+        }
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
