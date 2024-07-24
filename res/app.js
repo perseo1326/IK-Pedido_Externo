@@ -140,9 +140,9 @@ const tableHeadersView = [
 const REPO_SDS0001 = "SDS0001";
 const REPO_SA021 = "SA021";
 const REPO_SG010 = "SG010";
+const REPO_OPEN_ORDER_LINE = "OOL";
 const REPO_PACKING_LIST = "Packing-List";
 const REPO_OBS_ESPECIAL = "Obs-Especiales";
-const REPO_OPEN_ORDER_LINE = "OOL";
 
 const SGF_LOCATION = "SGFLOCATION";
 const ESBO_LOCATION = "990501";
@@ -517,7 +517,7 @@ function ProcessReports() {
         dataObjectElementsMap = loadSA021Values( dataSA021, dataObjectElementsMap, reportsConfigMap.get( REPO_SA021 ).columns );
 
         // Integrate 'Open Order Line OOL' data into 'dataObjectElementMap'
-        dataObjectElementsMap = loadOpenOrderLineValues( dataOOL, dataObjectElementsMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
+        dataObjectElementsMap = loadOpenOrderLineValues( dataOOL, dataObjectElementsMap, reportsConfigMap.get( REPO_OPEN_ORDER_LINE ).columns );
 
         // Integrate 'Packing-List' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadPackingListValues( dataPackingList, dataObjectElementsMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );

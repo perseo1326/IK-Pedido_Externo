@@ -163,7 +163,6 @@ function loadOpenOrderLineValues( OpenOrderLineDataArray, dataMap, columns ) {
     for ( const row of OpenOrderLineDataArray ) {
         if( dataMap.has( row[ columns[0] ])) {
 
-            // console.log("ROW SA021: ", row );
             dataMap.get( row[ columns[0] ]).
                 setOpenOrderLineValues( 
                     row[ columns[1] ]
