@@ -84,7 +84,7 @@ function drawTableRow ( row ) {
 
     // Reservas
     htmlRow += "<td>";
-    htmlRow += "";
+    htmlRow += row.openOrderLineData;
     htmlRow += "</td>";
 
     // Pedir
