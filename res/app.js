@@ -13,6 +13,7 @@ class dataObjectElement {
         this.thisWkSales = 0;
         this.eoq = 0;
         this.palletQty = 0;
+        this.openOrderLineData = 0;
         this.packingListData = "";
         this.quotes = "";
 
@@ -48,6 +49,10 @@ class dataObjectElement {
         }
     }
 
+    setOpenOrderLineValues( openOrderLineData ){
+        this.openOrderLineData = openOrderLineData;
+    }
+    
     setPackingListValues( packingListData ) {
         this.packingListData = packingListData;
     }
@@ -510,6 +515,9 @@ function ProcessReports() {
         
         // Integrate 'SA021' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSA021Values( dataSA021, dataObjectElementsMap, reportsConfigMap.get( REPO_SA021 ).columns );
+
+        // Integrate 'Open Order Line OOL' data into 'dataObjectElementMap'
+        dataObjectElementsMap = loadOpenOrderLineValues( dataOOL, dataObjectElementsMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
 
         // Integrate 'Packing-List' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadPackingListValues( dataPackingList, dataObjectElementsMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );

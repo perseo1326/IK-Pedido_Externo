@@ -156,6 +156,24 @@ function loadSA021Values(SA021DataArray, dataMap, columns) {
 
 
 // *********************************************************
+function loadOpenOrderLineValues( OpenOrderLineDataArray, dataMap, columns ) {
+
+    // console.log("ROW Open Order Line: ", columns, OpenOrderLineDataArray);
+
+    for ( const row of OpenOrderLineDataArray ) {
+        if( dataMap.has( row[ columns[0] ])) {
+
+            // console.log("ROW SA021: ", row );
+            dataMap.get( row[ columns[0] ]).
+                setOpenOrderLineValues( 
+                    row[ columns[1] ]
+                );
+        }
+    }
+    return dataMap;
+}
+
+// *********************************************************
 function loadPackingListValues( packingListDataArray, dataMap, columns ) {
 
     // console.log("ROW Packing list: ", columns, packingListDataArray);
