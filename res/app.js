@@ -110,6 +110,9 @@ let dataPackingList;
 // data from 'Obs Especiales' report 
 let dataObs;
 
+// data from 'Pedido anterior ESBO' report 
+let dataPreviousOrder;
+
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
@@ -141,8 +144,9 @@ const REPO_SDS0001 = "SDS0001";
 const REPO_SA021 = "SA021";
 const REPO_SG010 = "SG010";
 const REPO_OPEN_ORDER_LINE = "OOL";
-const REPO_PACKING_LIST = "Packing-List";
 const REPO_OBS_ESPECIAL = "Obs-Especiales";
+const REPO_PACKING_LIST = "Packing-List";
+const REPO_PREVIOUS_ORDER = "Pedido-ESBO";
 
 const SGF_LOCATION = "SGFLOCATION";
 const ESBO_LOCATION = "990501";
@@ -164,6 +168,7 @@ const SG010_Button = document.getElementById(REPO_SG010);
 const OOL_Button = document.getElementById(REPO_OPEN_ORDER_LINE);
 const PACKING_LIST_Button = document.getElementById(REPO_PACKING_LIST);
 const OBS_ESPECIAL_Button = document.getElementById(REPO_OBS_ESPECIAL);
+const previousOrder_Button = document.getElementById(REPO_PREVIOUS_ORDER);
 const loadReportsB = document.getElementById("process-reports-go");
 
 // table results panel
@@ -213,6 +218,7 @@ SA021_Button.addEventListener("change", loadSA021_File );
 OOL_Button.addEventListener("change", loadOOL_File );
 PACKING_LIST_Button.addEventListener("change", loadPackingList_File );
 OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
+previousOrder_Button.addEventListener("change", loadPreviousOrder_File );
 
 loadReportsB.addEventListener("click", ProcessReports );
 tableDataButton.addEventListener("click", copyTable );
@@ -232,6 +238,7 @@ function initialize() {
     dataOOL = [];
     dataPackingList = [];
     dataObs = [];
+    dataPreviousOrder = [];
 
     fetch( configDataURL )
     .then((response) => response.json())
@@ -468,6 +475,37 @@ function loadObservations_File( evento ){
     .catch( (error) => {
         console.log("ERROR:loadObservations_File: ", error );
         dataObs = [];
+        showFileNameReport( ( report.name ) + "-file-name" , "");
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+}
+
+
+// *********************************************************
+// Function to read 'Pedido Anterior ESBO' Report selected file
+function loadPreviousOrder_File( evento ){
+
+    const report = reportsConfigMap.get( REPO_PREVIOUS_ORDER ); 
+    const promise = loadFile( evento, report );   
+    promise.then( ( response ) => {
+
+        // validating data structure
+        if( !compareColumnsArrays( Object.keys( response[0] ), report.columns )){
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
+        }
+
+        response = normalizeRecord( response, report.columns[0], 8 );
+
+        // global map variable for export data
+        dataPreviousOrder = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadPreviousOrder_File: ", error );
+        dataPreviousOrder = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
