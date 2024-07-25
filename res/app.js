@@ -54,7 +54,11 @@ class dataObjectElement {
     }
     
     setPackingListValues( packingListData ) {
-        this.packingListData = packingListData;
+        let space = "";
+        if(this.packingListData != ""){
+            space = ", ";
+        }
+        this.packingListData = (this.packingListData + space + packingListData );
     }
 
     setDataObsValues( quotes ){
@@ -562,6 +566,9 @@ function ProcessReports() {
         
         // Integrate 'Obs-Especiales' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadDataObsValues( dataObs, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
+
+        // Integrate 'Pedido Anterior ESBO' data into 'dataObjectElementMap'
+        dataObjectElementsMap = loadPreviousOrderValues( dataPreviousOrder, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
 
         // Fill calculated data
         dataObjectElementsMap = setShopAvailibility( dataObjectElementsMap );
