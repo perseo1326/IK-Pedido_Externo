@@ -214,10 +214,12 @@ function loadPreviousOrderValues ( DataObsDataArray, dataMap, columns ) {
     for ( const row of DataObsDataArray ) {
 
         if( dataMap.has( row[ columns[0] ])) {
+            
             dataMap.get( row[ columns[0] ]).
                 setPreviousOrderValues( 
                     row[ columns[1] ]
                 );
+            console.log("Valores: ", row);
         }
     }
     return dataMap;

@@ -62,9 +62,8 @@ class dataObjectElement {
     }
 
     setPreviousOrderValues( previousOrderData ) {
-        debugger
         this.packingListData = ( "(" + previousOrderData + ") " + this.packingListData );
-        console.log("Pedido: ", this.packingListData);
+        // console.log("Pedido: ", this.packingListData);
     }
 
     setDataObsValues( quotes ){
@@ -574,7 +573,7 @@ function ProcessReports() {
         dataObjectElementsMap = loadDataObsValues( dataObs, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
 
         // Integrate 'Pedido Anterior ESBO' data into 'dataObjectElementMap'
-        dataObjectElementsMap = loadPreviousOrderValues( dataPreviousOrder, dataObjectElementsMap, reportsConfigMap.get( REPO_OBS_ESPECIAL ).columns );
+        dataObjectElementsMap = loadPreviousOrderValues( dataPreviousOrder, dataObjectElementsMap, reportsConfigMap.get( REPO_PREVIOUS_ORDER ).columns );
 
         // Fill calculated data
         dataObjectElementsMap = setShopAvailibility( dataObjectElementsMap );
