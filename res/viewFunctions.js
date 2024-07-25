@@ -93,7 +93,7 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // Packing List
-    htmlRow += "<td>";
+    htmlRow += "<td>'";
     htmlRow += row.packingListData;
     htmlRow += "</td>";
 
