@@ -36,6 +36,10 @@
     height: 3em;
 }
 
+.custom-button-green {
+    background-color: #7fe4a6;
+}
+
 /* ***** REPORTS PANEL STYLES ENDS ***** */
 
 /* ***** TABLE RESULTS PANEL STYLES ***** */
