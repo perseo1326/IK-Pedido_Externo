@@ -180,9 +180,9 @@ function loadPackingListValues( packingListDataArray, dataMap, columns ) {
     for ( const row of packingListDataArray ) {
         if( dataMap.has( row[ columns[0] ])) {
 
-            // console.log("ROW SA021: ", row );
+            // console.log("ROW Packing list value: ", row );
             dataMap.get( row[ columns[0] ]).
-                setPackingListValues( 
+                setPackingListValues(
                     row[ columns[1] ]
                 );
         }
@@ -199,6 +199,23 @@ function loadDataObsValues ( DataObsDataArray, dataMap, columns ) {
         if( dataMap.has( row[ columns[0] ])) {
             dataMap.get( row[ columns[0] ]).
                 setDataObsValues( 
+                    row[ columns[1] ]
+                );
+        }
+    }
+    return dataMap;
+}
+
+
+// *********************************************************
+// Integrate 'Pedido Anterior ESBO' data into 'dataObjectElementMap'
+function loadPreviousOrderValues ( DataObsDataArray, dataMap, columns ) {
+
+    for ( const row of DataObsDataArray ) {
+
+        if( dataMap.has( row[ columns[0] ])) {
+            dataMap.get( row[ columns[0] ]).
+                setPreviousOrderValues( 
                     row[ columns[1] ]
                 );
         }

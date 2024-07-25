@@ -61,6 +61,12 @@ class dataObjectElement {
         this.packingListData = (this.packingListData + space + packingListData );
     }
 
+    setPreviousOrderValues( previousOrderData ) {
+        debugger
+        this.packingListData = ( "(" + previousOrderData + ") " + this.packingListData );
+        console.log("Pedido: ", this.packingListData);
+    }
+
     setDataObsValues( quotes ){
         this.quotes = quotes;
     }
