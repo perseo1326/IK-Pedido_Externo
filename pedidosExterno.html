@@ -7,24 +7,21 @@
     <link rel="shortcut icon" href="./lib/favicon.ico" type="image/x-icon">
     <meta name="autor" content="https://github.com/perseo1326" />
     <link rel="stylesheet" type="text/css" href="./lib/baseStyles.css">
-    <link rel="stylesheet" type="text/css" href="./res/styles.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./res/styles.css"> -->
 </head>
 <body>
     
-    <div class="">
+    <div class="global-container">
 
         <!-- navigation bar / title bar -->
-        <nav class="container-row nav-bar no-visible_">
+        <nav class="container-row nav-bar ">
             <div class="logo">
                 <img src="./lib/company-logo.svg" alt="IKEA Logo" srcset="">
             </div>
             <div class="page-title">
-                <h1>Pedido a ESBO v<span>1.2</span></h1>
+                <h1>Pedido a ESBO v<span id="version"></span></h1>
             </div>
 
-            <div class="email">
-                <h5><a href="mailto:johnwilli.skolik@ingka.ikea.com">johnwilli.skolik@ingka.ikea.com</a></h5>
-            </div>
         </nav>
 
         <!-- Loading panel definition -->
@@ -52,13 +49,25 @@
                 </section>
 
                 <!-- SDS0001 REPORT  -->
-                <section id="SDS0001-section" class="app-body-section container-row">
-                    <div class="section-div-button">
-                        <label for="SDS0001" class="custom-button" tabindex="">SDS0001</label>
-                        <input id="SDS0001" class="no-visible" type="file">
-                    </div>
-                    <div class="section-div-file">
-                        <p id="SDS0001-file-name" class=""></p>
+                <section id="SDS0001-section" class="app-body-section container-row container-row-align">
+                    <!-- <div> -->
+                        <div class="section-div width-30_">
+                            <div class="section-div-button">
+                                <label for="SDS0001" class="custom-button" tabindex="">SDS0001</label>
+                                <input id="SDS0001" class="no-visible" type="file">
+                            </div>
+                        <!-- </div> -->
+                        <!-- <div class="section-div "> -->
+                            <div class="section-div-file">
+                                <p id="SDS0001-file-name" class="">un parrafo</p>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+
+                    <div class="section-div">
+                        <div class="section-div-file_">
+                            <img src="./lib/update.svg" alt="">
+                        </div>
                     </div>
                 </section>
         
@@ -141,6 +150,12 @@
         
             </div>
         </div>
+        
+        <footer class="centrar">
+            <div class="">
+                <p>Contacto: <a class="email" href="mailto:johnwilli.skolik@ingka.ikea.com">johnwilli.skolik@ingka.ikea.com</a></p>
+            </div>
+        </footer>
 
     </div>
 

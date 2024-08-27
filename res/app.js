@@ -122,6 +122,8 @@ let dataObs;
 // data from 'Pedido anterior ESBO' report 
 let dataPreviousOrder;
 
+const version = 1.2;
+
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
@@ -269,6 +271,8 @@ function initialize() {
         alert("Error procesando Datos de configuración inicial.");
     });
 
+    document.getElementById("version").innerText = version;
+    console.log("Versión: ", version );
 }
 
 
