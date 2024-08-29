@@ -99,12 +99,7 @@ table thead {
     background-color: yellow;
     position: sticky;
     top: 0;
-}
-
-table thead tr th {
-    /* background-color: yellow; */
     border: 2px solid black;
-
 }
 
 table thead tr th span {
@@ -141,7 +136,7 @@ table tbody td {
 /* ***** COPY BUTTON  ***** */
 
 .div-copy-div {
-    position: absolute;
+    position: fixed;
     bottom: 3em;
     right: 3em;
     z-index: 10;
