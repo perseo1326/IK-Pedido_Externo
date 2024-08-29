@@ -199,7 +199,7 @@ const tableDataButton = document.getElementById("copy-data-table");
 
 auxPanel.addEventListener("wheel", ( evento ) => {
     console.log("Evento RUEDA.");
-    evento.preventDefault();
+    // evento.preventDefault();
 });
 
 
@@ -241,7 +241,7 @@ initialize();
 
 // *********************************************************
 function initialize() {
-    console.log("Procediendo a cargar datos de configuración...")
+    console.log("Cargando datos de configuración...")
 
     dataObjectElementsMap = new Map();
     dataSDS0001 = [];

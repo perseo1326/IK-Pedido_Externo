@@ -11,7 +11,7 @@
 </head>
 <body>
     
-    <div class="global-container">
+    <div class="global-grid-container">
 
         <!-- navigation bar / title bar -->
         <nav class="container-row nav-bar ">
@@ -34,10 +34,10 @@
         </div>
 
         <!-- App content -->
-        <div id="" class="app-body container-column">
+        <div id="" class="">
             
             <!-- buttons panel -->
-            <div id="reports-panel" class="app-body container-column">
+            <div id="reports-panel" class="container-column">
                 
                 
                 <!-- SG010 REPORT -->
@@ -52,26 +52,25 @@
                 </section>
 
                 <!-- SDS0001 REPORT  -->
-                <section id="SDS0001-section" class="app-body-section container-row container-row-align">
-                    <!-- <div> -->
-                        <div class="section-div width-30_">
-                            <div class="section-div-button">
-                                <label for="SDS0001" class="custom-button" tabindex="">SDS0001</label>
-                                <input id="SDS0001" class="no-visible" type="file">
-                            </div>
-                        <!-- </div> -->
-                        <!-- <div class="section-div "> -->
-                            <div class="section-div-file">
-                                <p id="SDS0001-file-name" class="">un parrafo</p>
-                            </div>
-                        </div>
-                    <!-- </div> -->
 
-                    <div class="section-div">
-                        <div class="section-div-file_">
-                            <img src="./lib/update.svg" alt="">
+                <section id="SDS0001-section" class="container-row">
+
+                    <div class="section-div width-85">
+                        <div class="container-row">
+                            <label for="SDS0001" class="custom-button-report custom-button" tabindex="">SDS0001</label>
+                            <input id="SDS0001" class="no-visible" type="file">
                         </div>
+                        <p id="SDS0001-file-name" class="">un parrafo</p>
                     </div>
+
+                    <!-- Use of SVG after declaration -->
+                    <div class="container-row container-svg-update no-visible_">
+                        <svg class="">
+                            <use xlink:href="#next"></use>
+                            <!-- <use href="./lib/update.svg#update"></use> -->
+                        </svg>
+                    </div>
+
                 </section>
         
                 <!-- SA021 REPORT  -->

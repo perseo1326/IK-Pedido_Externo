@@ -1,6 +1,6 @@
 
 
-* {
+*, html, body {
     --background: white;
     --font-color: whitesmoke;
     --first-color: #0059A3;
@@ -37,7 +37,7 @@
     justify-content: center;
 }
 
-.global-container {
+.global-grid-container {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100dvh;
@@ -54,8 +54,6 @@
 /* ***** NAVIGATION BAR ***** */
 
 .nav-bar {
-    align-items: center;
-    width: 100%;
     background-color: var(--first-color);
     color: var(--font-color);
     padding: 1.5em;

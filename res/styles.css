@@ -1,0 +1,78 @@
+
+.width-85 {
+    width: 85%;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.margin-auto {
+    margin: auto;
+}
+
+/* ***** REPORTS PANEL STYLES ***** */
+
+#reports-panel {
+    height: 100%;
+    width: 100%;
+}
+
+section {
+    margin: 0.3em 1em;
+    justify-content: space-between;
+    align-items: center;
+    height: 5em;
+    margin-bottom: 0.5em;
+    background-color: pink;
+}
+
+.section-div {
+    display: flex;
+    align-items: center;
+}
+
+.section-div div {
+    width: 30%;
+}
+
+.custom-button-report {
+    width: 10em;
+}
+
+ /* ********************************************************* */
+/* ***** ESTILOS PARA SVG UPDATE ***** */
+ /* ********************************************************* */
+ 
+.container-svg-update {
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* width: 8em; */
+    padding: 0.5em;
+    justify-content: center;
+    background-color: aquamarine;
+}
+
+div.container-svg-update svg {
+    stroke: red;
+    background-color:blanchedalmond;
+    padding: 0.5em;
+    /* block-size: auto; */
+    /* height: 4em; */
+    /* width: 4em; */
+    width: 80px;
+    height: 60px;
+} 
+
+.icon-svg-update {
+    stroke: purple;
+    /* width: 80px; */
+    /* height: 60px; */
+}
+
+ /* ********************************************************* */
+/* ***** ESTILOS PARA SVG UPDATE ENDS ***** */
+ /* ********************************************************* */
+
+/* ***** REPORTS PANEL STYLES ENDS ***** */
+
