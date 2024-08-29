@@ -40,6 +40,15 @@ section {
     width: 12em;
 }
 
+.div-reports-panel-go {
+    margin: 1em;
+    background-color: aquamarine;
+}
+
+.div-reports-panel-go button {
+    width: 30%;
+    height: 3em;
+}
  /* ********************************************************* */
 /* ***** ESTILOS PARA SVG UPDATE ***** */
  /* ********************************************************* */
