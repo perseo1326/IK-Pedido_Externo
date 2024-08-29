@@ -285,7 +285,7 @@ function loadFile ( evento, report ){
 
     const filePointer = new ExcelFileOpen(file, report.FILE_EXTENSION_ARRAY, report.FILE_WORKBOOK_SHEET, report.FILE_MYME_TYPE_ARRAY );
 
-    // console.log("FILE: ", filePointer.file );
+    console.log("FILE: ", filePointer.file );
 
     return new Promise( ( resolve, reject ) => {
         const promiseData = loadExcelFile(filePointer);

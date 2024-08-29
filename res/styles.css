@@ -24,7 +24,7 @@ section {
     align-items: center;
     height: 5em;
     margin-bottom: 0.5em;
-    background-color: pink;
+    /* background-color: pink; */
 }
 
 .section-div {
@@ -42,7 +42,7 @@ section {
 
 .div-reports-panel-go {
     margin: 1em;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
 }
 
 .div-reports-panel-go button {
@@ -83,5 +83,69 @@ div.container-svg-update svg {
 /* ***** ESTILOS PARA SVG UPDATE ENDS ***** */
  /* ********************************************************* */
 
-/* ***** REPORTS PANEL STYLES ENDS ***** */
+/* ***** TABLE RESULTS PANEL STYLES ***** */
 
+#table-results-panel {
+    padding: 0em 0.5em 0.5em 0.5em;
+}
+
+div.app-table-results table {
+    /* background-color: rgb(221, 229, 140); */
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+table thead {
+    background-color: yellow;
+    position: sticky;
+    top: 0;
+}
+
+table thead tr th {
+    /* background-color: yellow; */
+    border: 2px solid black;
+
+}
+
+table thead tr th span {
+    /* background-color: blueviolet; */
+    writing-mode: vertical-lr;
+    transform: rotate(180deg); 
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
+
+table tbody tr:hover {
+    background-color: lightgray;
+}
+
+table tbody td {
+    border: 0.5px solid black;
+    /* background-color: aquamarine; */
+    padding: 3px;
+    min-width: 2.5em;
+}
+
+/* td:nth-child( 8 ), th:nth-child( 8 ) { */
+.stockWeeksHighligter {
+    background-color: #afaeeb;
+    color: aliceblue;
+}
+
+
+
+/* ***** TABLE RESULTS PANEL STYLES ENDS ***** */
+
+/* ***** COPY BUTTON  ***** */
+
+.div-copy-div {
+    position: absolute;
+    bottom: 3em;
+    right: 3em;
+    z-index: 10;
+}
+
+
+/* ***** COPY BUTTON ENDS ***** */

@@ -91,14 +91,15 @@ footer {
 }
 
 a.email {
+    font-weight: bold;
     text-decoration: none;
     color: inherit;
     padding: 0.3em;
+    font-style: italic;
 }
 
 a.email:hover {
-    background-color: var(--second-color);
-    color: var(--first-color);
+    text-decoration: underline;
 }
 
 /* ***** FOOTER BAR ENDS ***** */
