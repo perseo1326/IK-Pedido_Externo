@@ -138,4 +138,8 @@ div.auxiliar-panel {
     border: 1px solid var(--first-color);
 }
 
+.custom-button-green {
+    background-color: #0d9e4c;
+}
+
 /* ***** BUTTON STYLES END ***** */
