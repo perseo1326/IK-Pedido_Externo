@@ -54,7 +54,7 @@
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "Formato ESBO",
-            "columns": [ "Ref", "Cantidad de pallets pedidos (Total: 57)"]
+            "columns": [ "Ref", "Cantidad de pallets pedidos"]
         }
     ]
 

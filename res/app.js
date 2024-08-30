@@ -623,8 +623,6 @@ function copyTable( evento ){
 function copyElement( element ){
     console.log("Copy ELEMENT: ", element);
 
-    // element.innerText = element.innerText.trim();
-    
     // clear all selection made before
     window.getSelection().removeAllRanges();
 
