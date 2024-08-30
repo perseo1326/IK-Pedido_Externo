@@ -61,9 +61,14 @@ class dataObjectElement {
         this.packingListData = (this.packingListData + space + packingListData );
     }
 
+    subtractPrevOrderQuantityPallets ( prevOrderQty ) {
+        this.esboStock.pallets = this.esboStock.pallets - prevOrderQty;
+        this.esboStock.stock = this.esboStock.stock - ( this.palletQty * prevOrderQty );
+    }
+
     setPreviousOrderValues( previousOrderData ) {
         this.packingListData = ( "(" + previousOrderData + ") " + this.packingListData );
-        // console.log("Pedido: ", this.packingListData);
+        this.subtractPrevOrderQuantityPallets( previousOrderData );
     }
 
     setDataObsValues( quotes ){
