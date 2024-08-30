@@ -129,8 +129,6 @@ table tbody td {
     color: aliceblue;
 }
 
-
-
 /* ***** TABLE RESULTS PANEL STYLES ENDS ***** */
 
 /* ***** COPY BUTTON  ***** */
@@ -141,6 +139,5 @@ table tbody td {
     right: 3em;
     z-index: 10;
 }
-
 
 /* ***** COPY BUTTON ENDS ***** */

@@ -91,7 +91,11 @@ class dataObjectElement {
     }
 
     setStockWeeks(){
-        this.stockWeeks = this.availableShopStock / this.highestSale;
+        const higestvalue = ( this.averageSale > this.lastWkSales ? this.averageSale : this.lastWkSales );
+        this.stockWeeks = this.availableShopStock / higestvalue;
+        if( this.stockWeeks === Infinity ){
+            this.stockWeeks = 999;
+        }
     }
 }
 
@@ -552,7 +556,6 @@ function ProcessReports() {
             return;
         }
 
-        // console.log("Validation packing list: ", dataPackingList );
         if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
             return;
         }
@@ -708,7 +711,6 @@ function setEOQavailable( dataMap ){
 function setStockWeeks( dataMap ){
     
     for (const ref of dataMap.keys() ) {
-
         dataMap.get( ref ).setStockWeeks();
     }
     return dataMap;
