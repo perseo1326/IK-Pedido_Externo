@@ -1,6 +1,12 @@
 # Pedidos Almacen Externo
 
+Aplicación para seleccionar, unir y configurar la información para la generación del pedido al almacén externo.
+
 Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/IK-Pedido_Externo/pedidosExterno.html)
+
+## Version 2.1
+
+* Agregado selector de fecha para filtrar las reservas a la fecha seleccionada.
 
 ## Version 2
 

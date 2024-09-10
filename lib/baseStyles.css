@@ -37,6 +37,10 @@
     justify-content: center;
 }
 
+.flex-centrar-v {
+    align-items: center;
+}
+
 .global-grid-container {
     display: grid;
     grid-template-rows: auto 1fr auto;

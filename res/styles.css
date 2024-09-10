@@ -1,6 +1,18 @@
 
+.width-70 {
+    width: 70%;
+}
+
+.width-30 {
+    width: 30%;
+}
+
 .width-85 {
     width: 85%;
+}
+
+.flex-align-left {
+    justify-content: flex-start;
 }
 
 .inline-block {
@@ -30,10 +42,12 @@ section {
 .section-div {
     display: flex;
     align-items: center;
+    /* background-color: #afaeeb; */
 }
 
-.section-div div {
-    width: 30%;
+.section-div div p {
+    margin: 0 0.5em;
+    /* background-color: aqua; */
 }
 
 .custom-button-report {
@@ -49,6 +63,7 @@ section {
     width: 30%;
     height: 3em;
 }
+
  /* ********************************************************* */
 /* ***** ESTILOS PARA SVG UPDATE ***** */
  /* ********************************************************* */
