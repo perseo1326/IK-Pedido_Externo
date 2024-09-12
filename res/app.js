@@ -131,7 +131,7 @@ let dataObs;
 // data from 'Pedido anterior ESBO' report 
 let dataPreviousOrder;
 
-const version = "2.0";
+const version = "2.1";
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];

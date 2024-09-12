@@ -2,6 +2,10 @@
 
 Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/IK-Pedido_Externo/pedidosExterno.html)
 
+## Version 2.1
+
+* Modificados valores de configuración para la carga de pedidos previos, para facilitar su validacón.
+
 ## Version 2
 
 * Modificada la estructura y mejora en el diseño de la página para un mejor rendimiento.
