@@ -53,7 +53,7 @@
             "name": "Pedido-ESBO",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
-            "FILE_WORKBOOK_SHEET": "Formato ESBO",
+            "FILE_WORKBOOK_SHEET": "Formato ventas",
             "columns": [ "Ref", "Cantidad de pallets pedidos"]
         }
     ]
