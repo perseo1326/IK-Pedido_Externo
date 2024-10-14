@@ -6,7 +6,7 @@ Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/I
 
 ## Version 2.1
 
-* Agregado selector de fecha para filtrar las reservas a la fecha seleccionada (en proceso).
+* Agregado selector de fecha para filtrar las reservas a la fecha seleccionada (Trabajo en proceso).
 
 ## Version 2
 
