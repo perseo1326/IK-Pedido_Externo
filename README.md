@@ -6,7 +6,7 @@ Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/I
 
 ## Version 2.1
 
-* Modificados valores de configuración para la carga de pedidos previos, para facilitar su validacón.
+* Modificados valores de configuración para la carga de pedidos previos, para facilitar su validación.
 
 ## Version 2
 
