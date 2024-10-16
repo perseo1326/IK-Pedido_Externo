@@ -4,7 +4,7 @@ Aplicación para seleccionar, unir y configurar la información para la generaci
 
 Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/IK-Pedido_Externo/pedidosExterno.html)
 
-## Version 3
+## Version 3.0
 
 * Definición de nuevos requerimietos y fórmulas de cálculo junto a mejoras visuales y de presentación de la información.
 
