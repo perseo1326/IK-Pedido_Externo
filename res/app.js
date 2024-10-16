@@ -116,6 +116,9 @@ let dataObjectElementsMap;
 // data from 'SDS0001' report
 let dataSDS0001;
 
+// data from 'AL010' report
+let dataAL010;
+
 // data from 'SA021' report 
 let dataSA021;
 
@@ -160,6 +163,7 @@ const tableHeadersView = [
     "Cabeceras"
 ];
 
+const REPO_AL010 = "AL010";
 const REPO_SDS0001 = "SDS0001";
 const REPO_SA021 = "SA021";
 const REPO_SG010 = "SG010";
@@ -182,6 +186,7 @@ const auxPanel = document.getElementById("auxiliar-panel");
 // reports panel 
 const reportsPanel = document.getElementById("reports-panel");
 const cancelButton = document.getElementById("cancel-aux-panel");
+const AL010_Button = document.getElementById(REPO_AL010);
 const SDS0001_Button = document.getElementById(REPO_SDS0001);
 const SA021_Button = document.getElementById(REPO_SA021);
 const SG010_Button = document.getElementById(REPO_SG010);
@@ -234,6 +239,7 @@ cancelButton.addEventListener("click", () => {
 
 SG010_Button.addEventListener("change", loadSG010_File );
 SDS0001_Button.addEventListener("change", loadSDS0001_File) ;
+AL010_Button.addEventListener("change", loadAL010_File);
 SA021_Button.addEventListener("change", loadSA021_File );
 OOL_Button.addEventListener("change", loadOOL_File );
 PACKING_LIST_Button.addEventListener("change", loadPackingList_File );
@@ -254,6 +260,7 @@ function initialize() {
 
     dataObjectElementsMap = new Map();
     dataSDS0001 = [];
+    dataAL010 = [];
     dataSA021 = [];
     dataOOL = [];
     dataPackingList = [];
@@ -373,6 +380,38 @@ function loadSDS0001_File ( evento ) {
     .catch( (error) => {
         console.log("ERROR:loadSDS0001_File: ", error );
         dataSDS0001 = [];
+        showFileNameReport( ( report.name ) + "-file-name" , "");
+        alert(error.message);
+    })
+    .finally( () => {
+        auxPanel.classList.add("no-visible");
+    });
+}
+
+
+// *********************************************************
+// Function to read 'AL010' Report selected file
+function loadAL010_File ( evento ) {
+    
+    const report = reportsConfigMap.get( REPO_AL010 ); 
+    const promise = loadFile( evento, report );   
+    promise.then( ( response ) => {
+
+        // validating data structure
+        if( !validateReportColumns( response, report.columns )) {
+            throw new Error("Validación de datos en '" + report.name + "' fallida!");
+        }
+
+        response = normalizeRecord( response, report.columns[1], 8 );
+        // response = normalizeRecord( response, report.columns[0], 6 );
+
+        // global map variable for export data
+        dataAL010 = response;
+        console.log("DATA ARRAY '" + report.name + "': ", response );
+    })
+    .catch( (error) => {
+        console.log("ERROR:loadAL010_File: ", error );
+        dataAL010 = [];
         showFileNameReport( ( report.name ) + "-file-name" , "");
         alert(error.message);
     })
@@ -549,6 +588,7 @@ function ProcessReports() {
         }
 
         // Ask to continue if some report is not provided
+        /* TODO: enable validation
         if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
             return;
         }
@@ -568,6 +608,8 @@ function ProcessReports() {
         if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
             return;
         }
+
+        */
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
