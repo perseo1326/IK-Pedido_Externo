@@ -8,6 +8,15 @@
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "H_SLID", "ARTNO", "ARTNAME_UNICODE", "ASSQ", "OP_FC_CURR", "AVGSALES", "AVAIL_STOCK", "SGF_STOCK", "ITEM_VOL", "PALQ"]
         },
+        
+        {
+            "name": "AL010", 
+            "url": "https://iweof.sharepoint.com/:x:/r/teams/o365g_all_retes406/Shared%20Documents/!!LOGISTICA/GADD%20listados/AL010.xlsm?d=wa6243b9d85e445ec8b579290d0faf411&csf=1&web=1&e=yGXDSe",
+            "FILE_EXTENSION_ARRAY": [ "xlsm" ],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroEnabled.12"],
+            "FILE_WORKBOOK_SHEET": "Data",
+            "columns": [ "ARTNO", "ARTNAME_UNICODE", "LOCPRICE", "FAMILYPRICE1"]
+        },
 
         {
             "name": "SA021", 
