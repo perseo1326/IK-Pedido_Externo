@@ -7,6 +7,8 @@ class dataObjectElement {
         this.reference = "";
         this.name = "";
         this.salesLocation = "";
+        this.localPrice = 0;
+        this.familyPrice = 0;
         this.highestSale = 0;
         this.averageSale = 0;
         this.lastWkSales = 0;
@@ -39,6 +41,11 @@ class dataObjectElement {
         this.eoq = eoq;
         this.volume = volume;
         this.palletQty = palletQty;
+    }
+
+    setAL010Values( localPrice, familyPrice ){
+        this.localPrice = localPrice;
+        this.familyPrice = familyPrice;
     }
 
     setSA021Values( thisWkSales, lastWkSales, expSale ){
@@ -672,6 +679,9 @@ function ProcessReports() {
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
+        
+        // Integrate 'AL010' data into 'dataObjectElementMap'
+        dataObjectElementsMap = loadAL010Values( dataAL010, dataObjectElementsMap, reportsConfigMap.get( REPO_AL010 ).columns );
         
         // Integrate 'SA021' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSA021Values( dataSA021, dataObjectElementsMap, reportsConfigMap.get( REPO_SA021 ).columns );

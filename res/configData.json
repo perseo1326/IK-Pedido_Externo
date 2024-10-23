@@ -15,7 +15,7 @@
             "FILE_EXTENSION_ARRAY": [ "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
-            "columns": [ "ARTNO", "ARTNAME_UNICODE", "LOCPRICE", "FAMILYPRICE1"]
+            "columns": [ "ARTNO", "LOCPRICE", "FAMILYPRICE1"]
         },
 
         {

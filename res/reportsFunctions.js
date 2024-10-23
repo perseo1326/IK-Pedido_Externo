@@ -136,6 +136,23 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
 
 
 // *********************************************************
+// function to integrate "AL010" values into data strcuture map
+function loadAL010Values(AL010DataArray, dataMap, columns) {
+    
+    for ( const row of AL010DataArray ) {
+        if( dataMap.has( row[ columns[0] ])) {
+            dataMap.get( row[ columns[0] ]).
+                setAL010Values( 
+                    row[ columns[1] ], 
+                    row[ columns[2] ] 
+                );
+        }
+    }
+    return dataMap;
+}
+
+
+// *********************************************************
 function loadSA021Values(SA021DataArray, dataMap, columns) {
 
     for ( const row of SA021DataArray ) {
