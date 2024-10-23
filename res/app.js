@@ -402,7 +402,7 @@ function loadAL010_File ( evento ) {
             throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
 
-        response = normalizeRecord( response, report.columns[1], 8 );
+        response = normalizeRecord( response, report.columns[0], 8 );
         // response = normalizeRecord( response, report.columns[0], 6 );
 
         // global map variable for export data
@@ -419,6 +419,65 @@ function loadAL010_File ( evento ) {
         auxPanel.classList.add("no-visible");
     });
 }
+
+
+// *********************************************************
+// *********************************************************
+// TODO: function for retrieve AL010 report from Sharepoint
+
+// const AL010_UpdateButton = document.getElementById("AL010-update-button");
+
+// AL010_UpdateButton.addEventListener( "click", getRemoteAL010 );
+
+// function getRemoteAL010() {
+
+//     // console.log ("Mapa de configuracion: ", reportsConfigMap );
+
+//     getRemoteSharePointFile( reportsConfigMap.get( REPO_AL010 ));
+// }
+
+// function getRemoteSharePointFile ( repo_config ) {
+
+//     console.log("Configuracion del reporte: ", repo_config );
+
+//     const url = "https://datausa.io/api/data?drilldowns=Nation&measures=Population";
+
+//     fetch( repo_config.url )
+
+//     .then( response => response.json())
+//     .then( data => console.log(data))
+//     .catch( error => console.error("Error", error ));
+
+
+    // .then((response) => response.json())
+    // .then(( jsonData ) => {
+
+    //     const reportsConfig = new Map();
+
+    //     jsonData.reports.forEach( element => {
+    //         reportsConfig.set( element.name, element );
+    //     });
+
+    //     // console.log("MAPA de configuraion: ", reportsConfig );
+
+    //     // reportsConfig hacerlo global para acceso
+    //     reportsConfigMap = reportsConfig;
+    // })
+    // .catch((error) => {
+    //     console.log("ERROR:initialize: " + error.message );
+    //     alert("Error procesando Datos de configuración inicial.");
+    // });
+
+    // document.getElementById("version").innerText = version;
+    // console.log("Versión: ", version );
+
+// }
+
+
+
+
+// *********************************************************
+// *********************************************************
 
 
 // *********************************************************
