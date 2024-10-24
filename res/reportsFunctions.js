@@ -203,6 +203,7 @@ function loadSA021Values(SA021DataArray, dataMap, columns) {
 
 
 // *********************************************************
+// TODO: eliminar esta function, no se revisan las reservas
 function loadOpenOrderLineValues( OpenOrderLineDataArray, dataMap, columns ) {
 
     // console.log("ROW Open Order Line: ", columns, OpenOrderLineDataArray);

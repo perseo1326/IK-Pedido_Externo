@@ -82,10 +82,11 @@ function drawTableRow ( row ) {
     htmlRow += row.shopStock.pallets;
     htmlRow += "</td>";
 
-    // Reservas
-    htmlRow += "<td>";
-    htmlRow += row.openOrderLineData;
-    htmlRow += "</td>";
+    // // Reservas
+    // TODO: eliminar esta columna
+    // htmlRow += "<td>";
+    // htmlRow += row.openOrderLineData;
+    // htmlRow += "</td>";
 
     // Pedir
     htmlRow += "<td contenteditable='true' >"; 

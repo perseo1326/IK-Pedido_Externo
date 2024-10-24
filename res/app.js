@@ -17,6 +17,7 @@ class dataObjectElement {
         this.wk2FCO = 0;
         this.eoq = 0;
         this.palletQty = 0;
+        // TODO: eliminar este dato
         this.openOrderLineData = 0;
         this.packingListData = "";
         this.quotes = "";
@@ -63,6 +64,7 @@ class dataObjectElement {
         }
     }
 
+    // TODO: eliminar esta function
     setOpenOrderLineValues( openOrderLineData ){
         this.openOrderLineData = openOrderLineData;
     }
@@ -167,9 +169,9 @@ const tableHeadersView = [
     "EOQ",
     "PalQ",
     "Stock Tienda",
-    "Stock LV",
+    // "Stock LV",
     "SGF",
-    "Reservas",
+    // "Reservas",
     "Pedir",
     "Prox Camión",
     "Obs Esp.",
