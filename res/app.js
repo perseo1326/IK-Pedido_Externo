@@ -26,7 +26,7 @@ class dataObjectElement {
         this.shopStock = {};
 
         this.totalStock = 0;
-        this.LVStock = 0;
+        // this.LVStock = 0;
         this.availableShopStock = 0;
 
         this.eoqQty = 0;
@@ -97,9 +97,9 @@ class dataObjectElement {
         this.esboStock.pallets = esboStock.pallets;
     }
 
-    setLVStock(){
-        this.LVStock = this.totalStock - ( this.shopStock.stock + this.esboStock.stock );
-    }
+    // setLVStock(){
+    //     this.LVStock = this.totalStock - ( this.shopStock.stock + this.esboStock.stock );
+    // }
 
     setAvailableShopStock(){
         this.availableShopStock = this.totalStock - this.esboStock.stock;
@@ -853,7 +853,7 @@ function setShopAvailibility ( dataMap ){
 
     for (const ref of dataMap.keys() ) {
 
-        dataMap.get( ref ).setLVStock();
+        // dataMap.get( ref ).setLVStock();
         dataMap.get( ref ).setAvailableShopStock();
     }
     return dataMap;
