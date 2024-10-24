@@ -125,10 +125,10 @@ function drawTableRow ( row ) {
     htmlRow += row.salesLocation;
     htmlRow += "</td>";
     
-    // cabeceras
-    htmlRow += "<td>";
-    htmlRow += "'" + row.salesLocation.substr(2);
-    htmlRow += "</td>";
+    // // cabeceras
+    // htmlRow += "<td>";
+    // htmlRow += "'" + row.salesLocation.substr(2);
+    // htmlRow += "</td>";
 
     return htmlRow;
 }
