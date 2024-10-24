@@ -13,6 +13,8 @@ class dataObjectElement {
         this.averageSale = 0;
         this.lastWkSales = 0;
         this.thisWkSales = 0;
+        this.wk1FCO = 0;
+        this.wk2FCO = 0;
         this.eoq = 0;
         this.palletQty = 0;
         this.openOrderLineData = 0;
@@ -43,8 +45,9 @@ class dataObjectElement {
         this.palletQty = palletQty;
     }
 
-    setSDS0002Values () {
-
+    setSDS0002Values ( wk1FCO, wk2FCO ) {
+        this.wk1FCO = wk1FCO;
+        this.wk2FCO = wk2FCO;
     }
 
     setAL010Values( localPrice, familyPrice ){
@@ -191,6 +194,7 @@ const SGF_LOCATION = "SGFLOCATION";
 const ESBO_LOCATION = "990501";
 const REFERENCE_SG010 = "STORAGE_UNICODE";
 const PALLET_QUANTITY = "QTY";
+const FORECAST_TYPE_SDS0002 = "5 OpFC";
 
 
 
@@ -420,7 +424,7 @@ function loadSDS0002_File ( evento ) {
             throw new Error("Validación de datos en '" + report.name + "' fallida!");
         }
 
-        // response = normalizeRecord( response, report.columns[1], 8 );
+        response = normalizeRecord( response, report.columns[0], 8 );
         // response = normalizeRecord( response, report.columns[0], 6 );
 
         // global map variable for export data

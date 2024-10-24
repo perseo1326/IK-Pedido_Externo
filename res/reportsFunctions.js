@@ -136,6 +136,36 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
 
 
 // *********************************************************
+// Load values from "SDS0002" Report
+function loadSDS0002Values(SDS0002DataArray, dataObjectElements, columns) {
+
+    // console.log("DATA OBJ: ", SDS0002DataArray, columns );
+
+    const newFilteredArray = filterArray(SDS0002DataArray, columns[1], FORECAST_TYPE_SDS0002 );
+
+    for (const row of newFilteredArray ) {
+        
+        // console.log("loadSDS0001Values: row: ", columns, row );
+        
+        if( dataObjectElements.has( row[ columns[0]] ) ){
+            
+            // console.log("REf: ", row[ columns[0]], row );
+
+            dataObjectElements.get( row[columns[0]])
+                .setSDS0002Values( 
+                    row[columns[2]],
+                    row[columns[3]]
+                );
+            // console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );
+        }
+        
+        // console.log("OBJECT By REF:", dataObjectElements.get( "00102065") );
+    }
+    return dataObjectElements;
+}
+
+
+// *********************************************************
 // function to integrate "AL010" values into data strcuture map
 function loadAL010Values(AL010DataArray, dataMap, columns) {
     
@@ -243,6 +273,22 @@ function loadPreviousOrderValues ( previousOrderDataArray, dataMap, columns ) {
 
 
 // *********************************************************
+function filterArray ( dataArray, column, value ) {
+
+    // const newFilteredDataArray = dataArray.filter( )
+    
+    const newFilteredDataArray = [];
+    dataArray.forEach( row => {
+        // console.log("Fila Filter: ", row );
+        if( row [ column ] === value ){
+            newFilteredDataArray.push( row );
+        }
+    });
+
+    console.log("TAmaño aray: ", newFilteredDataArray.length );
+    return newFilteredDataArray;
+}
+
 // *********************************************************
 // *********************************************************
 // *********************************************************
