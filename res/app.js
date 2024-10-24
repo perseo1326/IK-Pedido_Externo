@@ -165,7 +165,7 @@ const tableHeadersView = [
     "Semana",
     "Sem Stock",
     "EOQ",
-    "Pallet Qty",
+    "PalQ",
     "Stock Tienda",
     "Stock LV",
     "Pall Tienda",
