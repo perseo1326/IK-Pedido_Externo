@@ -175,7 +175,7 @@ const tableHeadersView = [
     "Pedir",
     "Prox Camión",
     "Obs Esp.",
-    "Pall ESBO",
+    "Pal ESBO",
     "Stock ESBO",
     "EOQ %",
     "LV Venta",
