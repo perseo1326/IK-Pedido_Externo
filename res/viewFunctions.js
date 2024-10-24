@@ -60,8 +60,14 @@ function drawTableRow ( row ) {
     htmlRow += row.stockWeeks.toFixed(2);
     htmlRow += "</td>";
 
+    // EOQ -> ASSQ
     htmlRow += "<td>";
     htmlRow += row.eoq;
+    htmlRow += "</td>";
+
+    // Num EOQ%
+    htmlRow += "<td>";
+    htmlRow += row.eoqQty.toFixed(2);
     htmlRow += "</td>";
 
     htmlRow += "<td>";
@@ -112,11 +118,6 @@ function drawTableRow ( row ) {
     // Stock ESBO
     htmlRow += "<td>";
     htmlRow += row.esboStock.stock;
-    htmlRow += "</td>";
-
-    // Num EOQ
-    htmlRow += "<td>";
-    htmlRow += row.eoqQty.toFixed(2);
     htmlRow += "</td>";
 
     // LV
