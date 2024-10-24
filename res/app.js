@@ -79,6 +79,7 @@ class dataObjectElement {
 
     subtractPrevOrderQuantityPallets ( prevOrderQty ) {
         this.esboStock.pallets = this.esboStock.pallets - prevOrderQty;
+        // TODO: remover la siguiente linea "stock ESBO"
         this.esboStock.stock = this.esboStock.stock - ( this.palletQty * prevOrderQty );
     }
 

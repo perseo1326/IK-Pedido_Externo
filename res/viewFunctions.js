@@ -103,10 +103,11 @@ function drawTableRow ( row ) {
     htmlRow += row.quotes;
     htmlRow += "</td>";
 
-    // Pallets ESBO
-    htmlRow += "<td>";
-    htmlRow += row.esboStock.pallets;
-    htmlRow += "</td>";
+    // // Pallets ESBO
+    // TODO: remover columna
+    // htmlRow += "<td>";
+    // htmlRow += row.esboStock.pallets;
+    // htmlRow += "</td>";
 
     // Stock ESBO
     htmlRow += "<td>";
