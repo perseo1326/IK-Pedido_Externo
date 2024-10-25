@@ -113,8 +113,11 @@ class dataObjectElement {
     }
 
     setStockWeeks(){
-        const higestvalue = ( this.averageSale > this.lastWkSales ? this.averageSale : this.lastWkSales );
-        this.stockWeeks = this.availableShopStock / higestvalue;
+        // const higestvalue = ( this.averageSale > this.lastWkSales ? this.averageSale : this.lastWkSales );
+        // this.stockWeeks = this.availableShopStock / higestvalue;
+
+        this.stockWeeks = this.availableShopStock / this.currentForecastValue;
+        
         if( this.stockWeeks === Infinity ){
             this.stockWeeks = 999;
         }
