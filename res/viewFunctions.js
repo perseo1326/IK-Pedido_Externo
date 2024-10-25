@@ -54,8 +54,9 @@ function drawTableRow ( row ) {
     htmlRow += row.thisWkSales;
     htmlRow += "</td>";
 
+    // forecast for next week
     htmlRow += "<td>";
-    htmlRow += row.lastWkSales;
+    htmlRow += row.wk1FCO;
     htmlRow += "</td>";
 
     htmlRow += "<td class='stockWeeksHighligter'>";
