@@ -49,12 +49,13 @@ function drawTableRow ( row ) {
     htmlRow += row.currentForecastValue;
     htmlRow += "</td>";
 
+    // this Week Sales
     htmlRow += "<td>";
-    htmlRow += row.lastWkSales;
+    htmlRow += row.thisWkSales;
     htmlRow += "</td>";
 
     htmlRow += "<td>";
-    htmlRow += row.thisWkSales;
+    htmlRow += row.lastWkSales;
     htmlRow += "</td>";
 
     htmlRow += "<td class='stockWeeksHighligter'>";

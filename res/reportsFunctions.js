@@ -194,15 +194,19 @@ function loadAL010Values(AL010DataArray, dataMap, columns) {
 // *********************************************************
 function loadSA021Values(SA021DataArray, dataMap, columns) {
 
+    // console.log("ROW SA021: ", columns);
     for ( const row of SA021DataArray ) {
         if( dataMap.has( row[ columns[0] ])) {
 
-            // console.log("ROW SA021: ", columns);
             // console.log("ROW SA021: ", row );
+
             dataMap.get( row[ columns[0] ]).
                 setSA021Values( 
+                    // QTYSOLDTHISWEEK
                     row[ columns[2] ], 
+                    // QTYSOLDLASTWEEK 
                     row[ columns[3] ], 
+                    // EXPSALE
                     row[ columns[1] ]
                 );
         }
