@@ -94,12 +94,6 @@ function drawTableRow ( row ) {
     htmlRow += row.shopStock.pallets;
     htmlRow += "</td>";
 
-    // // Reservas
-    // TODO: eliminar esta columna
-    // htmlRow += "<td>";
-    // htmlRow += row.openOrderLineData;
-    // htmlRow += "</td>";
-
     // Pedir
     htmlRow += "<td contenteditable='true' >"; 
     htmlRow += "";
@@ -115,12 +109,6 @@ function drawTableRow ( row ) {
     htmlRow += row.quotes;
     htmlRow += "</td>";
 
-    // // Pallets ESBO
-    // TODO: remover columna
-    // htmlRow += "<td>";
-    // htmlRow += row.esboStock.pallets;
-    // htmlRow += "</td>";
-
     // Stock ESBO
     htmlRow += "<td>";
     htmlRow += row.esboStock.stock;
@@ -130,7 +118,19 @@ function drawTableRow ( row ) {
     htmlRow += "<td>";
     htmlRow += row.salesLocation;
     htmlRow += "</td>";
-    
+
+    // // Pallets ESBO
+    // TODO: remover columna
+    // htmlRow += "<td>";
+    // htmlRow += row.esboStock.pallets;
+    // htmlRow += "</td>";
+
+    // // Reservas
+    // TODO: eliminar esta columna
+    // htmlRow += "<td>";
+    // htmlRow += row.openOrderLineData;
+    // htmlRow += "</td>";
+
     // // cabeceras
     // htmlRow += "<td>";
     // htmlRow += "'" + row.salesLocation.substr(2);
