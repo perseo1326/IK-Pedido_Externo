@@ -116,14 +116,23 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
 
             dataObjectElements.get( row[columns[1]])
                 .setSDS0001Values( 
-                    row[columns[0]],
+                    //H_SLID
+                    row[columns[0]], 
+                    // ARTNO
                     row[columns[1]],
+                    // ARTNAME_UNICODE
                     row[columns[2]],
+                    // OP_FC_CURR
                     row[columns[4]],
+                    // AVGSALES
                     row[columns[5]],
+                    // AVAIL_STOCK
                     row[columns[6]],
+                    // ASSQ
                     row[columns[3]],
+                    // ITEM_VOL
                     row[columns[8]],
+                    // PALQ
                     row[columns[9]]
                 );
             // console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );

@@ -38,14 +38,15 @@ function drawTableRow ( row ) {
     htmlRow += row.name;
     htmlRow += "</td>";
 
-    // highestSale
-    htmlRow += "<td>";
-    htmlRow += row.highestSale;
-    htmlRow += "</td>";
-
     // averageSale
     htmlRow += "<td>";
-    htmlRow += row.averageSale;
+    // htmlRow += row.averageSale;
+    htmlRow += "";
+    htmlRow += "</td>";
+
+    // current Forecast Value
+    htmlRow += "<td title='Current Forecast'>";
+    htmlRow += row.currentForecastValue;
     htmlRow += "</td>";
 
     htmlRow += "<td>";

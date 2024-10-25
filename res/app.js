@@ -9,7 +9,7 @@ class dataObjectElement {
         this.salesLocation = "";
         this.localPrice = 0;
         this.familyPrice = 0;
-        this.highestSale = 0;
+        this.currentForecastValue = 0;
         this.averageSale = 0;
         this.lastWkSales = 0;
         this.thisWkSales = 0;
@@ -34,11 +34,11 @@ class dataObjectElement {
         this.stockWeeks = 0;
     }
 
-    setSDS0001Values( salesLocation, ref, name, highestSale, averageSale, availableStock, eoq, volume, palletQty ) {
+    setSDS0001Values( salesLocation, ref, name, currentForecastValue, averageSale, availableStock, eoq, volume, palletQty ) {
         this.salesLocation = salesLocation;
         this.reference = ref;
         this.name = name;
-        this.highestSale = highestSale;
+        this.currentForecastValue = currentForecastValue;
         this.averageSale = averageSale;
         this.totalStock = availableStock;
         this.eoq = eoq;
@@ -59,7 +59,7 @@ class dataObjectElement {
     setSA021Values( thisWkSales, lastWkSales, expSale ){
         this.thisWkSales = thisWkSales;
         this.lastWkSales = lastWkSales;
-        if( this.highestSale !== expSale ){
+        if( this.currentForecastValue !== expSale ){
             console.log("Venta + Alta: ERROR! ");
         }
     }
@@ -162,8 +162,8 @@ const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 const tableHeadersView = [
     "Referencia",
     "Nombre",
-    "V.Max",
-    "VMS",
+    "---",
+    "Forecast",
     "Ult Sem",
     "Semana",
     "Sem Stock",
@@ -819,6 +819,7 @@ function alertNoReportProvided( dataArray, reportName ) {
 
 
 // *********************************************************
+// function for assigment a pallet between ESBO or SGF stock
 function locationsSpliter( dataMap, esboLocation ) {
 
     for (const element of dataMap.entries() ) {
