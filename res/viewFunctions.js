@@ -84,11 +84,6 @@ function drawTableRow ( row ) {
     htmlRow += row.availableShopStock;
     htmlRow += "</td>";
     
-    // // LV stock
-    // htmlRow += "<td>";
-    // htmlRow += row.LVStock;
-    // htmlRow += "</td>";
-
     // pallets SGF
     htmlRow += "<td>";
     htmlRow += row.shopStock.pallets;
@@ -119,6 +114,12 @@ function drawTableRow ( row ) {
     htmlRow += row.salesLocation;
     htmlRow += "</td>";
 
+    
+    // // LV stock
+    // htmlRow += "<td>";
+    // htmlRow += row.LVStock;
+    // htmlRow += "</td>";
+    
     // // Pallets ESBO
     // TODO: remover columna
     // htmlRow += "<td>";
