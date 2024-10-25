@@ -56,9 +56,10 @@ function drawTableRow ( row ) {
 
     // forecast for next week
     htmlRow += "<td>";
-    htmlRow += row.wk1FCO;
+    htmlRow += row.wk2FCO;
     htmlRow += "</td>";
 
+    // stock weeks
     htmlRow += "<td class='stockWeeksHighligter'>";
     htmlRow += row.stockWeeks.toFixed(2);
     htmlRow += "</td>";
@@ -73,11 +74,13 @@ function drawTableRow ( row ) {
     htmlRow += row.eoqQty.toFixed(2);
     htmlRow += "</td>";
 
+    // Pallet Quantity
     htmlRow += "<td>";
     htmlRow += row.palletQty;
     htmlRow += "</td>";
 
-    htmlRow += "<td title='Stock Disponible total en tienda (LV)' >";
+    // Shop Available stock
+    htmlRow += "<td title='Stock Disponible total en tienda (LV + SGF)' >";
     htmlRow += row.availableShopStock;
     htmlRow += "</td>";
     

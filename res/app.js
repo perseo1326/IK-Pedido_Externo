@@ -47,8 +47,9 @@ class dataObjectElement {
     }
 
     setSDS0002Values ( wk1FCO, wk2FCO ) {
-        this.wk1FCO = wk1FCO;
-        this.wk2FCO = wk2FCO;
+        // the file value needs to be divided by ten to match the SDS values screen
+        this.wk1FCO = ( wk1FCO / 10 );
+        this.wk2FCO = ( wk2FCO / 10 );
     }
 
     setAL010Values( localPrice, familyPrice ){
@@ -171,19 +172,19 @@ const tableHeadersView = [
     "Next Wk FC",
     "Sem Stock",
     "EOQ",
+    "EOQ %",
     "PalQ",
     "Stock Tienda",
-    // "Stock LV",
     "SGF",
-    // "Reservas",
     "Pedir",
     "Prox Camión",
     "Obs Esp.",
     "Pal ESBO",
-    "Stock ESBO",
-    "EOQ %",
     "LV Venta",
-    "Cabeceras"
+    // "Cabeceras"
+    // "Stock ESBO",
+    // "Stock LV",
+    // "Reservas",
 ];
 
 const REPO_AL010 = "AL010";
