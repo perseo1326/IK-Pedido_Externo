@@ -105,7 +105,6 @@ div.container-svg-update svg {
 }
 
 div.app-table-results table {
-    /* background-color: rgb(221, 229, 140); */
     border: 2px solid black;
     border-collapse: collapse;
 }
@@ -118,7 +117,6 @@ table thead {
 }
 
 table thead tr th span {
-    /* background-color: blueviolet; */
     writing-mode: vertical-lr;
     transform: rotate(180deg); 
 }
@@ -133,7 +131,6 @@ table tbody tr:hover {
 
 table tbody td {
     border: 0.5px solid black;
-    /* background-color: aquamarine; */
     padding: 3px;
     min-width: 2.5em;
 }
