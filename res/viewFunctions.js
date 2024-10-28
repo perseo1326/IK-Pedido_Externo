@@ -92,7 +92,7 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // Pedir
-    htmlRow += "<td contenteditable='true' >"; 
+    htmlRow += "<td contenteditable='true' class='order'>"; 
     htmlRow += "";
     htmlRow += "</td>";
 

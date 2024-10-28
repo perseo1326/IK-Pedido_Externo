@@ -135,6 +135,10 @@ table tbody td {
     min-width: 2.5em;
 }
 
+table tbody td.order {
+    /* background-color: aqua; */
+}
+
 /* td:nth-child( 8 ), th:nth-child( 8 ) { */
 .stockWeeksHighligter {
     background-color: #afaeeb;
