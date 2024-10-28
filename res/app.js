@@ -134,6 +134,9 @@ let reportsConfigMap;
 // Data object elements Map (SG010 Data and references)
 let dataObjectElementsMap;
 
+// Data map for filtered data
+let newFilteredDataMap;
+
 // data from 'SDS0001' report
 let dataSDS0001;
 
@@ -289,6 +292,7 @@ function initialize() {
     console.log("Cargando datos de configuración...")
 
     dataObjectElementsMap = new Map();
+    // newFilteredDataMap = new Map();
     dataSDS0001 = [];
     dataSDS0002 = [];
     dataAL010 = [];
@@ -782,7 +786,7 @@ function reduceDataTableFunction() {
     // , { availableShopStock : 6 } ];
     // const paramOffer = [ { percentageEOQ : 2 }, { stockWeeks : 2 } ];
     
-    const newFilteredDataMap = new Map();
+    newFilteredDataMap = new Map();
 
     // console.log("DATA map: ", dataObjectElementsMap );
     
@@ -802,6 +806,7 @@ function reduceDataTableFunction() {
                 }
             });
         }
+        debugger;
         showTable( newFilteredDataMap );
     });
 }
