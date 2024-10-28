@@ -13,7 +13,7 @@
             "name": "SDS0002", 
             "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
-            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroEnabled.12"],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "ARTNO", "FC_TYPE", "WK1", "WK2" ]
         },
@@ -22,7 +22,7 @@
             "name": "AL010", 
             "url": "https://iweof.sharepoint.com/:x:/r/teams/o365g_all_retes406/Shared%20Documents/!!LOGISTICA/GADD%20listados/AL010.xlsm?d=wa6243b9d85e445ec8b579290d0faf411&csf=1&web=1&e=yGXDSe",
             "FILE_EXTENSION_ARRAY": [ "xlsm" ],
-            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroEnabled.12"],
+            "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "ARTNO", "LOCPRICE", "FAMILYPRICE1"]
         },
