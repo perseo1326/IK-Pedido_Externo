@@ -289,17 +289,13 @@ function loadPreviousOrderValues ( previousOrderDataArray, dataMap, columns ) {
 // *********************************************************
 function filterArray ( dataArray, column, value ) {
 
-    // const newFilteredDataArray = dataArray.filter( )
-    
     const newFilteredDataArray = [];
     dataArray.forEach( row => {
-        // console.log("Fila Filter: ", row );
         if( row [ column ] === value ){
             newFilteredDataArray.push( row );
         }
     });
-
-    console.log("TAmaño aray: ", newFilteredDataArray.length );
+    console.log("Total filas filtradas 'SDS0002': ", newFilteredDataArray.length );
     return newFilteredDataArray;
 }
 
