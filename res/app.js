@@ -230,6 +230,7 @@ const tableResultsPanel = document.getElementById("table-results-panel");
 const table = document.getElementById("table");
 const tableHeaders = document.getElementById("table-headers");
 const tableData = document.getElementById("table-data");
+const reduceDataTable = document.getElementById("reduce-data-table");
 const tableDataButton = document.getElementById("copy-data-table");
 
 
@@ -275,6 +276,7 @@ OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 previousOrder_Button.addEventListener("change", loadPreviousOrder_File );
 
 loadReportsB.addEventListener("click", ProcessReports );
+reduceDataTable.addEventListener("click", reduceDataTableFunction );
 tableDataButton.addEventListener("click", copyTable );
 
 // *********************************************************
@@ -771,6 +773,55 @@ function ProcessReports() {
     }
 }
 
+
+// *********************************************************
+// function for reduce data rows following some criteria
+function reduceDataTableFunction() {
+
+    const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 } ];
+    // , { availableShopStock : 6 } ];
+    // const paramOffer = [ { percentageEOQ : 2 }, { stockWeeks : 2 } ];
+    
+    const newFilteredDataMap = new Map();
+
+    // console.log("DATA map: ", dataObjectElementsMap );
+    
+    dataObjectElementsMap.forEach( (row, reference) => {
+        console.log("reduceDataTableFunction, VAlue: ", row, " / key: ", reference );
+        
+        // TODO: revisar si hay pedidos manuales!
+
+        if(row.familyPrice !== 0 || row.localPrice !== 0) {
+            console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
+        } else {
+            // Is not an offer, bid, etc
+            
+            paramNormal.forEach( paramObject => { 
+                if( compareParamsVsValuesLessThanOrEqualTo( paramObject, row ) ){
+                    newFilteredDataMap.set( reference, row );
+                }
+            });
+        }
+        showTable( newFilteredDataMap );
+    });
+}
+
+
+// *********************************************************
+function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
+
+    console.log("Parametro: ", param);
+
+    const keysArray = Object.keys( param );
+
+    keysArray.forEach( key => {
+        if( rowObject[key] <= param[key] ){
+            console.log("Verdadero, row Parametro: ", rowObject[key] );
+            return true;
+        }
+    });
+    return false;
+}
 
 // *********************************************************
 function copyTable( evento ){

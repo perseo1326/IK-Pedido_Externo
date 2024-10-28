@@ -86,7 +86,7 @@ function drawTableRow ( row ) {
     
     // pallets SGF
     htmlRow += "<td>";
-    console.log("Stock SGF: ", row );
+    // console.log("Stock SGF: ", row );
 
     htmlRow += row.shopStock.pallets;
     htmlRow += "</td>";
@@ -161,6 +161,7 @@ function drawTableData ( dataMap ) {
 
 // *********************************************************
 function showTable( dataElementsMap ) {
+    console.log("ShowTable items: ", dataElementsMap.size );
     tableHeaders.innerHTML = drawTableHeaders( tableHeadersView );
 
     // tableData.innerHTML = drawTableData( datos );
