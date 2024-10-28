@@ -8,7 +8,7 @@
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "H_SLID", "ARTNO", "ARTNAME_UNICODE", "ASSQ", "OP_FC_CURR", "AVGSALES", "AVAIL_STOCK", "SGF_STOCK", "ITEM_VOL", "PALQ"]
         },
-        
+
         {
             "name": "SDS0002", 
             "url": "",
@@ -17,7 +17,7 @@
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "ARTNO", "FC_TYPE", "WK1", "WK2" ]
         },
-        
+
         {
             "name": "AL010", 
             "url": "https://iweof.sharepoint.com/:x:/r/teams/o365g_all_retes406/Shared%20Documents/!!LOGISTICA/GADD%20listados/AL010.xlsm?d=wa6243b9d85e445ec8b579290d0faf411&csf=1&web=1&e=yGXDSe",
@@ -34,7 +34,7 @@
             "FILE_WORKBOOK_SHEET": "Data",
             "columns": [ "ARTNO", "EXPSALE", "QTYSOLDTHISWEEK", "QTYSOLDLASTWEEK"]
         },
-        
+
         {
             "name": "SG010",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
@@ -50,7 +50,7 @@
             "FILE_WORKBOOK_SHEET": "DATA",
             "columns": [ "Article_Number", "Ordered_Qty"]
         },
-        
+
         {
             "name": "Packing-List",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
@@ -58,7 +58,7 @@
             "FILE_WORKBOOK_SHEET": "Packing list",
             "columns": [ "Referencia", "Código"]
         },
-        
+
         {
             "name": "Obs-Especiales",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
