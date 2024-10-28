@@ -45,7 +45,7 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // current Forecast Value
-    htmlRow += "<td title='Current Forecast'>";
+    htmlRow += "<td title='Venta 1/2: " + row.averageSale + " Venta Last Wk: " + row.lastWkSales + "'>";
     htmlRow += row.currentForecastValue;
     htmlRow += "</td>";
 
@@ -86,6 +86,8 @@ function drawTableRow ( row ) {
     
     // pallets SGF
     htmlRow += "<td>";
+    console.log("Stock SGF: ", row );
+
     htmlRow += row.shopStock.pallets;
     htmlRow += "</td>";
 
@@ -105,8 +107,8 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // Stock ESBO
-    htmlRow += "<td>";
-    htmlRow += row.esboStock.stock;
+    htmlRow += "<td title='" + row.esboStock.stock + " unds.'>";
+    htmlRow += row.esboStock.pallets;
     htmlRow += "</td>";
 
     // LV
@@ -119,7 +121,7 @@ function drawTableRow ( row ) {
     // htmlRow += "<td>";
     // htmlRow += row.LVStock;
     // htmlRow += "</td>";
-    
+
     // // Pallets ESBO
     // TODO: remover columna
     // htmlRow += "<td>";
