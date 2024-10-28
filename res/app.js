@@ -135,7 +135,7 @@ let reportsConfigMap;
 let dataObjectElementsMap;
 
 // Data map for filtered data
-let newFilteredDataMap;
+let filteredDataMap;
 
 // data from 'SDS0001' report
 let dataSDS0001;
@@ -782,33 +782,37 @@ function ProcessReports() {
 // function for reduce data rows following some criteria
 function reduceDataTableFunction() {
 
-    const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 } ];
-    // , { availableShopStock : 6 } ];
-    // const paramOffer = [ { percentageEOQ : 2 }, { stockWeeks : 2 } ];
-    
-    newFilteredDataMap = new Map();
+    const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
+    const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
 
-    // console.log("DATA map: ", dataObjectElementsMap );
+    let parameters = [];
     
+    const newFilteredDataMap = new Map();
+
     dataObjectElementsMap.forEach( (row, reference) => {
-        console.log("reduceDataTableFunction, VAlue: ", row, " / key: ", reference );
+        // console.log("reduceDataTableFunction, VAlue: ", row, " / key: ", reference );
         
         // TODO: revisar si hay pedidos manuales!
-
+        
+        // the product (row) is or not an offer! => assign the correct parameters
         if(row.familyPrice !== 0 || row.localPrice !== 0) {
+
             console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
+            // TODO: asignar parametros correctos
+            parameters = paramOffer;
+
         } else {
-            // Is not an offer, bid, etc
-            
-            paramNormal.forEach( paramObject => { 
-                if( compareParamsVsValuesLessThanOrEqualTo( paramObject, row ) ){
-                    newFilteredDataMap.set( reference, row );
-                }
-            });
+            parameters = paramNormal;
         }
-        debugger;
-        showTable( newFilteredDataMap );
+
+        for ( const paramObject of parameters ) {
+            if( compareParamsVsValuesLessThanOrEqualTo( paramObject, row ) ){
+                newFilteredDataMap.set( reference, row );
+            }
+        }
     });
+    
+    showTable( newFilteredDataMap );
 }
 
 
@@ -817,15 +821,17 @@ function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
 
     console.log("Parametro: ", param);
 
+    let isLessThan = false;
     const keysArray = Object.keys( param );
 
-    keysArray.forEach( key => {
+    for (const key of keysArray) {
+        
+        console.log("Verdadero, row Parametro: ", rowObject[key] );
         if( rowObject[key] <= param[key] ){
-            console.log("Verdadero, row Parametro: ", rowObject[key] );
-            return true;
+            isLessThan = true;
         }
-    });
-    return false;
+    }
+    return isLessThan;
 }
 
 // *********************************************************
