@@ -841,6 +841,12 @@ function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
 function copyTable( evento ){
 
     console.log("EVENTO: ", evento );
+    const tableHeaders = document.getElementById( "table-headers" );
+
+    if(tableHeaders !== null ){
+        tableHeaders.remove();
+    }
+
     copyElement( document.getElementById("table") );
 
     /*
