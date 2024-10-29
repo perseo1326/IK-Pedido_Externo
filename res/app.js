@@ -798,6 +798,7 @@ function reduceDataTableFunction() {
         // TODO: revisar si hay pedidos manuales!
         
         // the product (row) is or not an offer! => assign the correct parameters
+        // TODO: implementar filtro para cabecras y zonas 
         if(row.familyPrice !== 0 || row.localPrice !== 0) {
 
             // console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
