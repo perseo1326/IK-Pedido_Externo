@@ -7,6 +7,7 @@ Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/I
 ## Version 3.0
 
 * Definición de nuevos requerimietos y fórmulas de cálculo junto a mejoras visuales y de presentación de la información.
+* Implementación de fórmulas para la reducción e filas del modelo de datos inicial.
 
 ## Version 2.1
 

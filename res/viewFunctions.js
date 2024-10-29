@@ -5,6 +5,19 @@
 
 
 // *********************************************************
+// function to change dot for decimal number into a comma for Excel format
+function replaceDotPerComma ( dataNumber ) {
+
+    if( dataNumber === NaN ){
+        return dataNumber;
+    }
+
+    let dataString = String (dataNumber);
+    return dataString.replace( ".", ",");
+}
+
+
+// *********************************************************
 function drawTableHeaders ( headers ) {
 
     let htmlHeaders = "";
@@ -46,49 +59,47 @@ function drawTableRow ( row ) {
 
     // current Forecast Value
     htmlRow += "<td title='Venta 1/2: " + row.averageSale + " Venta Last Wk: " + row.lastWkSales + "'>";
-    htmlRow += row.currentForecastValue;
+    htmlRow += replaceDotPerComma( row.currentForecastValue );
     htmlRow += "</td>";
 
     // this Week Sales
     htmlRow += "<td>";
-    htmlRow += row.thisWkSales;
+    htmlRow += replaceDotPerComma( row.thisWkSales );
     htmlRow += "</td>";
 
     // forecast for next week
     htmlRow += "<td>";
-    htmlRow += row.wk2FCO;
+    htmlRow += replaceDotPerComma( row.wk2FCO) ;
     htmlRow += "</td>";
 
     // stock weeks
     htmlRow += "<td class='stockWeeksHighligter'>";
-    htmlRow += row.stockWeeks.toFixed(2);
+    htmlRow += replaceDotPerComma( row.stockWeeks.toFixed(2) );
     htmlRow += "</td>";
 
     // EOQ -> ASSQ
     htmlRow += "<td>";
-    htmlRow += row.eoq;
+    htmlRow += replaceDotPerComma( row.eoq );
     htmlRow += "</td>";
 
     // Num EOQ%
     htmlRow += "<td>";
-    htmlRow += row.eoqQty.toFixed(2);
+    htmlRow += replaceDotPerComma( row.eoqQty.toFixed(2) );
     htmlRow += "</td>";
 
     // Pallet Quantity
     htmlRow += "<td>";
-    htmlRow += row.palletQty;
+    htmlRow += replaceDotPerComma( row.palletQty );
     htmlRow += "</td>";
 
     // Shop Available stock
     htmlRow += "<td title='Stock Disponible total en tienda (LV + SGF)' >";
-    htmlRow += row.availableShopStock;
+    htmlRow += replaceDotPerComma( row.availableShopStock );
     htmlRow += "</td>";
     
     // pallets SGF
     htmlRow += "<td>";
-    // console.log("Stock SGF: ", row );
-
-    htmlRow += row.shopStock.pallets;
+    htmlRow += replaceDotPerComma( row.shopStock.pallets );
     htmlRow += "</td>";
 
     // Pedir
@@ -98,25 +109,24 @@ function drawTableRow ( row ) {
 
     // Packing List
     htmlRow += "<td>'";
-    htmlRow += row.packingListData;
+    htmlRow += replaceDotPerComma( row.packingListData );
+    htmlRow += "</td>";
+
+    // Stock ESBO
+    htmlRow += "<td title='" + row.esboStock.stock + " unds.'>";
+    htmlRow += replaceDotPerComma( row.esboStock.pallets );
+    htmlRow += "</td>";
+
+    // LV
+    htmlRow += "<td>";
+    htmlRow += replaceDotPerComma( row.salesLocation );
     htmlRow += "</td>";
 
     // Obs Especiales
     htmlRow += "<td class='text-left'>";
     htmlRow += row.quotes;
     htmlRow += "</td>";
-
-    // Stock ESBO
-    htmlRow += "<td title='" + row.esboStock.stock + " unds.'>";
-    htmlRow += row.esboStock.pallets;
-    htmlRow += "</td>";
-
-    // LV
-    htmlRow += "<td>";
-    htmlRow += row.salesLocation;
-    htmlRow += "</td>";
-
-    
+        
     // // LV stock
     // htmlRow += "<td>";
     // htmlRow += row.LVStock;

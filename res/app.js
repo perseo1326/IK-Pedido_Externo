@@ -169,7 +169,7 @@ const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 const tableHeadersView = [
     "Referencia",
     "Nombre",
-    "---",
+    "Error FC",
     "Forecast",
     "Semana",
     "Next Wk FC",
@@ -181,9 +181,9 @@ const tableHeadersView = [
     "SGF",
     "Pedir",
     "Prox Camión",
-    "Obs Esp.",
     "Pal ESBO",
     "LV Venta",
+    "Obs Esp."
     // "Cabeceras"
     // "Stock ESBO",
     // "Stock LV",
@@ -750,6 +750,7 @@ function ProcessReports() {
         dataObjectElementsMap = loadSA021Values( dataSA021, dataObjectElementsMap, reportsConfigMap.get( REPO_SA021 ).columns );
 
         // Integrate 'Open Order Line OOL' data into 'dataObjectElementMap'
+        // TODO: desactivar esta "OOL" report
         dataObjectElementsMap = loadOpenOrderLineValues( dataOOL, dataObjectElementsMap, reportsConfigMap.get( REPO_OPEN_ORDER_LINE ).columns );
 
         // Integrate 'Packing-List' data into 'dataObjectElementMap'
@@ -780,6 +781,8 @@ function ProcessReports() {
 
 // *********************************************************
 // function for reduce data rows following some criteria
+// NOTE: if is needed to use a different functions than "compareParamsVsValuesLessThanOrEqualTo" for comparison you must 
+// change the whole approach of the "reduceDataTableFunction" function!!
 function reduceDataTableFunction() {
 
     const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
@@ -797,7 +800,7 @@ function reduceDataTableFunction() {
         // the product (row) is or not an offer! => assign the correct parameters
         if(row.familyPrice !== 0 || row.localPrice !== 0) {
 
-            console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
+            // console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
             // TODO: asignar parametros correctos
             parameters = paramOffer;
 
@@ -819,14 +822,14 @@ function reduceDataTableFunction() {
 // *********************************************************
 function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
 
-    console.log("Parametro: ", param);
+    // console.log("Parametro: ", param);
 
     let isLessThan = false;
     const keysArray = Object.keys( param );
 
     for (const key of keysArray) {
         
-        console.log("Verdadero, row Parametro: ", rowObject[key] );
+        // console.log("Verdadero, row Parametro: ", rowObject[key] );
         if( rowObject[key] <= param[key] ){
             isLessThan = true;
         }
