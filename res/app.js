@@ -190,6 +190,19 @@ const tableHeadersView = [
     // "Reservas",
 ];
 
+const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
+const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
+
+// special locations ( end caps and season zones)
+const shopSpecialLocations = {
+    // Cabeceras de lineal
+    endCap : [ "020000", "030000", "040000", "060000", "070000", "080000", "090000", 
+    "100000", "110000", "120000", "130000", "140000", "150000", "160000", "170000", "180000", "190000", 
+    "200000", "210000", "220000", "230000", "240000", "250000", "260000" ],
+    // zonas de oferta
+    seasonZones : [ "0001", "0002", "0003", "0004" ] 
+};
+
 const REPO_AL010 = "AL010";
 const REPO_SDS0001 = "SDS0001";
 const REPO_SDS0002 = "SDS0002";
@@ -319,7 +332,7 @@ function initialize() {
     })
     .catch((error) => {
         console.log("ERROR:initialize: " + error.message );
-        alert("Error procesando Datos de configuración inicial.");
+        alert("Fallo al cargar datos de configuración inicial.");
     });
 
     document.getElementById("version").innerText = version;
@@ -785,21 +798,17 @@ function ProcessReports() {
 // change the whole approach of the "reduceDataTableFunction" function!!
 function reduceDataTableFunction() {
 
-    const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
-    const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
-
     let parameters = [];
     
     const newFilteredDataMap = new Map();
 
     dataObjectElementsMap.forEach( (row, reference) => {
-        // console.log("reduceDataTableFunction, VAlue: ", row, " / key: ", reference );
         
         // TODO: revisar si hay pedidos manuales!
         
         // the product (row) is or not an offer! => assign the correct parameters
-        // TODO: implementar filtro para cabecras y zonas 
-        if(row.familyPrice !== 0 || row.localPrice !== 0) {
+        // TODO: implementar filtro para caberas y zonas 
+        if(row.familyPrice !== 0 || row.localPrice !== 0 || isEndCap( shopSpecialLocations.endCap, row.salesLocation) ) {
 
             // console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
             // TODO: asignar parametros correctos
@@ -818,6 +827,20 @@ function reduceDataTableFunction() {
     
     showTable( newFilteredDataMap );
 }
+
+
+// *********************************************************
+function isEndCap( shopEndCapsLocations, salesLocationItem ) {
+    let x = shopEndCapsLocations.includes( salesLocationItem );
+    console.log("Es cabecera? (", salesLocationItem, ") / valor: ", x);
+    return x;
+}
+
+
+// *********************************************************
+// function belongsToSeasonZone (){
+
+// }
 
 
 // *********************************************************
