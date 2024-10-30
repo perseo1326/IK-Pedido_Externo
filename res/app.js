@@ -808,7 +808,7 @@ function reduceDataTableFunction() {
         
         // the product (row) is or not an offer! => assign the correct parameters
         // TODO: implementar filtro para caberas y zonas 
-        if(row.familyPrice !== 0 || row.localPrice !== 0 || isEndCap( shopSpecialLocations.endCap, row.salesLocation) ) {
+        if(row.familyPrice !== 0 || row.localPrice !== 0 || isEndCap( shopSpecialLocations.endCap, row.salesLocation) || belongsToSeasonZone( shopSpecialLocations.seasonZones, row.salesLocation ) ) {
 
             // console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
             // TODO: asignar parametros correctos
@@ -830,17 +830,16 @@ function reduceDataTableFunction() {
 
 
 // *********************************************************
-function isEndCap( shopEndCapsLocations, salesLocationItem ) {
-    let x = shopEndCapsLocations.includes( salesLocationItem );
-    console.log("Es cabecera? (", salesLocationItem, ") / valor: ", x);
-    return x;
+function isEndCap( shopEndCapsLocationsParams, salesLocationItem ) {
+    return shopEndCapsLocationsParams.includes( salesLocationItem );
 }
 
 
 // *********************************************************
-// function belongsToSeasonZone (){
+function belongsToSeasonZone ( shopSeasonZonesParams, salesLocationItem ){
+    // console.log("Es cabecera? (", salesLocationItem, ") / valor: ", x);
 
-// }
+}
 
 
 // *********************************************************
