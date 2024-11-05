@@ -126,6 +126,11 @@ function drawTableRow ( row ) {
     htmlRow += "<td class='text-left'>";
     htmlRow += row.quotes;
     htmlRow += "</td>";
+
+    // Analisis column
+    htmlRow += "<td>"; 
+    htmlRow += "x";
+    htmlRow += "</td>"; 
         
     // // LV stock
     // htmlRow += "<td>";

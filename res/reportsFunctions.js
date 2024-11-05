@@ -122,18 +122,20 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
                     row[columns[1]],
                     // ARTNAME_UNICODE
                     row[columns[2]],
-                    // OP_FC_CURR
-                    row[columns[4]],
-                    // AVGSALES
-                    row[columns[5]],
-                    // AVAIL_STOCK
-                    row[columns[6]],
-                    // ASSQ
+                    // SALESMETHOD
                     row[columns[3]],
+                    // OP_FC_CURR
+                    row[columns[5]],
+                    // AVGSALES
+                    row[columns[6]],
+                    // AVAIL_STOCK
+                    row[columns[7]],
+                    // ASSQ
+                    row[columns[4]],
                     // ITEM_VOL
-                    row[columns[8]],
+                    row[columns[9]],
                     // PALQ
-                    row[columns[9]]
+                    row[columns[10]]
                 );
             // console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );
         }

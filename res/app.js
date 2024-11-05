@@ -7,6 +7,7 @@ class dataObjectElement {
         this.reference = "";
         this.name = "";
         this.salesLocation = "";
+        this.salesMethod = 0;
         this.localPrice = 0;
         this.familyPrice = 0;
         this.currentForecastValue = 0;
@@ -34,10 +35,11 @@ class dataObjectElement {
         this.stockWeeks = 0;
     }
 
-    setSDS0001Values( salesLocation, ref, name, currentForecastValue, averageSale, availableStock, eoq, volume, palletQty ) {
+    setSDS0001Values( salesLocation, ref, name, salesMethod, currentForecastValue, averageSale, availableStock, eoq, volume, palletQty ) {
         this.salesLocation = salesLocation;
         this.reference = ref;
         this.name = name;
+        this.salesMethod = salesMethod;
         this.currentForecastValue = currentForecastValue;
         this.averageSale = averageSale;
         this.totalStock = availableStock;
@@ -183,7 +185,8 @@ const tableHeadersView = [
     "Prox Camión",
     "Pal ESBO",
     "LV Venta",
-    "Obs Esp."
+    "Obs Esp.",
+    "Análisis"
     // "Cabeceras"
     // "Stock ESBO",
     // "Stock LV",
@@ -192,6 +195,24 @@ const tableHeadersView = [
 
 const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
 const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
+
+// const paramAnalisis = [ 
+//     { "Camión" : 1 },
+//     { "Sem Stock" : 2 },
+//     { "Market <= 1" : 3},
+//     { ""}
+        
+    // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
+    // 2.	SEMANAS STOCK POR DEBAJO DE 1
+    // 3.	MARKET POR DEBAJO DE 1 EOQ
+    // 4.	MARKET 1 PALLET O MENOS EN EL AIRE
+    // 5.	AUTO FULL POR DEBAJO 1 EOQ
+    // 6.	AUTO FULL NINGUN PALLET EN EL AIRE
+    // 7.	ARTICULOS CON STOCK EN TIENDA INFERIOR A 6 UNDS
+    // 8.	RESTO DE ARTICULOS
+    
+    
+    // } ];
 
 // special locations ( end caps and season zones)
 const shopSpecialLocations = {
