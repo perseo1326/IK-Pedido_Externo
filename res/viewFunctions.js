@@ -129,7 +129,7 @@ function drawTableRow ( row ) {
 
     // Analisis column
     htmlRow += "<td>"; 
-    htmlRow += "x";
+    htmlRow += row.analisysPriority;
     htmlRow += "</td>"; 
         
     // // LV stock
