@@ -276,6 +276,10 @@ table.addEventListener("keydown", () => {
     console.log("EVENTO TABLE Keydown: ");
 });
 
+table.addEventListener("onblur", ( evento ) => {
+    console.log("EVENTO on blur ", evento );
+})
+
 
 cancelButton.addEventListener("click", () => {
     // auxPanel.classList.add("no-visible");
