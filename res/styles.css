@@ -101,12 +101,14 @@ div.container-svg-update svg {
 /* ***** TABLE RESULTS PANEL STYLES ***** */
 
 #table-results-panel {
-    padding: 0em 0.5em 0.5em 0.5em;
+    padding: 0em 0.3em 0.3em 0.5em;
 }
 
 div.app-table-results table {
     border: 2px solid black;
     border-collapse: collapse;
+    width: 100%;
+    margin: auto;
 }
 
 table thead {
