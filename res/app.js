@@ -837,8 +837,9 @@ function isEndCap( shopEndCapsLocationsParams, salesLocationItem ) {
 
 // *********************************************************
 function belongsToSeasonZone ( shopSeasonZonesParams, salesLocationItem ){
-    // console.log("Es cabecera? (", salesLocationItem, ") / valor: ", x);
-
+    
+    let location = salesLocationItem.substr(0, 4);
+    return shopSeasonZonesParams.includes( location );
 }
 
 
