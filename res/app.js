@@ -33,6 +33,8 @@ class dataObjectElement {
 
         this.eoqQty = 0;
         this.stockWeeks = 0;
+
+        this.analisysPriority = 8;
     }
 
     setSDS0001Values( salesLocation, ref, name, salesMethod, currentForecastValue, averageSale, availableStock, eoq, volume, palletQty ) {
@@ -203,12 +205,19 @@ const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
 //     { ""}
         
     // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
+        // camion != "" 
     // 2.	SEMANAS STOCK POR DEBAJO DE 1
+        // stockWeeks <= 1
     // 3.	MARKET POR DEBAJO DE 1 EOQ
+        // if MV == 0 & EOQ <= 1
     // 4.	MARKET 1 PALLET O MENOS EN EL AIRE
+        // MV == 0 & shopStock.pallets <= 1
     // 5.	AUTO FULL POR DEBAJO 1 EOQ
+        // MV == 1 || MV == 2 & EOQ <= 1
     // 6.	AUTO FULL NINGUN PALLET EN EL AIRE
+        // MV == 1 || MV == 2 &  shopStock.pallets < 1
     // 7.	ARTICULOS CON STOCK EN TIENDA INFERIOR A 6 UNDS
+        // availableShopStock <= 6 unds    
     // 8.	RESTO DE ARTICULOS
     
     
@@ -846,7 +855,8 @@ function reduceDataTableFunction() {
         }
     });
     
-    showTable( newFilteredDataMap );
+    const x = analisysPriority ( newFilteredDataMap ); 
+    showTable( x );
 }
 
 
@@ -881,6 +891,73 @@ function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
     }
     return isLessThan;
 }
+
+
+// *********************************************************
+// function for deliver the number of priority for analisys
+function analisysPriority ( filteredDataArray ) {
+
+
+
+    for ( const row of filteredDataArray ) {
+
+        // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
+        // camion != "" 
+        if( row[1].packingListData !== "" ){
+            row[1].analisysPriority = 1;
+            continue;
+        }
+    
+        // 2.	SEMANAS STOCK POR DEBAJO DE 1
+        // stockWeeks <= 1
+        if( row[1].stockWeeks <= 1 ) {
+            row[1].analisysPriority = 2;
+            continue;
+        }
+
+        // 3.	MARKET POR DEBAJO DE 1 EOQ
+        // if MV == 0 & EOQ <= 1
+        if( (row[1].salesMethod === 0 && row[1].eoqQty <= 1 )) {
+            row[1].analisysPriority = 3;
+            continue;
+        }
+
+        // 4.	MARKET 1 PALLET O MENOS EN EL AIRE
+        // MV == 0 & shopStock.pallets <= 1
+        if( (row[1].salesMethod === 0 && row[1].shopStock.pallets <= 1 )) {
+            row[1].analisysPriority = 4;
+            continue;
+        }
+
+        // 5.	AUTO FULL POR DEBAJO 1 EOQ
+        // MV == 1 || MV == 2 & EOQ <= 1
+        if( (row[1].salesMethod === 1 || row[1].salesMethod === 2) && row[1].eoqQty <= 1 ) {
+            row[1].analisysPriority = 5;
+            continue;
+        }
+
+        // 6.	AUTO FULL NINGUN PALLET EN EL AIRE
+        // MV == 1 || MV == 2 &  shopStock.pallets <= 0
+
+        if( (row[1].salesMethod === 1 || row[1].salesMethod === 2) && row[1].shopStock.pallets < 1 ) {
+            row[1].analisysPriority = 6;
+            continue;
+        }
+
+        // 7.	ARTICULOS CON STOCK EN TIENDA INFERIOR A 6 UNDS
+        // availableShopStock <= 6 unds    
+        if( row[1].availableShopStock <= 6 ) {
+            row[1].analisysPriority = 7;
+            continue;
+        }
+
+        // 8.	RESTO DE ARTICULOS
+        // value already assigned
+    }
+    
+    return filteredDataArray;
+}
+
 
 // *********************************************************
 function copyTable( evento ){
