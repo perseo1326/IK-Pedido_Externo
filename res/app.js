@@ -70,9 +70,9 @@ class dataObjectElement {
     }
 
     // TODO: eliminar esta function
-    setOpenOrderLineValues( openOrderLineData ){
-        this.openOrderLineData = openOrderLineData;
-    }
+    // setOpenOrderLineValues( openOrderLineData ){
+    //     this.openOrderLineData = openOrderLineData;
+    // }
     
     setPackingListValues( packingListData ) {
         let space = "";
@@ -198,31 +198,6 @@ const tableHeadersView = [
 const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
 const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
 
-// const paramAnalisis = [ 
-//     { "Camión" : 1 },
-//     { "Sem Stock" : 2 },
-//     { "Market <= 1" : 3},
-//     { ""}
-        
-    // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
-        // camion != "" 
-    // 2.	SEMANAS STOCK POR DEBAJO DE 1
-        // stockWeeks <= 1
-    // 3.	MARKET POR DEBAJO DE 1 EOQ
-        // if MV == 0 & EOQ <= 1
-    // 4.	MARKET 1 PALLET O MENOS EN EL AIRE
-        // MV == 0 & shopStock.pallets <= 1
-    // 5.	AUTO FULL POR DEBAJO 1 EOQ
-        // MV == 1 || MV == 2 & EOQ <= 1
-    // 6.	AUTO FULL NINGUN PALLET EN EL AIRE
-        // MV == 1 || MV == 2 &  shopStock.pallets < 1
-    // 7.	ARTICULOS CON STOCK EN TIENDA INFERIOR A 6 UNDS
-        // availableShopStock <= 6 unds    
-    // 8.	RESTO DE ARTICULOS
-    
-    
-    // } ];
-
 // special locations ( end caps and season zones)
 const shopSpecialLocations = {
     // Cabeceras de lineal
@@ -248,9 +223,6 @@ const ESBO_LOCATION = "990501";
 const REFERENCE_SG010 = "STORAGE_UNICODE";
 const PALLET_QUANTITY = "QTY";
 const FORECAST_TYPE_SDS0002 = "5 OpFC";
-
-
-
 
 
 const auxPanel = document.getElementById("auxiliar-panel");
@@ -757,8 +729,16 @@ function ProcessReports() {
         }
 
         // Ask to continue if some report is not provided
-        /* TODO: enable validation
+        // TODO: enable/disable validation
         if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
+            return;
+        }
+
+        if( !alertNoReportProvided( dataSDS0002, REPO_SDS0002 )) {
+            return;
+        }
+        
+        if( !alertNoReportProvided( dataAL010, REPO_AL010 )) {
             return;
         }
 
@@ -766,9 +746,10 @@ function ProcessReports() {
             return;
         }
 
-        if( !alertNoReportProvided( dataOOL, REPO_OPEN_ORDER_LINE )) {
-            return;
-        }
+        // TODO: remove this report
+        // if( !alertNoReportProvided( dataOOL, REPO_OPEN_ORDER_LINE )) {
+        //     return;
+        // }
 
         if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
             return;
@@ -777,8 +758,6 @@ function ProcessReports() {
         if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
             return;
         }
-
-        */
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
@@ -794,7 +773,7 @@ function ProcessReports() {
 
         // Integrate 'Open Order Line OOL' data into 'dataObjectElementMap'
         // TODO: desactivar esta "OOL" report
-        dataObjectElementsMap = loadOpenOrderLineValues( dataOOL, dataObjectElementsMap, reportsConfigMap.get( REPO_OPEN_ORDER_LINE ).columns );
+        // dataObjectElementsMap = loadOpenOrderLineValues( dataOOL, dataObjectElementsMap, reportsConfigMap.get( REPO_OPEN_ORDER_LINE ).columns );
 
         // Integrate 'Packing-List' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadPackingListValues( dataPackingList, dataObjectElementsMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
@@ -837,11 +816,8 @@ function reduceDataTableFunction() {
         // TODO: revisar si hay pedidos manuales!
         
         // the product (row) is or not an offer! => assign the correct parameters
-        // TODO: implementar filtro para caberas y zonas 
         if(row.familyPrice !== 0 || row.localPrice !== 0 || isEndCap( shopSpecialLocations.endCap, row.salesLocation) || belongsToSeasonZone( shopSpecialLocations.seasonZones, row.salesLocation ) ) {
 
-            // console.log("Ofertas: referencia: ", reference, " family: ", row.familyPrice, " local: ", row.localPrice );
-            // TODO: asignar parametros correctos
             parameters = paramOffer;
 
         } else {
@@ -877,14 +853,11 @@ function belongsToSeasonZone ( shopSeasonZonesParams, salesLocationItem ){
 // *********************************************************
 function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
 
-    // console.log("Parametro: ", param);
-
     let isLessThan = false;
     const keysArray = Object.keys( param );
 
     for (const key of keysArray) {
         
-        // console.log("Verdadero, row Parametro: ", rowObject[key] );
         if( rowObject[key] <= param[key] ){
             isLessThan = true;
         }
@@ -970,12 +943,6 @@ function copyTable( evento ){
     }
 
     copyElement( document.getElementById("table") );
-
-    /*
-    setTimeout( () => {
-        element.parentNode.classList.remove("copy-shipment");
-    }, 1000 );
-    */
 }
 
 
