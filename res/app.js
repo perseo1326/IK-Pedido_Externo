@@ -188,7 +188,8 @@ const tableHeadersView = [
     "Pal ESBO",
     "LV Venta",
     "Obs Esp.",
-    "Análisis"
+    "Análisis",
+    "Oferta"
     // "Cabeceras"
     // "Stock ESBO",
     // "Stock LV",

@@ -37,7 +37,7 @@ function drawTableHeaders ( headers ) {
 // *********************************************************
 function drawTableRow ( row ) {
 
-    // console.log("Tabla: ", row);
+    console.log("FILA ", row);
 
     let htmlRow = "";
 
@@ -130,6 +130,11 @@ function drawTableRow ( row ) {
     // Analisis column
     htmlRow += "<td>"; 
     htmlRow += row.analisysPriority;
+    htmlRow += "</td>"; 
+
+    // Offer Column
+    htmlRow += "<td>"; 
+    htmlRow +=  "";
     htmlRow += "</td>"; 
         
     // // LV stock
