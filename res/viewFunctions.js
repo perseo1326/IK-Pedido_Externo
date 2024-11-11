@@ -37,7 +37,7 @@ function drawTableHeaders ( headers ) {
 // *********************************************************
 function drawTableRow ( row ) {
 
-    console.log("FILA ", row);
+    // console.log("FILA ", row);
 
     let htmlRow = "";
 
@@ -134,7 +134,8 @@ function drawTableRow ( row ) {
 
     // Offer Column
     htmlRow += "<td>"; 
-    htmlRow +=  "";
+    htmlRow +=  ( row.localPrice !== 0 || row.familyPrice !== 0 ) ? "x" : "";
+    // console.log("Ofertas: ", row.reference );
     htmlRow += "</td>"; 
         
     // // LV stock

@@ -735,6 +735,7 @@ function ProcessReports() {
 
         // Ask to continue if some report is not provided
         // TODO: enable/disable validation
+        /*
         if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
             return;
         }
@@ -763,6 +764,7 @@ function ProcessReports() {
         if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
             return;
         }
+        */
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
@@ -875,13 +877,12 @@ function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
 // function for deliver the number of priority for analisys
 function analisysPriority ( filteredDataArray ) {
 
-
-
     for ( const row of filteredDataArray ) {
 
         // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
         // camion != "" 
         if( row[1].packingListData !== "" ){
+            // console.log("P 1", row[0]);
             row[1].analisysPriority = 1;
             continue;
         }
@@ -889,13 +890,15 @@ function analisysPriority ( filteredDataArray ) {
         // 2.	SEMANAS STOCK POR DEBAJO DE 1
         // stockWeeks <= 1
         if( row[1].stockWeeks <= 1 ) {
+            // console.log("P 2", row[0]);
             row[1].analisysPriority = 2;
             continue;
         }
-
+        
         // 3.	MARKET POR DEBAJO DE 1 EOQ
         // if MV == 0 & EOQ <= 1
         if( (row[1].salesMethod === 0 && row[1].eoqQty <= 1 )) {
+            // console.log("P 3", row[0]);
             row[1].analisysPriority = 3;
             continue;
         }
@@ -903,6 +906,7 @@ function analisysPriority ( filteredDataArray ) {
         // 4.	MARKET 1 PALLET O MENOS EN EL AIRE
         // MV == 0 & shopStock.pallets <= 1
         if( (row[1].salesMethod === 0 && row[1].shopStock.pallets <= 1 )) {
+            // console.log("P 4", row[0]);
             row[1].analisysPriority = 4;
             continue;
         }
@@ -910,6 +914,7 @@ function analisysPriority ( filteredDataArray ) {
         // 5.	AUTO FULL POR DEBAJO 1 EOQ
         // MV == 1 || MV == 2 & EOQ <= 1
         if( (row[1].salesMethod === 1 || row[1].salesMethod === 2) && row[1].eoqQty <= 1 ) {
+            // console.log("P 5", row[0]);
             row[1].analisysPriority = 5;
             continue;
         }
@@ -918,6 +923,7 @@ function analisysPriority ( filteredDataArray ) {
         // MV == 1 || MV == 2 &  shopStock.pallets <= 0
 
         if( (row[1].salesMethod === 1 || row[1].salesMethod === 2) && row[1].shopStock.pallets < 1 ) {
+            // console.log("P 6", row[0]);
             row[1].analisysPriority = 6;
             continue;
         }
@@ -925,14 +931,17 @@ function analisysPriority ( filteredDataArray ) {
         // 7.	ARTICULOS CON STOCK EN TIENDA INFERIOR A 6 UNDS
         // availableShopStock <= 6 unds    
         if( row[1].availableShopStock <= 6 ) {
+            // console.log("P 7", row[0]);
             row[1].analisysPriority = 7;
             continue;
         }
 
         // 8.	RESTO DE ARTICULOS
         // value already assigned
+        // console.log("**************************************");
     }
     
+    console.log("Analisis Priority: ", filteredDataArray);
     return filteredDataArray;
 }
 
