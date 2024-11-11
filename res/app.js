@@ -208,6 +208,20 @@ const shopSpecialLocations = {
     // zonas de oferta
     seasonZones : [ "0001", "0002", "0003", "0004" ] 
 };
+// Params for mark priorities
+const priorityParams = {
+    trucks : "",
+    stockWeeks : 1,
+    marketEoqQty : 1,
+    shopStockPallets : 1,
+    selfWarehouseEoqQty : 1,
+    selfWarehouseSgfPallets : 1,
+    totalUnits : 6
+};
+
+const MV0 = 0;
+const MV1 = 1;
+const MV2 = 2;
 
 const REPO_AL010 = "AL010";
 const REPO_SDS0001 = "SDS0001";
@@ -838,6 +852,7 @@ function reduceDataTableFunction() {
         }
     });
     
+    // TODO: refactorizar estas dos lineas
     const x = analisysPriority ( newFilteredDataMap ); 
     showTable( x );
 }
@@ -881,7 +896,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
         // camion != "" 
-        if( row[1].packingListData !== "" ){
+        if( row[1].packingListData !== priorityParams.trucks ){
             // console.log("P 1", row[0]);
             row[1].analisysPriority = 1;
             continue;
@@ -889,7 +904,7 @@ function analisysPriority ( filteredDataArray ) {
     
         // 2.	SEMANAS STOCK POR DEBAJO DE 1
         // stockWeeks <= 1
-        if( row[1].stockWeeks <= 1 ) {
+        if( row[1].stockWeeks <= priorityParams.stockWeeks ) {
             // console.log("P 2", row[0]);
             row[1].analisysPriority = 2;
             continue;
@@ -897,7 +912,7 @@ function analisysPriority ( filteredDataArray ) {
         
         // 3.	MARKET POR DEBAJO DE 1 EOQ
         // if MV == 0 & EOQ <= 1
-        if( (row[1].salesMethod === 0 && row[1].eoqQty <= 1 )) {
+        if( (row[1].salesMethod === MV0 && row[1].eoqQty <= priorityParams.marketEoqQty )) {
             // console.log("P 3", row[0]);
             row[1].analisysPriority = 3;
             continue;
@@ -905,7 +920,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 4.	MARKET 1 PALLET O MENOS EN EL AIRE
         // MV == 0 & shopStock.pallets <= 1
-        if( (row[1].salesMethod === 0 && row[1].shopStock.pallets <= 1 )) {
+        if( (row[1].salesMethod === MV0 && row[1].shopStock.pallets <= priorityParams.shopStockPallets )) {
             // console.log("P 4", row[0]);
             row[1].analisysPriority = 4;
             continue;
@@ -913,7 +928,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 5.	AUTO FULL POR DEBAJO 1 EOQ
         // MV == 1 || MV == 2 & EOQ <= 1
-        if( (row[1].salesMethod === 1 || row[1].salesMethod === 2) && row[1].eoqQty <= 1 ) {
+        if( (row[1].salesMethod === MV1 || row[1].salesMethod === MV2) && row[1].eoqQty <= priorityParams.selfWarehouseEoqQty ) {
             // console.log("P 5", row[0]);
             row[1].analisysPriority = 5;
             continue;
@@ -921,8 +936,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 6.	AUTO FULL NINGUN PALLET EN EL AIRE
         // MV == 1 || MV == 2 &  shopStock.pallets <= 0
-
-        if( (row[1].salesMethod === 1 || row[1].salesMethod === 2) && row[1].shopStock.pallets < 1 ) {
+        if( (row[1].salesMethod === MV1 || row[1].salesMethod === MV2) && row[1].shopStock.pallets < priorityParams.selfWarehouseSgfPallets ) {
             // console.log("P 6", row[0]);
             row[1].analisysPriority = 6;
             continue;
@@ -930,7 +944,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 7.	ARTICULOS CON STOCK EN TIENDA INFERIOR A 6 UNDS
         // availableShopStock <= 6 unds    
-        if( row[1].availableShopStock <= 6 ) {
+        if( row[1].availableShopStock <= priorityParams.totalUnits ) {
             // console.log("P 7", row[0]);
             row[1].analisysPriority = 7;
             continue;
