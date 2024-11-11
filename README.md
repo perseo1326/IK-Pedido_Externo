@@ -4,6 +4,10 @@ Aplicación para seleccionar, unir y configurar la información para la generaci
 
 Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/IK-Pedido_Externo/pedidosExterno.html)
 
+## Version 3.1
+
+* Adición de la columna "Prioridad" para facilitar y estandarizar los pasos para la ejecución del pedido.
+
 ## Version 3.0
 
 * Definición de nuevos requerimietos y fórmulas de cálculo junto a mejoras visuales y de presentación de la información.
