@@ -11,6 +11,10 @@
     width: 85%;
 }
 
+.width-100 {
+    width: 100%;
+}
+
 .flex-align-left {
     justify-content: flex-start;
 }
@@ -31,23 +35,23 @@
 }
 
 section {
-    margin: 0.3em 1em;
-    justify-content: space-between;
-    align-items: center;
-    height: 5em;
-    margin-bottom: 0.5em;
+    margin: 0.2em 0;
     /* background-color: pink; */
 }
 
 .section-div {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 30% 3em auto;
     /* background-color: #afaeeb; */
 }
 
+.section-div div {
+    border: 1px solid black;
+    align-items: center;
+}
+
 .section-div div p {
-    margin: 0 0.5em;
-    /* background-color: aqua; */
+    padding:  0 0.5em;
 }
 
 .custom-button-report {
@@ -67,32 +71,21 @@ section {
  /* ********************************************************* */
 /* ***** ESTILOS PARA SVG UPDATE ***** */
  /* ********************************************************* */
- 
+
 .container-svg-update {
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* width: 8em; */
-    padding: 0.5em;
     justify-content: center;
-    background-color: aquamarine;
 }
 
-div.container-svg-update svg {
-    stroke: red;
-    background-color:blanchedalmond;
-    padding: 0.5em;
-    /* block-size: auto; */
-    /* height: 4em; */
-    /* width: 4em; */
-    width: 80px;
-    height: 60px;
+.container-svg-update svg {
+    stroke: var(--first-color);
+    fill: var(--first-color);
+    width: 2.5em;
 } 
 
-.icon-svg-update {
-    stroke: purple;
-    /* width: 80px; */
-    /* height: 60px; */
-}
+.container-svg-update:hover svg {
+    stroke: var(--second-color);
+    fill: var(--second-color);
+} 
 
  /* ********************************************************* */
 /* ***** ESTILOS PARA SVG UPDATE ENDS ***** */
