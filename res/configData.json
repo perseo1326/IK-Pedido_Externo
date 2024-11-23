@@ -3,7 +3,7 @@
     "reports": [
         {
             "name": "SDS0001", 
-            "url": "",
+            "url": "#",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -12,7 +12,7 @@
 
         {
             "name": "SDS0002", 
-            "url": "",
+            "url": "#",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -30,7 +30,7 @@
 
         {
             "name": "SA021", 
-            "url": "",
+            "url": "#",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -39,7 +39,7 @@
 
         {
             "name": "SG010",
-            "url": "",
+            "url": "#",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -47,17 +47,8 @@
         },
 
         {
-            "name": "OOL",
-            "url": "",
-            "FILE_EXTENSION_ARRAY": [ "xlsx" ],
-            "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
-            "FILE_WORKBOOK_SHEET": "DATA",
-            "columns": [ "Article_Number", "Ordered_Qty"]
-        },
-
-        {
             "name": "Packing-List",
-            "url": "",
+            "url": "#",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "Packing list",
@@ -66,7 +57,7 @@
 
         {
             "name": "Obs-Especiales",
-            "url": "",
+            "url": "#",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "BASE",
@@ -75,7 +66,7 @@
 
         {
             "name": "Pedido-ESBO",
-            "url": "",
+            "url": "#",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "Formato ventas",

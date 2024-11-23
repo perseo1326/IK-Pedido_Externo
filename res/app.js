@@ -352,7 +352,7 @@ function initialize() {
 
         // reportsConfig hacerlo global para acceso
         reportsConfigMap = reportsConfig;
-        drawDownloadIcon();
+        drawDownloadIcon( reportsConfig );
     })
     .catch((error) => {
         console.log("ERROR:initialize: " + error.message );

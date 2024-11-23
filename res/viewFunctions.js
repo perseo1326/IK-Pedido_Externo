@@ -19,16 +19,17 @@ function replaceDotPerComma ( dataNumber ) {
 
 
 // *********************************************************
-// functio  to draw report buttons in the first page
-function drawDownloadIcon(  ){
+// function to draw report buttons in the first page
+function drawDownloadIcon ( configDataMap ){
 
-    const svgList = document.querySelectorAll("svg");
-
+    const svgList = document.querySelectorAll(".svg-icon");
     
-    for (const svgButton of svgList ) {
-        console.log("SVG LIST: ", svgButton );
-
-        svgButton.innerHTML = SVG_ICON;
+    for (const linkElement of svgList ) {
+        
+        const idReport = linkElement.id.replace("-icon", "");
+        linkElement.href = configDataMap.get( idReport ).url;
+        linkElement.title = "Descargar Reporte " + configDataMap.get( idReport ).name;
+        linkElement.firstElementChild.innerHTML = SVG_ICON;
     }
 }
 
