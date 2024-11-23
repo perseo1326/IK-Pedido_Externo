@@ -3,6 +3,7 @@
     "reports": [
         {
             "name": "SDS0001", 
+            "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -29,6 +30,7 @@
 
         {
             "name": "SA021", 
+            "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -37,6 +39,7 @@
 
         {
             "name": "SG010",
+            "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -45,6 +48,7 @@
 
         {
             "name": "OOL",
+            "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "DATA",
@@ -53,6 +57,7 @@
 
         {
             "name": "Packing-List",
+            "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "Packing list",
@@ -61,6 +66,7 @@
 
         {
             "name": "Obs-Especiales",
+            "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "BASE",
@@ -69,6 +75,7 @@
 
         {
             "name": "Pedido-ESBO",
+            "url": "",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "Formato ventas",

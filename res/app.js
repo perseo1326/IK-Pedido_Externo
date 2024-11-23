@@ -199,6 +199,8 @@ const tableHeadersView = [
 const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
 const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
 
+// const reportButtonsOrder = ["SG010", "SDS0001", "SDS0002", "SA021", "AL010", "Obs-Especiales", "Packing-List", "Pedido-ESBO"];
+
 // special locations ( end caps and season zones)
 const shopSpecialLocations = {
     // Cabeceras de lineal
@@ -228,7 +230,7 @@ const REPO_SDS0001 = "SDS0001";
 const REPO_SDS0002 = "SDS0002";
 const REPO_SA021 = "SA021";
 const REPO_SG010 = "SG010";
-const REPO_OPEN_ORDER_LINE = "OOL";
+// const REPO_OPEN_ORDER_LINE = "OOL";
 const REPO_OBS_ESPECIAL = "Obs-Especiales";
 const REPO_PACKING_LIST = "Packing-List";
 const REPO_PREVIOUS_ORDER = "Pedido-ESBO";
@@ -250,7 +252,7 @@ const SDS0001_Button = document.getElementById(REPO_SDS0001);
 const SDS0002_Button = document.getElementById(REPO_SDS0002);
 const SA021_Button = document.getElementById(REPO_SA021);
 const SG010_Button = document.getElementById(REPO_SG010);
-const OOL_Button = document.getElementById(REPO_OPEN_ORDER_LINE);
+// const OOL_Button = document.getElementById(REPO_OPEN_ORDER_LINE);
 const PACKING_LIST_Button = document.getElementById(REPO_PACKING_LIST);
 const OBS_ESPECIAL_Button = document.getElementById(REPO_OBS_ESPECIAL);
 const previousOrder_Button = document.getElementById(REPO_PREVIOUS_ORDER);
@@ -301,13 +303,12 @@ cancelButton.addEventListener("click", () => {
     auxPanel.hidden = true;
 });
 
-
 SG010_Button.addEventListener("change", loadSG010_File );
 SDS0001_Button.addEventListener("change", loadSDS0001_File) ;
 SDS0002_Button.addEventListener("change", loadSDS0002_File) ;
 AL010_Button.addEventListener("change", loadAL010_File);
 SA021_Button.addEventListener("change", loadSA021_File );
-OOL_Button.addEventListener("change", loadOOL_File );
+// OOL_Button.addEventListener("change", loadOOL_File );
 PACKING_LIST_Button.addEventListener("change", loadPackingList_File );
 OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 previousOrder_Button.addEventListener("change", loadPreviousOrder_File );
@@ -316,10 +317,11 @@ loadReportsB.addEventListener("click", ProcessReports );
 reduceDataTable.addEventListener("click", reduceDataTableFunction );
 tableDataButton.addEventListener("click", copyTable );
 
+
 // *********************************************************
 // *********************************************************
 
-initialize();
+window.addEventListener("load", initialize );
 
 // *********************************************************
 function initialize() {
@@ -350,6 +352,7 @@ function initialize() {
 
         // reportsConfig hacerlo global para acceso
         reportsConfigMap = reportsConfig;
+        drawDownloadIcon();
     })
     .catch((error) => {
         console.log("ERROR:initialize: " + error.message );

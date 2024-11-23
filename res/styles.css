@@ -32,6 +32,7 @@
 #reports-panel {
     height: 100%;
     width: 100%;
+    justify-content: space-around;
 }
 
 section {
@@ -74,6 +75,10 @@ section {
 
 .container-svg-update {
     justify-content: center;
+}
+
+.container-svg-update a svg {
+    display: block;
 }
 
 .container-svg-update svg {
