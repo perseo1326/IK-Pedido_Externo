@@ -13,6 +13,11 @@
         "endCap": "C"
     },
 
+    "tableReductionParameters": {
+        "normalParameters" : [ { "eoqQty" : 1.3 }, { "stockWeeks" : 1.3 }, { "availableShopStock" : 6 } ],
+        "offerParameters" : [ { "eoqQty" : 2 }, { "stockWeeks" : 2 } ]
+    },
+
     "reports": [
         {
             "name": "SDS0001", 

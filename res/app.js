@@ -139,6 +139,9 @@ let shopSpecialLocations;
 // producto mark with "offer", "end cap" or "zone"
 let typeSpecialProduct;
 
+// Parameters and values used to reduce the total amount of rows in the data table. 
+let tableReductionParameters;
+
 // Configuration Data Map
 let reportsConfigMap;
 
@@ -199,8 +202,8 @@ const tableHeadersView = [
     "Tipo"
 ];
 
-const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
-const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
+// const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
+// const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
 
 // const reportButtonsOrder = ["SG010", "SDS0001", "SDS0002", "SA021", "AL010", "Obs-Especiales", "Packing-List", "Pedido-ESBO"];
 
@@ -351,8 +354,15 @@ function initialize() {
             reportsConfig.set( element.name, element );
         });
 
+        // load shop special locations
         shopSpecialLocations = jsonData.shopSpecialLocations;
+
+        // load config for distinction about products (offer, end cap and season zones)
         typeSpecialProduct = jsonData.typeSpecialProduct;
+
+        // load table reduction parameters
+        tableReductionParameters = jsonData.tableReductionParameters;
+
         // console.log("MAPA de configuraion: ", reportsConfig );
 
         // reportsConfig hacerlo global para acceso
@@ -849,9 +859,9 @@ function reduceDataTableFunction() {
         
         // the product (row) is or not an offer! => assign the correct parameters
         if( isThisOffer_EndCap_Zone( row ) ) {
-            parameters = paramOffer;
+            parameters = tableReductionParameters.offerParameters;
         } else {
-            parameters = paramNormal;
+            parameters = tableReductionParameters.normalParameters;
         }
 
         for ( const paramObject of parameters ) {
