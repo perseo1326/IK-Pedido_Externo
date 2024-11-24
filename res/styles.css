@@ -47,7 +47,6 @@ section {
 }
 
 .section-div div {
-    border: 1px solid black;
     align-items: center;
 }
 
@@ -136,7 +135,7 @@ table tbody td {
 }
 
 table tbody td.order {
-    /* background-color: aqua; */
+    background-color: rgb(164, 230, 134);
 }
 
 /* td:nth-child( 8 ), th:nth-child( 8 ) { */

@@ -748,36 +748,9 @@ function ProcessReports() {
 
         // Ask to continue if some report is not provided
         // TODO: enable/disable validation
-        /*
-        if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
-            return;
-        }
-
-        if( !alertNoReportProvided( dataSDS0002, REPO_SDS0002 )) {
-            return;
-        }
-        
-        if( !alertNoReportProvided( dataAL010, REPO_AL010 )) {
-            return;
-        }
-
-        if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
-            return;
-        }
-
-        // TODO: remove this report
-        // if( !alertNoReportProvided( dataOOL, REPO_OPEN_ORDER_LINE )) {
+        // if( !forgottenReportsWarning() ){
         //     return;
         // }
-
-        if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
-            return;
-        }
-
-        if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
-            return;
-        }
-        */
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
@@ -818,6 +791,36 @@ function ProcessReports() {
         console.log(error)
         alert(error.message);
     }
+}
+
+
+// *********************************************************
+function forgottenReportsWarning() {
+
+    if( !alertNoReportProvided( dataSDS0001, REPO_SDS0001 )) {
+        return false;
+    }
+
+    if( !alertNoReportProvided( dataSDS0002, REPO_SDS0002 )) {
+        return false;
+    }
+    
+    if( !alertNoReportProvided( dataAL010, REPO_AL010 )) {
+        return false;
+    }
+
+    if( !alertNoReportProvided( dataSA021, REPO_SA021 )) {
+        return false;
+    }
+
+    if( !alertNoReportProvided( dataPackingList, REPO_PACKING_LIST )) {
+        return false;
+    }
+
+    if( !alertNoReportProvided( dataObs, REPO_OBS_ESPECIAL )) {
+        return false;
+    }
+    return true;
 }
 
 
