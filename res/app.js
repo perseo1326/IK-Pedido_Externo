@@ -133,6 +133,12 @@ class dataObjectElement {
 // *********************************************************
 // VARIABLES AND CONSTANTS
 
+// Shop Special locations
+let shopSpecialLocations;
+
+// producto mark with "offer", "end cap" or "zone"
+let typeSpecialProduct;
+
 // Configuration Data Map
 let reportsConfigMap;
 
@@ -198,19 +204,20 @@ const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
 
 // const reportButtonsOrder = ["SG010", "SDS0001", "SDS0002", "SA021", "AL010", "Obs-Especiales", "Packing-List", "Pedido-ESBO"];
 
-const TYPE_OFFER = "O";
-const TYPE_SEASON_ZONE = "Z";
-const TYPE_END_CAP = "C";
+// const TYPE_OFFER = "O";
+// const TYPE_SEASON_ZONE = "Z";
+// const TYPE_END_CAP = "C";
 
 // special locations ( end caps and season zones)
-const shopSpecialLocations = {
-    // Cabeceras de lineal
-    endCap : [ "020000", "030000", "040000", "060000", "070000", "080000", "090000", 
-    "100000", "110000", "120000", "130000", "140000", "150000", "160000", "170000", "180000", "190000", 
-    "200000", "210000", "220000", "230000", "240000", "250000", "260000" ],
-    // zonas de oferta
-    seasonZones : [ "0001", "0002", "0003", "0004" ] 
-};
+// const shopSpecialLocations = {
+//     // Cabeceras de lineal
+//     endCap : [ "020000", "030000", "040000", "060000", "070000", "080000", "090000", 
+//     "100000", "110000", "120000", "130000", "140000", "150000", "160000", "170000", "180000", "190000", 
+//     "200000", "210000", "220000", "230000", "240000", "250000", "260000" ],
+//     // zonas de oferta
+//     seasonZones : [ "0001", "0002", "0003", "0004" ] 
+// };
+
 // Params for mark priorities
 const priorityParams = {
     trucks : "",
@@ -337,12 +344,15 @@ function initialize() {
     .then((response) => response.json())
     .then(( jsonData ) => {
 
+        console.log("JSON DATA CONFIG: ", jsonData);
         const reportsConfig = new Map();
 
         jsonData.reports.forEach( element => {
             reportsConfig.set( element.name, element );
         });
 
+        shopSpecialLocations = jsonData.shopSpecialLocations;
+        typeSpecialProduct = jsonData.typeSpecialProduct;
         // console.log("MAPA de configuraion: ", reportsConfig );
 
         // reportsConfig hacerlo global para acceso
@@ -861,19 +871,19 @@ function isThisOffer_EndCap_Zone( row ){
     
     if( row.familyPrice !== 0 || row.localPrice !== 0 ){
         // console.log("OFFERTA: ", row );
-        row.type += TYPE_OFFER;
+        row.type += typeSpecialProduct.offer;
         return true;
     }
 
     if( isEndCap( shopSpecialLocations.endCap, row.salesLocation) ){
         // console.log("Cabecera: ", row );
-        row.type += TYPE_END_CAP;
+        row.type += typeSpecialProduct.endCap;
         return true;
     } 
 
     if( belongsToSeasonZone( shopSpecialLocations.seasonZones, row.salesLocation ) ) {
         // console.log("ZONA: ", row );
-        row.type += TYPE_SEASON_ZONE;
+        row.type += typeSpecialProduct.seasonZone;
         return true;
     } 
 
