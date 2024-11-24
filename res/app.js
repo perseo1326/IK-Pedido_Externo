@@ -154,7 +154,7 @@ let dataAL010;
 let dataSA021;
 
 // data from 'OPEN ORDER LINE' report 
-let dataOOL;
+// let dataOOL;
 
 // data from 'Packing List' report 
 let dataPackingList;
@@ -189,11 +189,7 @@ const tableHeadersView = [
     "LV Venta",
     "Obs Esp.",
     "Análisis",
-    "Oferta"
-    // "Cabeceras"
-    // "Stock ESBO",
-    // "Stock LV",
-    // "Reservas",
+    "Tipo"
 ];
 
 const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
@@ -333,7 +329,7 @@ function initialize() {
     dataSDS0002 = [];
     dataAL010 = [];
     dataSA021 = [];
-    dataOOL = [];
+    // dataOOL = [];
     dataPackingList = [];
     dataObs = [];
     dataPreviousOrder = [];
@@ -967,13 +963,12 @@ function analisysPriority ( filteredDataArray ) {
 function copyTable( evento ){
 
     console.log("EVENTO: ", evento );
+    const table = document.getElementById("table");
     const tableHeaders = document.getElementById( "table-headers" );
 
-    if(tableHeaders !== null ){
-        tableHeaders.remove();
-    }
-
-    copyElement( document.getElementById("table") );
+    tableHeaders.classList.add("no-visible");
+    copyElement( table );
+    tableHeaders.classList.remove("no-visible");
 }
 
 
