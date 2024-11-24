@@ -1,4 +1,3 @@
-
 .width-70 {
     width: 70%;
 }
@@ -51,7 +50,7 @@ section {
 }
 
 .section-div div p {
-    padding:  0 0.5em;
+    padding: 0 0.5em;
 }
 
 .custom-button-report {
@@ -68,9 +67,9 @@ section {
     height: 3em;
 }
 
- /* ********************************************************* */
+/* ********************************************************* */
 /* ***** ESTILOS PARA SVG UPDATE ***** */
- /* ********************************************************* */
+/* ********************************************************* */
 
 .container-svg-update {
     justify-content: center;
@@ -84,16 +83,16 @@ section {
     stroke: var(--first-color);
     fill: var(--first-color);
     width: 2.5em;
-} 
+}
 
 .container-svg-update:hover svg {
     stroke: var(--second-color);
     fill: var(--second-color);
-} 
+}
 
- /* ********************************************************* */
+/* ********************************************************* */
 /* ***** ESTILOS PARA SVG UPDATE ENDS ***** */
- /* ********************************************************* */
+/* ********************************************************* */
 
 /* ***** TABLE RESULTS PANEL STYLES ***** */
 
@@ -117,11 +116,11 @@ table thead {
 
 table thead tr th span {
     writing-mode: vertical-lr;
-    transform: rotate(180deg); 
+    transform: rotate(180deg);
 }
 
 table tbody tr:nth-child(even) {
-    background-color: #D6EEEE;
+    background-color: #d6eeee;
 }
 
 table tbody tr:hover {
@@ -155,4 +154,31 @@ table tbody td.order {
     z-index: 10;
 }
 
-/* ***** COPY BUTTON ENDS ***** */
+
+/* ********************************************************* */
+/* ***** ESTILOS PARA EL LOADER ***** */
+/* ********************************************************* */
+.loader {
+    border: 1em solid var(--first-color);
+    border-radius: 50%;
+    border-top: 1em solid var(--second-color);
+    width: 7.5em;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+

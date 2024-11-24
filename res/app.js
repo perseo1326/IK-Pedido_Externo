@@ -247,7 +247,6 @@ const auxPanel = document.getElementById("auxiliar-panel");
 
 // reports panel 
 const reportsPanel = document.getElementById("reports-panel");
-const cancelButton = document.getElementById("cancel-aux-panel");
 const AL010_Button = document.getElementById(REPO_AL010);
 const SDS0001_Button = document.getElementById(REPO_SDS0001);
 const SDS0002_Button = document.getElementById(REPO_SDS0002);
@@ -298,11 +297,6 @@ table.addEventListener("onblur", ( evento ) => {
     console.log("EVENTO on blur ", evento );
 })
 
-
-cancelButton.addEventListener("click", () => {
-    // auxPanel.classList.add("no-visible");
-    auxPanel.hidden = true;
-});
 
 SG010_Button.addEventListener("change", loadSG010_File );
 SDS0001_Button.addEventListener("change", loadSDS0001_File) ;

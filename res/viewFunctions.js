@@ -75,7 +75,7 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // current Forecast Value
-    htmlRow += "<td title='Venta 1/2: " + row.averageSale + " Venta Last Wk: " + row.lastWkSales + "'>";
+    htmlRow += "<td title='Venta media: " + row.averageSale + " / Last Week: " + row.lastWkSales + "'>";
     htmlRow += replaceDotPerComma( row.currentForecastValue );
     htmlRow += "</td>";
 
