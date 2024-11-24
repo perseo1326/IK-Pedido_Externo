@@ -35,6 +35,7 @@ class dataObjectElement {
         this.stockWeeks = 0;
 
         this.analisysPriority = 8;
+        this.type = "";
     }
 
     setSDS0001Values( salesLocation, ref, name, salesMethod, currentForecastValue, averageSale, availableStock, eoq, volume, palletQty ) {
@@ -65,7 +66,7 @@ class dataObjectElement {
         this.thisWkSales = thisWkSales;
         this.lastWkSales = lastWkSales;
         if( this.currentForecastValue !== expSale ){
-            console.log("Venta + Alta: ERROR! ");
+            console.log(`Venta + Alta: ERROR! Ref: ${this.reference} / ${this.currentForecastValue} / ${expSale}`);
         }
     }
 
@@ -165,7 +166,7 @@ let dataObs;
 // data from 'Pedido anterior ESBO' report 
 let dataPreviousOrder;
 
-const version = "3.1";
+const version = "3.2";
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
@@ -188,7 +189,7 @@ const tableHeadersView = [
     "Pal ESBO",
     "LV Venta",
     "Obs Esp.",
-    "Análisis",
+    "Prioridad",
     "Tipo"
 ];
 
@@ -196,6 +197,10 @@ const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopSto
 const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
 
 // const reportButtonsOrder = ["SG010", "SDS0001", "SDS0002", "SA021", "AL010", "Obs-Especiales", "Packing-List", "Pedido-ESBO"];
+
+const TYPE_OFFER = "O";
+const TYPE_SEASON_ZONE = "Z";
+const TYPE_END_CAP = "C";
 
 // special locations ( end caps and season zones)
 const shopSpecialLocations = {
@@ -839,10 +844,8 @@ function reduceDataTableFunction() {
         // TODO: revisar si hay pedidos manuales!
         
         // the product (row) is or not an offer! => assign the correct parameters
-        if(row.familyPrice !== 0 || row.localPrice !== 0 || isEndCap( shopSpecialLocations.endCap, row.salesLocation) || belongsToSeasonZone( shopSpecialLocations.seasonZones, row.salesLocation ) ) {
-
+        if( isThisOffer_EndCap_Zone( row ) ) {
             parameters = paramOffer;
-
         } else {
             parameters = paramNormal;
         }
@@ -854,9 +857,33 @@ function reduceDataTableFunction() {
         }
     });
     
-    // TODO: refactorizar estas dos lineas
-    const x = analisysPriority ( newFilteredDataMap ); 
-    showTable( x );
+    showTable( analisysPriority ( newFilteredDataMap ) );
+}
+
+
+// *********************************************************
+// Mark if a product has an offer or it have a special location to select the correct params for it. 
+function isThisOffer_EndCap_Zone( row ){
+    
+    if( row.familyPrice !== 0 || row.localPrice !== 0 ){
+        // console.log("OFFERTA: ", row );
+        row.type += TYPE_OFFER;
+        return true;
+    }
+
+    if( isEndCap( shopSpecialLocations.endCap, row.salesLocation) ){
+        // console.log("Cabecera: ", row );
+        row.type += TYPE_END_CAP;
+        return true;
+    } 
+
+    if( belongsToSeasonZone( shopSpecialLocations.seasonZones, row.salesLocation ) ) {
+        // console.log("ZONA: ", row );
+        row.type += TYPE_SEASON_ZONE;
+        return true;
+    } 
+
+    return false;
 }
 
 

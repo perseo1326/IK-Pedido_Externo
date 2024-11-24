@@ -297,7 +297,7 @@ function filterArray ( dataArray, column, value ) {
             newFilteredDataArray.push( row );
         }
     });
-    console.log("Total filas filtradas 'SDS0002': ", newFilteredDataArray.length );
+    // console.log("Total filas filtradas 'SDS0002': ", newFilteredDataArray.length );
     return newFilteredDataArray;
 }
 

@@ -149,9 +149,9 @@ function drawTableRow ( row ) {
     htmlRow += row.analisysPriority;
     htmlRow += "</td>"; 
 
-    // Offer Column
+    // Offer-type Column
     htmlRow += "<td>"; 
-    htmlRow +=  ( row.localPrice !== 0 || row.familyPrice !== 0 ) ? "x" : "";
+    htmlRow += row.type;
     // console.log("Ofertas: ", row.reference );
     htmlRow += "</td>"; 
         
