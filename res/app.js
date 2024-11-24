@@ -183,27 +183,27 @@ const version = "3.2";
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
-const tableHeadersView = [
-    "Referencia",
-    "Nombre",
-    "Error FC",
-    "Forecast",
-    "Semana",
-    "Next Wk FC",
-    "Sem Stock",
-    "EOQ",
-    "EOQ %",
-    "PalQ",
-    "Stock Tienda",
-    "SGF",
-    "Pedir",
-    "Prox Camión",
-    "Pal ESBO",
-    "LV Venta",
-    "Obs Esp.",
-    "Prioridad",
-    "Tipo"
-];
+let tableHeadersView = [];
+//     "Referencia",
+//     "Nombre",
+//     "Error FC",
+//     "Forecast",
+//     "Semana",
+//     "Next Wk FC",
+//     "Sem Stock",
+//     "EOQ",
+//     "EOQ %",
+//     "PalQ",
+//     "Stock Tienda",
+//     "SGF",
+//     "Pedir",
+//     "Prox Camión",
+//     "Pal ESBO",
+//     "LV Venta",
+//     "Obs Esp.",
+//     "Prioridad",
+//     "Tipo"
+// ];
 
 // const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
 // const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
@@ -368,6 +368,9 @@ function initialize() {
 
         // load params to identify priorities at the final table.
         priorityParams = jsonData.priorityParams;
+
+        // load table headers names
+        tableHeadersView = jsonData.tableHeadersView;
 
         // console.log("MAPA de configuraion: ", reportsConfig );
 

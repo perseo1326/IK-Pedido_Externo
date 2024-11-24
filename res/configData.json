@@ -1,5 +1,27 @@
 
 {
+    "tableHeadersView": [
+        "Referencia",
+        "Nombre",
+        "Error FC",
+        "Forecast",
+        "Semana",
+        "Next Wk FC",
+        "Sem Stock",
+        "EOQ",
+        "EOQ %",
+        "PalQ",
+        "Stock Tienda",
+        "SGF",
+        "Pedir",
+        "Prox Camión",
+        "Pal ESBO",
+        "LV Venta",
+        "Obs Esp.",
+        "Prioridad",
+        "Tipo"
+    ],
+
     "shopSpecialLocations": {
         "endCap" : [ "020000", "030000", "040000", "060000", "070000", "080000", "090000", 
         "100000", "110000", "120000", "130000", "140000", "150000", "160000", "170000", "180000", "190000", 
