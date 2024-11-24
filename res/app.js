@@ -918,7 +918,7 @@ function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
 
 
 // *********************************************************
-// function for deliver the number of priority for analisys
+// function that mark a product with a number of priority for analisys
 function analisysPriority ( filteredDataArray ) {
 
     for ( const row of filteredDataArray ) {
