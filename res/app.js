@@ -142,6 +142,9 @@ let typeSpecialProduct;
 // Parameters and values used to reduce the total amount of rows in the data table. 
 let tableReductionParameters;
 
+// Params to define priority columns in the final table
+let priorityParams;
+
 // Configuration Data Map
 let reportsConfigMap;
 
@@ -222,15 +225,15 @@ const tableHeadersView = [
 // };
 
 // Params for mark priorities
-const priorityParams = {
-    trucks : "",
-    stockWeeks : 1,
-    marketEoqQty : 1,
-    shopStockPallets : 1,
-    selfWarehouseEoqQty : 1,
-    selfWarehouseSgfPallets : 1,
-    totalUnits : 6
-};
+// const priorityParams = {
+//     trucks : "",
+//     stockWeeks : 1,
+//     marketEoqQty : 1,
+//     shopStockPallets : 1,
+//     selfWarehouseEoqQty : 1,
+//     selfWarehouseSgfPallets : 1,
+//     totalUnits : 6
+// };
 
 const MV0 = 0;
 const MV1 = 1;
@@ -362,6 +365,9 @@ function initialize() {
 
         // load table reduction parameters
         tableReductionParameters = jsonData.tableReductionParameters;
+
+        // load params to identify priorities at the final table.
+        priorityParams = jsonData.priorityParams;
 
         // console.log("MAPA de configuraion: ", reportsConfig );
 
@@ -979,7 +985,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 6.	AUTO FULL NINGUN PALLET EN EL AIRE
         // MV == 1 || MV == 2 &  shopStock.pallets <= 0
-        if( (row[1].salesMethod === MV1 || row[1].salesMethod === MV2) && row[1].shopStock.pallets < priorityParams.selfWarehouseSgfPallets ) {
+        if( (row[1].salesMethod === MV1 || row[1].salesMethod === MV2) && row[1].shopStock.pallets <= priorityParams.selfWarehouseSgfPallets ) {
             // console.log("P 6", row[0]);
             row[1].analisysPriority = 6;
             continue;

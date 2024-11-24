@@ -18,6 +18,16 @@
         "offerParameters" : [ { "eoqQty" : 2 }, { "stockWeeks" : 2 } ]
     },
 
+    "priorityParams" : {
+        "trucks" : "",
+        "stockWeeks" : 1,
+        "marketEoqQty" : 1,
+        "shopStockPallets" : 1,
+        "selfWarehouseEoqQty" : 1,
+        "selfWarehouseSgfPallets" : 0,
+        "totalUnits" : 6
+    },
+
     "reports": [
         {
             "name": "SDS0001", 
