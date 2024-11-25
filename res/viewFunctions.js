@@ -52,7 +52,7 @@ function drawTableHeaders ( headers ) {
 
 
 // *********************************************************
-function drawTableRow ( row ) {
+function drawTableRow ( row, key ) {
 
     // console.log("FILA ", row);
 
@@ -60,7 +60,7 @@ function drawTableRow ( row ) {
 
     // Ref
     htmlRow += "<td>";
-    htmlRow += row.reference;
+    htmlRow += key;
     htmlRow += "</td>";
 
     // Name
@@ -120,8 +120,8 @@ function drawTableRow ( row ) {
     htmlRow += "</td>";
 
     // Pedir
-    htmlRow += "<td contenteditable='true' class='order'>"; 
-    htmlRow += "";
+    htmlRow += "<td contenteditable='false' class='order'>"; 
+    htmlRow += `<input type="text" name="" id="${key}" maxlength="3" min="0" max="${row.esboStock.pallets}"  pattern="[0-9]" title="Rango 0 - ${row.esboStock.pallets}" />`;
     htmlRow += "</td>";
 
     // Packing List
@@ -188,10 +188,7 @@ function drawTableData ( dataMap ) {
     let htmlDataTable = "";
     
     dataMap.forEach( ( object, key ) => {
-        
-        // console.log("DATA object: ", key, object );
-        htmlDataTable += "<tr class='centrar' data-reference=" + key + " >" + drawTableRow( object ) + "</tr>";
-        
+        htmlDataTable += "<tr class='centrar' data-reference=" + key + " >" + drawTableRow( object, key ) + "</tr>";
     });
     return htmlDataTable;
 }

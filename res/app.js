@@ -325,7 +325,6 @@ loadReportsB.addEventListener("click", ProcessReports );
 reduceDataTable.addEventListener("click", reduceDataTableFunction );
 tableDataButton.addEventListener("click", copyTable );
 
-
 // *********************************************************
 // *********************************************************
 
@@ -766,7 +765,7 @@ function loadPreviousOrder_File( evento ){
 // *********************************************************
 function ProcessReports() {
 
-    console.log("ProcessReports function!");
+    console.log("INFO:ProcessReports: Procesando Reportes función!");
 
     try {
         if( dataObjectElementsMap.size <= 0 ){
@@ -814,6 +813,7 @@ function ProcessReports() {
         reportsPanel.classList.add("no-visible");
         tableDataButton.parentElement.classList.remove("no-visible");
         showTable( dataObjectElementsMap );
+        setCaptureManualEntry();
 
     } catch (error) {
         console.log(error)
@@ -853,32 +853,86 @@ function forgottenReportsWarning() {
 
 
 // *********************************************************
+// function that assing event listeners for user entries.
+function setCaptureManualEntry(){
+    console.log("INFO:setCaptureManualEntry: Setting user input event listener.");
+
+    const nodeList = document.querySelectorAll(".order");
+
+    for ( const node of nodeList ) {
+        node.firstChild.addEventListener("blur", validateUserInput );
+    }
+}
+
+
+// *********************************************************
+// Collect info from the user, validate and save into data structure.
+function validateUserInput( evento ) {
+
+    const quantity = evento.target.value;
+    const reference = evento.target.id;
+
+    if(isNaN(quantity)){
+        console.log("WARNING:validateUserInput: Not valid value = " + quantity);
+        alert("El valor ingresado debe ser numérico.");
+        evento.target.value = "";
+        return;
+    }
+
+    if(quantity === ""){
+        console.log("WARNING:validateUserInput: Empty value = " + quantity);
+        return;
+    }
+    
+    if( quantity > dataObjectElementsMap.get( reference ).esboStock.pallets ){
+        const message = `La cantidad pedida (${quantity}) supera el stock disponible (${dataObjectElementsMap.get( reference ).esboStock.pallets})`;
+        console.log("WARNING:validateUserInput: " + message);
+        alert(message);
+        evento.target.value = "";
+        return;
+    }
+
+    dataObjectElementsMap.get( reference ).type = typeSpecialProduct.manual;
+    evento.target.value = dataObjectElementsMap.get( reference ).manualOrderQuantity = Number.parseInt(quantity); 
+
+    console.log(`INFO:validateUserInput: Cantidad Manual (${quantity}) agregada en Referencia (${reference})` );
+
+    // console.log("MAPA DE DATOS: ", dataObjectElementsMap.get( reference ) );
+}
+
+
+// *********************************************************
 // function for reduce data rows following some criteria
 // NOTE: if is needed to use a different functions than "compareParamsVsValuesLessThanOrEqualTo" for comparison you must 
 // change the whole approach of the "reduceDataTableFunction" function!!
 function reduceDataTableFunction() {
+    console.log("INFO:reduceDataTableFunction: Reduciendo valores de la tabla.");
 
     let parameters = [];
     
     const newFilteredDataMap = new Map();
 
-    dataObjectElementsMap.forEach( (row, reference) => {
-        
-        // TODO: revisar si hay pedidos manuales!
+    for (const rowArray of dataObjectElementsMap ) {
+
+        // Add manual row to the data structure
+        if( rowArray[1].type === typeSpecialProduct.manual ){
+            newFilteredDataMap.set( rowArray[0], rowArray[1] );
+            continue;
+        }
         
         // the product (row) is or not an offer! => assign the correct parameters
-        if( isThisOffer_EndCap_Zone( row ) ) {
+        if( isThisOffer_EndCap_Zone( rowArray[1] ) ) {
             parameters = tableReductionParameters.offerParameters;
         } else {
             parameters = tableReductionParameters.normalParameters;
         }
 
         for ( const paramObject of parameters ) {
-            if( compareParamsVsValuesLessThanOrEqualTo( paramObject, row ) ){
-                newFilteredDataMap.set( reference, row );
+            if( compareParamsVsValuesLessThanOrEqualTo( paramObject, rowArray[1] ) ){
+                newFilteredDataMap.set( rowArray[0], rowArray[1] );
             }
         }
-    });
+    }
     
     showTable( analisysPriority ( newFilteredDataMap ) );
 }

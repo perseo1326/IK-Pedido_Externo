@@ -32,7 +32,8 @@
     "typeSpecialProduct" : {
         "offer" : "O",
         "seasonZone": "Z",
-        "endCap": "C"
+        "endCap": "C",
+        "manual" : "M"
     },
 
     "tableReductionParameters": {
