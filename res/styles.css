@@ -167,11 +167,9 @@ table tbody td.order {
     position: absolute;
     bottom: 1em;
     right: 1em;
-    /* background-color: #afaeeb; */
 }
 
 .tools-icon-icons {
-    /* background-color: orange; */
     align-items: center;
 }
 
@@ -187,7 +185,6 @@ table tbody td.order {
 div.custom-button {
     margin-right: 0.3em;
     display: none;
-    /* background-color: blanchedalmond; */
 }
 
 .tools-icon svg {
@@ -203,11 +200,40 @@ div.custom-button {
     transform: rotate(180deg);
 }
 
+/* ********************************************************* */
+/* ESTILOS PARA HERRAMIENTAS -> BOTONES */
 
+.tools-buttons {
+    display: none;
+}
 
+.tools-icon:hover .tools-buttons{
+    display: flex;
+}
 
+.tools-buttons div {
+    margin-bottom: 1em;
+    justify-content: flex-end;
+    align-items: center;
+}
 
+.tools-buttons div button {
+    margin: 0.3rem 0;
+}
 
+.tools-buttons div:hover button {
+    background-color: var(--second-color);
+    color: var(--first-color);
+}
+
+.tools-buttons div svg {
+    width: 2em;
+    height: 2em;
+}
+
+.tools-buttons div:hover svg {
+    fill: var(--second-color);
+}
 
 
 

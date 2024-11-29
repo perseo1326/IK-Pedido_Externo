@@ -811,7 +811,7 @@ function ProcessReports() {
 
         // UI updates
         reportsPanel.classList.add("no-visible");
-        tableDataButton.parentElement.classList.remove("no-visible");
+        tableResultsPanel.classList.remove("no-visible");
         showTable( dataObjectElementsMap );
         setCaptureManualEntry();
 
