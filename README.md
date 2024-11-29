@@ -6,8 +6,8 @@ Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/I
 
 ## Version 3.2
 
-* Agregada caracteristica en el listado completo para permitir al usuario indicar cantidades a pedir.
-* Agregada la columna "Tipo" para señalar si un articulo tiene oferta "O", esta en una cabecera "C" o en una zona "Z".
+* Agregada caracteristica en el listado completo para permitir al usuario indicar cantidades a pedir manualmente.
+* Agregada la columna "Tipo" para señalar si un articulo tiene oferta "O", esta en una cabecera "C", en una zona "Z" o es un pedido manual "M".
 * Adicionados botones de enlace a cada uno de los reportes para una fácil ubicación y descarga.
 
 ## Version 3.1
