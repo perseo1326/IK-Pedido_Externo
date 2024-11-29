@@ -4,6 +4,10 @@ Aplicación para seleccionar, unir y configurar la información para la generaci
 
 Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/IK-Pedido_Externo/pedidosExterno.html)
 
+## Version 3.3
+
+* Agregados botones para abrir un menu que permite modificar manualmente los parámetros con los cuales se realiza la reducción de datos de la tabla general y la asignación de las prioridades.
+
 ## Version 3.2
 
 * Agregada caracteristica en el listado completo para permitir al usuario indicar cantidades a pedir manualmente.

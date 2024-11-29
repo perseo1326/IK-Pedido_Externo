@@ -178,62 +178,12 @@ let dataObs;
 // data from 'Pedido anterior ESBO' report 
 let dataPreviousOrder;
 
-const version = "3.2";
+const version = "3.3";
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
 let tableHeadersView = [];
-//     "Referencia",
-//     "Nombre",
-//     "Error FC",
-//     "Forecast",
-//     "Semana",
-//     "Next Wk FC",
-//     "Sem Stock",
-//     "EOQ",
-//     "EOQ %",
-//     "PalQ",
-//     "Stock Tienda",
-//     "SGF",
-//     "Pedir",
-//     "Prox Camión",
-//     "Pal ESBO",
-//     "LV Venta",
-//     "Obs Esp.",
-//     "Prioridad",
-//     "Tipo"
-// ];
-
-// const paramNormal = [ { eoqQty : 1.3 }, { stockWeeks : 1.3 }, { availableShopStock : 6 } ];
-// const paramOffer = [ { eoqQty : 2 }, { stockWeeks : 2 } ];
-
-// const reportButtonsOrder = ["SG010", "SDS0001", "SDS0002", "SA021", "AL010", "Obs-Especiales", "Packing-List", "Pedido-ESBO"];
-
-// const TYPE_OFFER = "O";
-// const TYPE_SEASON_ZONE = "Z";
-// const TYPE_END_CAP = "C";
-
-// special locations ( end caps and season zones)
-// const shopSpecialLocations = {
-//     // Cabeceras de lineal
-//     endCap : [ "020000", "030000", "040000", "060000", "070000", "080000", "090000", 
-//     "100000", "110000", "120000", "130000", "140000", "150000", "160000", "170000", "180000", "190000", 
-//     "200000", "210000", "220000", "230000", "240000", "250000", "260000" ],
-//     // zonas de oferta
-//     seasonZones : [ "0001", "0002", "0003", "0004" ] 
-// };
-
-// Params for mark priorities
-// const priorityParams = {
-//     trucks : "",
-//     stockWeeks : 1,
-//     marketEoqQty : 1,
-//     shopStockPallets : 1,
-//     selfWarehouseEoqQty : 1,
-//     selfWarehouseSgfPallets : 1,
-//     totalUnits : 6
-// };
 
 const MV0 = 0;
 const MV1 = 1;
@@ -546,65 +496,6 @@ function loadAL010_File ( evento ) {
         auxPanel.classList.add("no-visible");
     });
 }
-
-
-// *********************************************************
-// *********************************************************
-// TODO: function for retrieve AL010 report from Sharepoint
-
-// const AL010_UpdateButton = document.getElementById("AL010-update-button");
-
-// AL010_UpdateButton.addEventListener( "click", getRemoteAL010 );
-
-// function getRemoteAL010() {
-
-//     // console.log ("Mapa de configuracion: ", reportsConfigMap );
-
-//     getRemoteSharePointFile( reportsConfigMap.get( REPO_AL010 ));
-// }
-
-// function getRemoteSharePointFile ( repo_config ) {
-
-//     console.log("Configuracion del reporte: ", repo_config );
-
-//     const url = "https://datausa.io/api/data?drilldowns=Nation&measures=Population";
-
-//     fetch( repo_config.url )
-
-//     .then( response => response.json())
-//     .then( data => console.log(data))
-//     .catch( error => console.error("Error", error ));
-
-
-    // .then((response) => response.json())
-    // .then(( jsonData ) => {
-
-    //     const reportsConfig = new Map();
-
-    //     jsonData.reports.forEach( element => {
-    //         reportsConfig.set( element.name, element );
-    //     });
-
-    //     // console.log("MAPA de configuraion: ", reportsConfig );
-
-    //     // reportsConfig hacerlo global para acceso
-    //     reportsConfigMap = reportsConfig;
-    // })
-    // .catch((error) => {
-    //     console.log("ERROR:initialize: " + error.message );
-    //     alert("Error procesando Datos de configuración inicial.");
-    // });
-
-    // document.getElementById("version").innerText = version;
-    // console.log("Versión: ", version );
-
-// }
-
-
-
-
-// *********************************************************
-// *********************************************************
 
 
 // *********************************************************
