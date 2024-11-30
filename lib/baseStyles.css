@@ -1,7 +1,7 @@
 
 
 *, html, body {
-    --background: white;
+    --background: whitesmoke;
     --font-color: whitesmoke;
     --first-color: #0059A3;
     --second-color: #FEDD00;
@@ -111,7 +111,8 @@ a.email:hover {
 /* ***** LOADING/AUX PANEL ***** */
 
 div.auxiliar-panel {
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
