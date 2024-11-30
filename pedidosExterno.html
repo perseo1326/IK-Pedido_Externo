@@ -25,12 +25,136 @@
         </nav>
 
         <!-- Loading panel definition -->
-
-        <div id="auxiliar-panel" class="auxiliar-panel container-flex no-visible">
+        <div id="auxiliar-panel-loading" class="auxiliar-panel container-flex no-visible">
             <div class="" id="">
                 <div class="loader"></div>
             </div>
         </div>
+
+
+        <!-- panel for configuration params -->
+        <div id="auxiliar-panel-configuration" class="auxiliar-panel container-flex no-visible">
+            <div class="config-panel" id="">
+
+                <div class="config-title">
+                    <h3>Configuración de Parámetros</h3>
+                </div>
+                <div class="container-row config-nav-buttons">
+                    <ul>
+                        <li><button class="custom-button">Reducción de datos</button></li>
+                        <li><button class="custom-button custom-button-green">Prioridades</button></li>
+                    </ul>
+                </div>
+
+                <!-- config cards -->
+                <div class="container-row config-panel-cards " >
+
+                    <!-- tableReductionParameters -->
+                    <div class="container-column config-card">
+
+                        <!-- Articulos en OFERTA -->
+                        <div class="card-params">
+                            <fieldset>
+                                <legend>Art. en Ofertas</legend>
+                                <div>
+                                    <label for="">Semanas Stock</label>
+                                    <input type="number" name="" id="">
+                                </div>
+                                <div>
+                                    <label for="">EOQ %</label>
+                                    <input type="number" name="" id="">
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!-- Articulos Precio NORMAL -->
+                        <div class="card-params">
+                            <fieldset>
+                                <legend>Art. Precio Normal</legend>
+                                <div>
+                                    <label for="">Semanas Stock</label>
+                                    <input type="number" name="" id="">
+                                </div>
+                                <div>
+                                    <label for="">EOQ %</label>
+                                    <input type="number" name="" id="">
+                                </div>
+                                <div>
+                                    <label for="">Stock Disponible Tienda</label>
+                                    <input type="number" name="" id="">
+                                </div>
+                                
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <!-- priorityParams" : { -->
+                    <div class="config-card no-visible" >
+
+                        <fieldset>
+                            <legend>Parametros de Prioridad</legend>
+                            <!-- Prioridad No.  1-->
+                            <div>
+                                <label for="">Camiones</label>
+                                <input type="text" name="" id="">
+                            </div>    
+
+                            <div>
+                                <label for="">Observaciones Esp</label>
+                                <input type="text" name="" id="">
+                            </div>    
+                            
+                            <!-- Prioridad No.  2-->
+                            <div>
+                                <label for="">Semanas de Stock</label>
+                                <input type="text" name="" id="">
+                            </div>    
+                            
+                            <!-- Prioridad No.  3-->
+                            <div>
+                                <label for="">marketEoqQty</label>
+                                <input type="text" name="" id="">
+                            </div>    
+                            
+                            <!-- Prioridad No.  4-->
+                            <div>
+                                <label for="">shopStockPallets</label>
+                                <input type="text" name="" id="">
+                            </div>    
+                            
+                            <!-- Prioridad No.  5-->
+                            <div>
+                                <label for="">selfWarehouseEoqQty</label>
+                                <input type="text" name="" id="">
+                            </div>    
+                            
+                            <!-- Prioridad No.  6-->
+                            <div>
+                                <label for="">selfWarehouseSgfPallets</label>
+                                <input type="text" name="" id="">
+                            </div>    
+                            
+                            <!-- Prioridad No.  7-->
+                            <div>
+                                <label for="">totalUnits</label>
+                                <input type="text" name="" id="">
+                            </div>    
+                                                                    
+                        </fieldset>
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
 
         <!-- App content -->
         <div id="" class="">
@@ -214,6 +338,12 @@
 
             <!-- table results panel -->
             <div id="table-results-panel" class="app-table-results no-visible">
+
+                <!-- <div id="auxiliar-panel-configuration" class="auxiliar-panel container-flex no-visible_">
+                    <div class="" id="">
+                        <div class="loader"></div>
+                    </div>
+                </div> -->
                 
                 <div class="div-tools-div">
 

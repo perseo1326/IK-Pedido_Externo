@@ -206,7 +206,7 @@ const PALLET_QUANTITY = "QTY";
 const FORECAST_TYPE_SDS0002 = "5 OpFC";
 
 
-const auxPanel = document.getElementById("auxiliar-panel");
+const auxPanel = document.getElementById("auxiliar-panel-loading");
 
 // reports panel 
 const reportsPanel = document.getElementById("reports-panel");
@@ -228,6 +228,7 @@ const tableResultsPanel = document.getElementById("table-results-panel");
 const table = document.getElementById("table");
 const tableHeaders = document.getElementById("table-headers");
 const tableData = document.getElementById("table-data");
+const configurationB = document.getElementById("configuration-button");
 const reduceDataTable = document.getElementById("reduce-data-table");
 const tableDataButton = document.getElementById("copy-data-table");
 
@@ -237,19 +238,19 @@ const tableDataButton = document.getElementById("copy-data-table");
 // *********************************************************
 // EVENT LISTENERS
 
-auxPanel.addEventListener("wheel", ( evento ) => {
-    console.log("Evento RUEDA.");
-    // evento.preventDefault();
-});
+// auxPanel.addEventListener("wheel", ( evento ) => {
+//     console.log("Evento RUEDA.");
+//     // evento.preventDefault();
+// });
 
 
-document.addEventListener("keydown", ( evento ) => {
-    if( teclas.includes(evento.key) && auxPanel.hidden === false){
-        console.log("Key down");
-        // TODO: revisar el comportamiento
-        // evento.preventDefault();
-    }
-});
+// document.addEventListener("keydown", ( evento ) => {
+//     if( teclas.includes(evento.key) && auxPanel.hidden === false){
+//         console.log("Key down");
+//         // TODO: revisar el comportamiento
+//         // evento.preventDefault();
+//     }
+// });
 
 
 table.addEventListener("keydown", () => {
@@ -272,6 +273,14 @@ OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 previousOrder_Button.addEventListener("change", loadPreviousOrder_File );
 
 loadReportsB.addEventListener("click", ProcessReports );
+configurationB.addEventListener("click", ( evento ) => {
+    document.getElementById("auxiliar-panel-configuration").classList.remove("no-visible");
+});
+
+document.getElementById("auxiliar-panel-configuration").addEventListener("wheel", ( evento ) => {
+    evento.preventDefault();
+});
+
 reduceDataTable.addEventListener("click", reduceDataTableFunction );
 tableDataButton.addEventListener("click", copyTable );
 

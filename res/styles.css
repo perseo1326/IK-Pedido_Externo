@@ -1,3 +1,5 @@
+
+
 .width-70 {
     width: 70%;
 }
@@ -145,7 +147,7 @@ table tbody td.order {
 }
 
 table tr:hover td.order input, td.order input:focus {
-    background-color: whitesmoke;
+    background-color: var(--background);
 }
 
 /* td:nth-child( 8 ), th:nth-child( 8 ) { */
@@ -167,7 +169,7 @@ table tr:hover td.order input, td.order input:focus {
 
 .div-tools-div {
     position: fixed;
-    z-index: 10;
+    z-index: 2;
     bottom: 4em;
     right: 5em;
     /* background-color: red; */
@@ -245,6 +247,53 @@ div.custom-button {
 
 .tools-buttons div:hover svg {
     fill: var(--second-color);
+}
+
+
+/* ********************************************************* */
+/* ESTILOS PANEL CONFIGURACION */
+
+.config-panel {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    /* background-color: var(--background); */
+    background-color: var(--background);
+    height: calc(100vh * 0.5);
+    border: 2px solid gray;
+}
+
+.config-title h3 {
+    padding: 0.3em;
+    font-size: 2em;
+    text-align: center;
+    background-color: var(--first-color);
+    color: var(--font-color);
+}
+
+.config-nav-buttons {
+    /* padding: 0 0.3em; */
+}
+
+.config-nav-buttons > ul, li {
+    all: unset;
+}
+
+.config-panel-cards {
+    background-color: #afaeeb;
+
+}
+
+.config-card {
+    background-color: yellow;
+    width: 100%;
+    /* border: 1px solid black; */
+    /* margin: 0.5em; */
+    padding: 0.5em;
+}
+
+.card-params {
+    background-color: aliceblue;
+    height: 100%    ;
 }
 
 
