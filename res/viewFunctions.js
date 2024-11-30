@@ -120,7 +120,7 @@ function drawTableRow ( row, key ) {
     htmlRow += "</td>";
 
     // Pedir
-    htmlRow += "<td contenteditable='false' class='order'>"; 
+    htmlRow += "<td class='order'>"; 
     htmlRow += `<input type="text" name="" id="${key}" maxlength="3" min="0" max="${row.esboStock.pallets}"  pattern="[0-9]" title="Rango 0 - ${row.esboStock.pallets}" />`;
     htmlRow += "</td>";
 

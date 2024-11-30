@@ -137,6 +137,17 @@ table tbody td.order {
     background-color: rgb(164, 230, 134);
 }
 
+.order input {
+    all: unset;
+    /* background-color: #fff; */
+    padding: 0.2em;
+    max-width: 4em;
+}
+
+table tr:hover td.order input, td.order input:focus {
+    background-color: whitesmoke;
+}
+
 /* td:nth-child( 8 ), th:nth-child( 8 ) { */
 .stockWeeksHighligter {
     background-color: #afaeeb;
@@ -159,8 +170,8 @@ table tbody td.order {
     z-index: 10;
     bottom: 4em;
     right: 5em;
-    background-color: red;
-    padding: 0.5em;
+    /* background-color: red; */
+    /* padding: 0.5em; */
 }
 
 .tools-icon {
@@ -171,6 +182,7 @@ table tbody td.order {
 
 .tools-icon-icons {
     align-items: center;
+    justify-content: flex-end;
 }
 
 .tools-icon-icons:hover {
