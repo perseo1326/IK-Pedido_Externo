@@ -54,7 +54,7 @@
     "reports": [
         {
             "name": "SDS0001", 
-            "url": "#",
+            "url": "https://exporter.fms-reporting.ingka.com/schedules/5473",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -63,7 +63,7 @@
 
         {
             "name": "SDS0002", 
-            "url": "#",
+            "url": "https://exporter.fms-reporting.ingka.com/schedules/64912",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -72,7 +72,7 @@
 
         {
             "name": "AL010", 
-            "url": "https://iweof.sharepoint.com/:x:/r/teams/o365g_all_retes406/Shared%20Documents/!!LOGISTICA/GADD%20listados/AL010.xlsm?d=wa6243b9d85e445ec8b579290d0faf411&csf=1&web=1&e=yGXDSe",
+            "url": "https://exporter.fms-reporting.ingka.com/schedules/5478",
             "FILE_EXTENSION_ARRAY": [ "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -81,7 +81,7 @@
 
         {
             "name": "SA021", 
-            "url": "#",
+            "url": "https://exporter.fms-reporting.ingka.com/schedules/60104",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -90,7 +90,7 @@
 
         {
             "name": "SG010",
-            "url": "#",
+            "url": "https://exporter.fms-reporting.ingka.com/schedules/41821",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.ms-excel.sheet.macroenabled.12", "application/vnd.ms-excel.sheet.macroEnabled.12"],
             "FILE_WORKBOOK_SHEET": "Data",
@@ -99,7 +99,7 @@
 
         {
             "name": "Packing-List",
-            "url": "#",
+            "url": "https://iweof.sharepoint.com/:f:/r/teams/o365g_sss_retes406/Shared%20Documents/EXTERNO/Rutinas/OR130%20Y%20Packing%20list?csf=1&web=1&e=lI69VS",
             "FILE_EXTENSION_ARRAY": [ "xlsx", "xlsm" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "Packing list",
@@ -108,7 +108,7 @@
 
         {
             "name": "Obs-Especiales",
-            "url": "#",
+            "url": "https://iweof.sharepoint.com/:f:/r/teams/o365g_sss_retes406/Shared%20Documents/EXTERNO/Rutinas?csf=1&web=1&e=mU1VAF",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "BASE",
@@ -117,7 +117,7 @@
 
         {
             "name": "Pedido-ESBO",
-            "url": "#",
+            "url": "https://iweof.sharepoint.com/:f:/r/teams/o365g_all_retes406/Shared%20Documents/!!LOGISTICA/Pedido%20y%20Carga%20de%20ESBO?csf=1&web=1&e=eGvaln",
             "FILE_EXTENSION_ARRAY": [ "xlsx" ],
             "FILE_MYME_TYPE_ARRAY": ["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"],
             "FILE_WORKBOOK_SHEET": "Formato ventas",
