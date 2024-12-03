@@ -776,6 +776,11 @@ function ProcessReports() {
         dataObjectElementsMap = setEOQavailable( dataObjectElementsMap );
         dataObjectElementsMap = setStockWeeks( dataObjectElementsMap );
 
+        // Fill column "Type" => Offer, season zone or End Cap
+        dataObjectElementsMap.forEach( ( row, key ) => {
+            isThisOffer_EndCap_Zone( row );
+        });
+
         // UI updates
         reportsPanel.classList.add("no-visible");
         tableResultsPanel.classList.remove("no-visible");
@@ -889,6 +894,9 @@ function reduceDataTableFunction() {
             continue;
         }
         
+        // clean type for new calculation
+        rowArray[1].type = "";
+
         // the product (row) is or not an offer! => assign the correct parameters
         if( isThisOffer_EndCap_Zone( rowArray[1] ) ) {
             parameters = tableReductionParameters.offerParameters;
@@ -897,14 +905,15 @@ function reduceDataTableFunction() {
         }
 
         for ( const paramObject in parameters ) {
-            console.log("Parametros reduccion: ", paramObject, parameters);
+            // console.log("Parametros reduccion: ", paramObject, parameters);
             if( compareParamsVsValuesLessThanOrEqualTo( paramObject, parameters[paramObject], rowArray[1] ) ){
                 newFilteredDataMap.set( rowArray[0], rowArray[1] );
             }
         }
     }
     
-    tableDataButton.textContent = "Copiar " + dataObjectElementsMap.size;
+    tableDataButton.textContent = "Copiar " + newFilteredDataMap.size;
+    // console.log("copiar total: ", newFilteredDataMap.size);
     showTable( analisysPriority ( newFilteredDataMap ) );
 }
 
@@ -952,7 +961,7 @@ function belongsToSeasonZone ( shopSeasonZonesParams, salesLocationItem ){
 // *********************************************************
 function compareParamsVsValuesLessThanOrEqualTo( param, paramValue, rowObject ){
 
-    console.log("compareParamsVsValuesLessThanOrEqualTo: ", param, paramValue, rowObject );
+    // console.log("compareParamsVsValuesLessThanOrEqualTo: ", param, paramValue, rowObject );
     return ( rowObject[param] <= paramValue ) ? true : false;
 }
 
