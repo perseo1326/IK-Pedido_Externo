@@ -35,6 +35,7 @@
 
 .error {
     border: 1px solid red !important;
+    background-color: lightcoral !important;
 }
 
 /* ***** REPORTS PANEL STYLES ***** */
