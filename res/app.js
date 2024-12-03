@@ -315,6 +315,8 @@ configParamsOk.addEventListener("click", () => {
     configPanel.classList.add("no-visible");
     cleanParamsInputsErrors();
     saveParamsvalues();
+    // show data table complete again
+    showTable( dataObjectElementsMap );
 });
 
 configReduceDataPanelB.addEventListener("click", () => {
@@ -784,7 +786,6 @@ function ProcessReports() {
         // UI updates
         reportsPanel.classList.add("no-visible");
         tableResultsPanel.classList.remove("no-visible");
-        tableDataButton.textContent = "Copiar " + dataObjectElementsMap.size;
 
         showTable( dataObjectElementsMap );
         setCaptureManualEntry();
@@ -912,8 +913,6 @@ function reduceDataTableFunction() {
         }
     }
     
-    tableDataButton.textContent = "Copiar " + newFilteredDataMap.size;
-    // console.log("copiar total: ", newFilteredDataMap.size);
     showTable( analisysPriority ( newFilteredDataMap ) );
 }
 

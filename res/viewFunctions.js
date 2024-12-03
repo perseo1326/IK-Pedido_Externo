@@ -197,6 +197,8 @@ function drawTableData ( dataMap ) {
 // *********************************************************
 function showTable( dataElementsMap ) {
     console.log("ShowTable items: ", dataElementsMap.size );
+    tableDataButton.textContent = "Copiar " + dataElementsMap.size;
+
     tableHeaders.innerHTML = drawTableHeaders( tableHeadersView );
 
     // tableData.innerHTML = drawTableData( datos );
