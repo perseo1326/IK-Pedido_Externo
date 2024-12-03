@@ -33,7 +33,7 @@
 
 
         <!-- panel for configuration params -->
-        <div id="auxiliar-panel-configuration" class="auxiliar-panel container-flex no-visible">
+        <div id="auxiliar-panel-configuration" class="auxiliar-panel container-flex no-visible_">
             <div class="config-panel" id="">
 
                 <div class="config-title">
@@ -50,103 +50,109 @@
                 <div class="container-row config-panel-cards " >
 
                     <!-- tableReductionParameters -->
-                    <div class="container-column config-card">
+                    <div class="container-column config-card no-visible_">
 
                         <!-- Articulos en OFERTA -->
                         <div class="card-params">
-                            <fieldset>
+                            <fieldset class="container-column">
                                 <legend>Art. en Ofertas</legend>
-                                <div>
-                                    <label for="">Semanas Stock</label>
-                                    <input type="number" name="" id="">
+                                <div class="container-row param-item">
+                                    <label for="stockWeeks-param-offer">Semanas Stock</label>
+                                    <input type="number" name="stockWeeks-param-offer" id="stockWeeks-param-offer">
                                 </div>
-                                <div>
-                                    <label for="">EOQ %</label>
-                                    <input type="number" name="" id="">
+                                <div class="container-row param-item">
+                                    <label for="eoqQty-param-offer">EOQ %</label>
+                                    <input type="number" name="eoqQty-param-offer" id="eoqQty-param-offer">
                                 </div>
                             </fieldset>
                         </div>
 
                         <!-- Articulos Precio NORMAL -->
                         <div class="card-params">
-                            <fieldset>
+                            <fieldset class="container-column">
                                 <legend>Art. Precio Normal</legend>
-                                <div>
-                                    <label for="">Semanas Stock</label>
-                                    <input type="number" name="" id="">
+                                <div class="container-row param-item">
+                                    <label for="stockWeeks-param-normal">Semanas Stock</label>
+                                    <input type="number" name="stockWeeks-param-normal" id="stockWeeks-param-normal">
                                 </div>
-                                <div>
-                                    <label for="">EOQ %</label>
-                                    <input type="number" name="" id="">
+                                <div class="container-row param-item">
+                                    <label for="eoqQty-param-normal">EOQ %</label>
+                                    <input type="number" name="eoqQty-param-normal" id="eoqQty-param-normal">
                                 </div>
-                                <div>
-                                    <label for="">Stock Disponible Tienda</label>
-                                    <input type="number" name="" id="">
+                                <div class="container-row param-item">
+                                    <label for="totalUnits-param-normal">Stock Disponible Tienda</label>
+                                    <input type="number" name="totalUnits-param-normal" id="totalUnits-param-normal">
                                 </div>
                                 
                             </fieldset>
                         </div>
+
+                        <!-- text to ignore when reduce the data table -->
+                        <div class="container-column param-item">
+                            <label class="text" for="quotes-param">Texto a omitir en Observaciones Esp.</label>
+                            <input type="text" name="quotes-param" id="quotes-param" class="text">
+                        </div>    
                     </div>
 
                     <!-- priorityParams" : { -->
-                    <div class="config-card no-visible" >
+                    <div class="container-column config-card no-visible_" >
+                        <div class="card-params">
 
-                        <fieldset>
-                            <legend>Parametros de Prioridad</legend>
-                            <!-- Prioridad No.  1-->
-                            <div>
-                                <label for="">Camiones</label>
-                                <input type="text" name="" id="">
-                            </div>    
 
-                            <div>
-                                <label for="">Observaciones Esp</label>
-                                <input type="text" name="" id="">
-                            </div>    
-                            
-                            <!-- Prioridad No.  2-->
-                            <div>
-                                <label for="">Semanas de Stock</label>
-                                <input type="text" name="" id="">
-                            </div>    
-                            
-                            <!-- Prioridad No.  3-->
-                            <div>
-                                <label for="">marketEoqQty</label>
-                                <input type="text" name="" id="">
-                            </div>    
-                            
-                            <!-- Prioridad No.  4-->
-                            <div>
-                                <label for="">shopStockPallets</label>
-                                <input type="text" name="" id="">
-                            </div>    
-                            
-                            <!-- Prioridad No.  5-->
-                            <div>
-                                <label for="">selfWarehouseEoqQty</label>
-                                <input type="text" name="" id="">
-                            </div>    
-                            
-                            <!-- Prioridad No.  6-->
-                            <div>
-                                <label for="">selfWarehouseSgfPallets</label>
-                                <input type="text" name="" id="">
-                            </div>    
-                            
-                            <!-- Prioridad No.  7-->
-                            <div>
-                                <label for="">totalUnits</label>
-                                <input type="text" name="" id="">
-                            </div>    
-                                                                    
-                        </fieldset>
+                            <fieldset class="container-column">
+                                <legend>Parametros de Prioridad</legend>
 
+                                <!-- Prioridad No.  1-->
+                                <div class="container-row param-item">
+                                    <label class="" for="trucks-param">1. Camiones</label>
+                                    <input class="disabled" type="text" name="trucks-param" id="trucks-param" disabled>
+                                </div>    
+                                
+                                <!-- Prioridad No.  2-->
+                                <div class="container-row param-item">
+                                    <label for="stockWeeks-param">2. Semanas de Stock &lt=</label>
+                                    <input type="text" name="stockWeeks-param" id="stockWeeks-param">
+                                </div>    
+                                
+                                <!-- Prioridad No.  3-->
+                                <div class="container-row param-item">
+                                    <label for="marketEoqQty-param">3. EOQ Qty(%) &lt=</label>
+                                    <input type="text" name="marketEoqQty-param" id="marketEoqQty-param">
+                                </div>    
+                                
+                                <!-- Prioridad No.  4-->
+                                <div class="container-row param-item">
+                                    <label for="shopStockPallets-param">4. Pallets SGF &lt=</label>
+                                    <input type="text" name="shopStockPallets-param" id="shopStockPallets-param">
+                                </div>    
+                                
+                                <!-- Prioridad No.  5-->
+                                <div class="container-row param-item">
+                                    <label for="selfWarehouseEoqQty-param">5. EOQ Qty(%) Auto, Full &lt=</label>
+                                    <input type="text" name="selfWarehouseEoqQty-param" id="selfWarehouseEoqQty-param">
+                                </div>    
+                                
+                                <!-- Prioridad No.  6-->
+                                <div class="container-row param-item">
+                                    <label for="selfWarehouseSgfPallets-param">6. Pallets SGF Auto, Full &lt=</label>
+                                    <input type="text" name="selfWarehouseSgfPallets-param" id="selfWarehouseSgfPallets-param">
+                                </div>    
+                                
+                                <!-- Prioridad No.  7-->
+                                <div class="container-row param-item">
+                                    <label for="totalUnits-param">7. Stock Tienda &lt=</label>
+                                    <input type="text" name="totalUnits-param" id="totalUnits-param">
+                                </div>    
+                            </fieldset>
+                        </div>
                     </div>
 
                 </div>
 
-
+                <div class="container-row config-confirm-buttons">
+                    <button class="width-30 custom-button">Aceptar</button>
+                    <button class="width-30 custom-button">Cancelar</button>
+                </div>
 
 
             </div>

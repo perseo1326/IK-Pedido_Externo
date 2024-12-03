@@ -28,6 +28,11 @@
     margin: auto;
 }
 
+.disabled {
+    background-color: lightgray !important;
+    cursor: not-allowed !important;
+}
+
 /* ***** REPORTS PANEL STYLES ***** */
 
 #reports-panel {
@@ -256,10 +261,13 @@ div.custom-button {
 .config-panel {
     display: grid;
     grid-template-rows: auto auto 1fr;
+    /* min-width: 70%; */
     /* background-color: var(--background); */
-    background-color: var(--background);
-    height: calc(100vh * 0.5);
+    /* background-color: var(--second-color); */
+    background-color: #e9dbf0;
+    min-height: calc(100vh * 0.5);
     border: 2px solid gray;
+    box-shadow: 0.5em 0.5em 0.6em gray;
 }
 
 .config-title h3 {
@@ -272,6 +280,7 @@ div.custom-button {
 
 .config-nav-buttons {
     /* padding: 0 0.3em; */
+    /* background-color: red; */
 }
 
 .config-nav-buttons > ul, li {
@@ -279,23 +288,85 @@ div.custom-button {
 }
 
 .config-panel-cards {
-    background-color: #afaeeb;
-
+    /* background-color: #afaeeb; */
 }
 
 .config-card {
-    background-color: yellow;
-    width: 100%;
-    /* border: 1px solid black; */
-    /* margin: 0.5em; */
     padding: 0.5em;
+    /* background-color: yellow; */
+    width: 100%;
 }
 
 .card-params {
-    background-color: aliceblue;
-    height: 100%    ;
+    /* background-color: rgb(120, 177, 228);     */
+    height: 100%;
+    padding: 0.3em;
 }
 
+.card-params fieldset {
+    /* background-color: blanchedalmond; */
+    height: 100%;
+    padding: 0.2em;
+    justify-content: space-around;
+}
+
+.card-params fieldset legend {
+    padding: 0.3em;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-bottom: 1px solid var(--first-color);
+    color: var(--first-color);
+    /* background-color: orange; */
+}
+
+.param-item {
+    /* background-color: aqua; */
+    padding-bottom: 0.2em;
+    justify-content: space-between;
+}
+
+.param-item label {
+    display: inline-block;
+    /* width: 70%;     */
+    /* background-color: lightcoral; */
+    padding: 0.2em 0;
+}
+
+.param-item input {
+    all: unset;
+    padding: 0.2em;
+    display: inline-block;
+    width: 4em;
+    background-color: var(--background);
+    text-align: center;
+    border: 0.5px solid var(--first-color);
+    border-radius: 0.5px;
+}
+
+.param-item input:hover {
+    background-color: lightgray;
+}
+
+.param-item input:focus {
+    background-color: rgb(236, 240, 185);
+}
+
+.param-item input.text {
+    display: block;
+    width: auto;
+    text-align: left;
+}
+
+
+
+.config-confirm-buttons {
+    justify-content: flex-end;
+    margin-bottom: 0.5em;
+}
+
+.config-confirm-buttons button {
+
+}
 
 
 /* ********************************************************* */
