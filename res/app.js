@@ -186,6 +186,7 @@ const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 const TABLE_REDUCTION_OFFER_PARAMS = "tableReductionParameters-offerParameters";
 const TABLE_REDUCTION_NORMAL_PARAMS = "tableReductionParameters-normalParameters";
 const PRIORITY_PARAMS = "priorityParams";
+const TABLE_REDUCTION_AVOID_TEXT_PARAMS = "avoidIgnoreArticlesWithText-param";
 
 let tableHeadersView = [];
 
@@ -375,6 +376,7 @@ function initialize() {
         // init UI table data reduction parameters
         initImputListFieldset( TABLE_REDUCTION_NORMAL_PARAMS, tableReductionParameters.normalParameters );
         initImputListFieldset( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
+        initAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS, tableReductionParameters.avoidIgnoreArticlesWithText );
 
         // load params to identify priorities at the final table.
         priorityParams = jsonData.priorityParams;

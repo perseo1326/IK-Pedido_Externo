@@ -235,6 +235,16 @@ function findVariable( parameter, objectParams ){
 
 
 // *********************************************************
+function initAvoidIgnoreArticlesWithText( inputElementId, paramTextArray ){
+
+    const inputElement = document.getElementById(inputElementId);
+    inputElement.value = "";
+    for ( const text of paramTextArray ) {
+        inputElement.value += text + ";";
+    }
+}
+
+
 // *********************************************************
 // *********************************************************
 // *********************************************************
