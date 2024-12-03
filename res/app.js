@@ -846,31 +846,38 @@ function validateUserInput( evento ) {
 
     const quantity = evento.target.value;
     const reference = evento.target.id;
+    const DOMElement = evento.target;
 
-    if(isNaN(quantity)){
-        console.log("WARNING:validateUserInput: Not valid value = " + quantity);
-        alert("El valor ingresado debe ser numérico.");
-        evento.target.value = "";
-        return;
-    }
+    console.log("Elemento dispara evento: ", isNaN( quantity ), DOMElement );
 
-    if(quantity === ""){
-        console.log("WARNING:validateUserInput: Empty value = " + quantity);
-        return;
-    }
+    // TODO: modificar event listener, colocarlo en la funcion de dibujado de la linea.
+    try {
+        if(isNaN( quantity ) ){
+            throw new Error("El valor ingresado debe ser numérico.");
+        }
+
+        // if( quantity === "" ){
+
+        // }
+
+        if( quantity > dataObjectElementsMap.get( reference ).esboStock.pallets ){
+            throw new Error(`La cantidad pedida (${quantity}) supera el stock disponible (${dataObjectElementsMap.get( reference ).esboStock.pallets})`);
+        }
     
-    if( quantity > dataObjectElementsMap.get( reference ).esboStock.pallets ){
-        const message = `La cantidad pedida (${quantity}) supera el stock disponible (${dataObjectElementsMap.get( reference ).esboStock.pallets})`;
-        console.log("WARNING:validateUserInput: " + message);
-        alert(message);
-        evento.target.value = "";
-        return;
+        dataObjectElementsMap.get( reference ).type = typeSpecialProduct.manual;
+        DOMElement.value = dataObjectElementsMap.get( reference ).manualOrderQuantity = Number.parseInt(quantity); 
+        DOMElement.classList.remove("error");
+    
+        console.log(`INFO:validateUserInput: Cantidad Manual (${quantity}) agregada en Referencia (${reference})` );
+
+    } catch (error) {
+        console.log("ERROR:validateUserInput: " + error.message, error );        
+        alert( error.message );
+        DOMElement.value = "";
+        DOMElement.classList.add("error");
+        DOMElement.focus();
+        // evento.preventDefault();
     }
-
-    dataObjectElementsMap.get( reference ).type = typeSpecialProduct.manual;
-    evento.target.value = dataObjectElementsMap.get( reference ).manualOrderQuantity = Number.parseInt(quantity); 
-
-    console.log(`INFO:validateUserInput: Cantidad Manual (${quantity}) agregada en Referencia (${reference})` );
 
     // console.log("MAPA DE DATOS: ", dataObjectElementsMap.get( reference ) );
 }
