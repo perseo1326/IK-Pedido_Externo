@@ -178,7 +178,7 @@ let dataObs;
 // data from 'Pedido anterior ESBO' report 
 let dataPreviousOrder;
 
-const version = "3.3";
+const version = "3.4";
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
@@ -307,11 +307,14 @@ configurationB.addEventListener("click", ( evento ) => {
 
 configParamsCancel.addEventListener("click", () => {
     configPanel.classList.add("no-visible");
+    cleanParamsInputsErrors();
+    initParameters();
 });
 
 configParamsOk.addEventListener("click", () => {
     configPanel.classList.add("no-visible");
-
+    cleanParamsInputsErrors();
+    saveParamsvalues();
 });
 
 configReduceDataPanelB.addEventListener("click", () => {
@@ -372,17 +375,11 @@ function initialize() {
 
         // load table reduction parameters
         tableReductionParameters = jsonData.tableReductionParameters;
-
-        // init UI table data reduction parameters
-        initImputListFieldset( TABLE_REDUCTION_NORMAL_PARAMS, tableReductionParameters.normalParameters );
-        initImputListFieldset( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
-        initAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS, tableReductionParameters.avoidIgnoreArticlesWithText );
-
+    
         // load params to identify priorities at the final table.
         priorityParams = jsonData.priorityParams;
 
-        // init UI Priorities Params
-        initImputListFieldset( PRIORITY_PARAMS, priorityParams );
+        initParameters();
 
         // load table headers names
         tableHeadersView = jsonData.tableHeadersView;
@@ -404,6 +401,19 @@ function initialize() {
 
 
 // *********************************************************
+// *********************************************************
+function initParameters(){
+
+    // init UI table data reduction parameters
+    initImputListFieldset( TABLE_REDUCTION_NORMAL_PARAMS, tableReductionParameters.normalParameters );
+    initImputListFieldset( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
+    initAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS, tableReductionParameters.avoidIgnoreArticlesWithText );
+
+    // init UI Priorities Params
+    initImputListFieldset( PRIORITY_PARAMS, priorityParams );
+}
+
+
 // *********************************************************
 function loadFile ( evento, report ){
 

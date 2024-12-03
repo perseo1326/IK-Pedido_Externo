@@ -4,6 +4,10 @@ Aplicación para seleccionar, unir y configurar la información para la generaci
 
 Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/IK-Pedido_Externo/pedidosExterno.html)
 
+## Version 3.4
+
+* Agregada caracteristica en el menú de configuración para permitir colocar texto que evitará que un artículo en cuyas observaciones especiales tenga ese mismo texto sea excluido de la reducción de la tabla de datos.
+
 ## Version 3.3
 
 * Agregados botones para abrir un menu que permite modificar manualmente los parámetros con los cuales se realiza la reducción de datos de la tabla general y la asignación de las prioridades.

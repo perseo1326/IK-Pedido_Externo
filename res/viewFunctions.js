@@ -217,13 +217,13 @@ function initImputListFieldset( idFieldsetElement, parameters ){
     const inputslist = document.getElementById(idFieldsetElement).querySelectorAll("input");
 
     for (const inputElement of inputslist) {
-        inputElement.value = findVariable(inputElement.id.split("-")[0], parameters );
+        inputElement.value = getFindVariable(inputElement.id.split("-")[0], parameters );
     }
 }
 
 
 // *********************************************************
-function findVariable( parameter, objectParams ){
+function getFindVariable( parameter, objectParams ){
 
     // console.log("function findVariable: ", parameter, objectParams)
     if(objectParams.hasOwnProperty( parameter )){
@@ -246,8 +246,79 @@ function initAvoidIgnoreArticlesWithText( inputElementId, paramTextArray ){
 
 
 // *********************************************************
+function saveParamsvalues() {
+
+    try {
+        saveInputListVAlues( TABLE_REDUCTION_NORMAL_PARAMS, tableReductionParameters.normalParameters );
+        saveInputListVAlues( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
+        saveInputListVAlues( PRIORITY_PARAMS, priorityParams );
+
+        saveAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS, tableReductionParameters.avoidIgnoreArticlesWithText );
+
+        console.log("Parametros reduce table: ", tableReductionParameters );
+        console.log("Parametros de prioridad: ", priorityParams);
+
+    } catch (error) {
+        console.log("ERROR:saveParamsvalues: " + error.message, error );
+        alert( error.message );
+    }
+}
+
+
 // *********************************************************
+function saveInputListVAlues( fielsetId, parameters ){
+    
+    const inputList = document.getElementById(fielsetId).querySelectorAll("input");
+    
+    for ( const inputElement of inputList ) {
+        const objectMember = inputElement.id.split("-")[0];
+        if( !parameters.hasOwnProperty( objectMember ) ) {
+            throw new Error("No fue posible almacenar la propiedad: " + inputElement.id );
+        }
+        parameters[ objectMember ] = assignUserValueToInput( inputElement, objectMember );
+    }
+}
+
+
 // *********************************************************
+function assignUserValueToInput( inputElement, objectMember ){
+
+    inputElement.value = inputElement.value.trim();
+
+    if( !validateNumericUserInput( inputElement.value )) {
+        inputElement.classList.add("error");
+        inputElement.focus();
+        throw new Error("El valor dado (" + objectMember + ") NO es un número válido.");
+    }
+
+    return inputElement.value;
+}
+
+
+// *********************************************************
+function validateNumericUserInput( value ){
+    
+    if( isNaN(value) || value === "" ) {
+        return false;
+    }
+    return true;
+}
+
+
+// *********************************************************
+function saveAvoidIgnoreArticlesWithText( inputId, paramVariable ){
+    paramVariable = document.getElementById( inputId ).value.split(";");
+}
+
+
+// *********************************************************
+function cleanParamsInputsErrors(){
+
+    const inputslist = document.getElementById("config-panel-cards");
+    for ( const element of inputslist.querySelectorAll("input") ) {
+        element.classList.remove("error");
+    }
+}
 // *********************************************************
 
 

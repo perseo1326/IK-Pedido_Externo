@@ -33,6 +33,10 @@
     cursor: not-allowed !important;
 }
 
+.error {
+    border: 1px solid red !important;
+}
+
 /* ***** REPORTS PANEL STYLES ***** */
 
 #reports-panel {
