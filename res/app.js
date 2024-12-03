@@ -779,6 +779,8 @@ function ProcessReports() {
         // UI updates
         reportsPanel.classList.add("no-visible");
         tableResultsPanel.classList.remove("no-visible");
+        tableDataButton.textContent = "Copiar " + dataObjectElementsMap.size;
+
         showTable( dataObjectElementsMap );
         setCaptureManualEntry();
 
