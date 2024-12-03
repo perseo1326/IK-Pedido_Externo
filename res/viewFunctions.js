@@ -212,6 +212,33 @@ function showFileNameReport  ( idElement, text ) {
 
 
 // *********************************************************
+function initImputListFieldset( idFieldsetElement, parameters ){
+    
+    const inputslist = document.getElementById(idFieldsetElement).querySelectorAll("input");
+
+    for (const inputElement of inputslist) {
+        inputElement.value = findVariable(inputElement.id.split("-")[0], parameters );
+    }
+}
+
+
+// *********************************************************
+function findVariable( parameter, objectParams ){
+
+    // console.log("function findVariable: ", parameter, objectParams)
+    if(objectParams.hasOwnProperty( parameter )){
+        // console.log("VALOR A devolver: ", objectParams[parameter] );
+        return objectParams[parameter];
+    }
+    return undefined;
+}
+
+
+// *********************************************************
+// *********************************************************
+// *********************************************************
+// *********************************************************
+// *********************************************************
 
 
 

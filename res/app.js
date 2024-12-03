@@ -183,6 +183,10 @@ const version = "3.3";
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
 
+const TABLE_REDUCTION_OFFER_PARAMS = "tableReductionParameters-offerParameters";
+const TABLE_REDUCTION_NORMAL_PARAMS = "tableReductionParameters-normalParameters";
+const PRIORITY_PARAMS = "priorityParams";
+
 let tableHeadersView = [];
 
 const MV0 = 0;
@@ -228,11 +232,25 @@ const tableResultsPanel = document.getElementById("table-results-panel");
 const table = document.getElementById("table");
 const tableHeaders = document.getElementById("table-headers");
 const tableData = document.getElementById("table-data");
-const configurationB = document.getElementById("configuration-button");
 const reduceDataTable = document.getElementById("reduce-data-table");
 const tableDataButton = document.getElementById("copy-data-table");
 
+// Configuration panel
+const configPanel = document.getElementById("auxiliar-panel-configuration");
+const configurationB = document.getElementById("configuration-button");
+const configParamsOk = document.getElementById("config-params-ok");
+const configParamsCancel = document.getElementById("config-params-cancel");
+const configReduceDataPanel = document.getElementById("config-reduce-data-panel");
+const configReduceDataPanelB = document.getElementById("config-reduce-data-panel-B");
+const configPrioritiesPanel = document.getElementById("config-priorities-panel");
+const configPrioritiesPanelB = document.getElementById("config-priorities-panel-B");
 
+    // configuration panel - Config reduce data panel values
+    const stockWeeksParamNormal = document.getElementById("stockWeeks-param-normal");
+    const eoqQtyParamNormal = document.getElementById("eoqQty-param-normal");
+    const totalUnitsParamNormal = document.getElementById("totalUnits-param-normal");
+    const stockWeeksParamOffer = document.getElementById("stockWeeks-param-offer");
+    const eoqQtyParamOffer = document.getElementById("eoqQty-param-offer");
 
 
 // *********************************************************
@@ -240,7 +258,7 @@ const tableDataButton = document.getElementById("copy-data-table");
 
 // auxPanel.addEventListener("wheel", ( evento ) => {
 //     console.log("Evento RUEDA.");
-//     // evento.preventDefault();
+//     evento.preventDefault();
 // });
 
 
@@ -273,16 +291,46 @@ OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 previousOrder_Button.addEventListener("change", loadPreviousOrder_File );
 
 loadReportsB.addEventListener("click", ProcessReports );
-configurationB.addEventListener("click", ( evento ) => {
-    document.getElementById("auxiliar-panel-configuration").classList.remove("no-visible");
-});
-
-document.getElementById("auxiliar-panel-configuration").addEventListener("wheel", ( evento ) => {
-    evento.preventDefault();
-});
 
 reduceDataTable.addEventListener("click", reduceDataTableFunction );
 tableDataButton.addEventListener("click", copyTable );
+
+// Config params Panel
+configPanel.addEventListener("wheel", ( evento ) => {
+    evento.preventDefault();
+});
+
+configurationB.addEventListener("click", ( evento ) => {
+    configPanel.classList.remove("no-visible");
+});
+
+configParamsCancel.addEventListener("click", () => {
+    configPanel.classList.add("no-visible");
+});
+
+configParamsOk.addEventListener("click", () => {
+    configPanel.classList.add("no-visible");
+
+});
+
+configReduceDataPanelB.addEventListener("click", () => {
+    configReduceDataPanel.classList.remove("no-visible");
+    configPrioritiesPanel.classList.add("no-visible");
+    configReduceDataPanelB.classList.add("custom-button-green");
+    configPrioritiesPanelB.classList.remove("custom-button-green");
+});
+
+configPrioritiesPanelB.addEventListener("click", () => {
+    configReduceDataPanel.classList.add("no-visible");
+    configPrioritiesPanel.classList.remove("no-visible");
+    configReduceDataPanelB.classList.remove("custom-button-green");
+    configPrioritiesPanelB.classList.add("custom-button-green");
+});
+
+
+
+
+
 
 // *********************************************************
 // *********************************************************
@@ -324,8 +372,15 @@ function initialize() {
         // load table reduction parameters
         tableReductionParameters = jsonData.tableReductionParameters;
 
+        // init UI table data reduction parameters
+        initImputListFieldset( TABLE_REDUCTION_NORMAL_PARAMS, tableReductionParameters.normalParameters );
+        initImputListFieldset( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
+
         // load params to identify priorities at the final table.
         priorityParams = jsonData.priorityParams;
+
+        // init UI Priorities Params
+        initImputListFieldset( PRIORITY_PARAMS, priorityParams );
 
         // load table headers names
         tableHeadersView = jsonData.tableHeadersView;
@@ -881,6 +936,10 @@ function belongsToSeasonZone ( shopSeasonZonesParams, salesLocationItem ){
 // *********************************************************
 function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
 
+    console.log("compareParamsVsValuesLessThanOrEqualTo: ", param, rowObject );
+
+    debugger
+    // TODO: revisar esta seccion cambio de array a obj
     let isLessThan = false;
     const keysArray = Object.keys( param );
 

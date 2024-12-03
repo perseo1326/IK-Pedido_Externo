@@ -41,8 +41,8 @@
                 </div>
                 <div class="container-row config-nav-buttons">
                     <ul>
-                        <li><button class="custom-button">Reducción de datos</button></li>
-                        <li><button class="custom-button custom-button-green">Prioridades</button></li>
+                        <li><button id="config-reduce-data-panel-B" class="custom-button custom-button-green">Reducción de datos</button></li>
+                        <li><button id="config-priorities-panel-B" class="custom-button">Prioridades</button></li>
                     </ul>
                 </div>
 
@@ -50,11 +50,11 @@
                 <div class="container-row config-panel-cards " >
 
                     <!-- tableReductionParameters -->
-                    <div class="container-column config-card no-visible_">
+                    <div id="config-reduce-data-panel" class="container-column config-card no-visible_">
 
                         <!-- Articulos en OFERTA -->
                         <div class="card-params">
-                            <fieldset class="container-column">
+                            <fieldset id="tableReductionParameters-offerParameters" class="container-column">
                                 <legend>Art. en Ofertas</legend>
                                 <div class="container-row param-item">
                                     <label for="stockWeeks-param-offer">Semanas Stock</label>
@@ -69,7 +69,7 @@
 
                         <!-- Articulos Precio NORMAL -->
                         <div class="card-params">
-                            <fieldset class="container-column">
+                            <fieldset id="tableReductionParameters-normalParameters" class="container-column">
                                 <legend>Art. Precio Normal</legend>
                                 <div class="container-row param-item">
                                     <label for="stockWeeks-param-normal">Semanas Stock</label>
@@ -80,8 +80,8 @@
                                     <input type="number" name="eoqQty-param-normal" id="eoqQty-param-normal">
                                 </div>
                                 <div class="container-row param-item">
-                                    <label for="totalUnits-param-normal">Stock Disponible Tienda</label>
-                                    <input type="number" name="totalUnits-param-normal" id="totalUnits-param-normal">
+                                    <label for="availableShopStock-param-normal">Stock Disponible Tienda</label>
+                                    <input type="number" name="availableShopStock-param-normal" id="availableShopStock-param-normal">
                                 </div>
                                 
                             </fieldset>
@@ -94,15 +94,15 @@
                         </div>    
                     </div>
 
-                    <!-- priorityParams" : { -->
-                    <div class="container-column config-card no-visible_" >
+                    <!-- priorityParams" -->
+                    <div id="config-priorities-panel" class="container-column config-card no-visible" >
                         <div class="card-params">
 
 
-                            <fieldset class="container-column">
+                            <fieldset id="priorityParams" class="container-column">
                                 <legend>Parametros de Prioridad</legend>
 
-                                <!-- Prioridad No.  1-->
+                                <!-- Prioridad No.  1 (blocked)-->
                                 <div class="container-row param-item">
                                     <label class="" for="trucks-param">1. Camiones</label>
                                     <input class="disabled" type="text" name="trucks-param" id="trucks-param" disabled>
@@ -150,8 +150,8 @@
                 </div>
 
                 <div class="container-row config-confirm-buttons">
-                    <button class="width-30 custom-button">Aceptar</button>
-                    <button class="width-30 custom-button">Cancelar</button>
+                    <button id="config-params-ok" class="width-30 custom-button">Aceptar</button>
+                    <button id="config-params-cancel" class="width-30 custom-button">Cancelar</button>
                 </div>
 
 
