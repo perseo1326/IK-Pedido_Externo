@@ -896,13 +896,15 @@ function reduceDataTableFunction() {
             parameters = tableReductionParameters.normalParameters;
         }
 
-        for ( const paramObject of parameters ) {
-            if( compareParamsVsValuesLessThanOrEqualTo( paramObject, rowArray[1] ) ){
+        for ( const paramObject in parameters ) {
+            console.log("Parametros reduccion: ", paramObject, parameters);
+            if( compareParamsVsValuesLessThanOrEqualTo( paramObject, parameters[paramObject], rowArray[1] ) ){
                 newFilteredDataMap.set( rowArray[0], rowArray[1] );
             }
         }
     }
     
+    tableDataButton.textContent = "Copiar " + dataObjectElementsMap.size;
     showTable( analisysPriority ( newFilteredDataMap ) );
 }
 
@@ -948,22 +950,10 @@ function belongsToSeasonZone ( shopSeasonZonesParams, salesLocationItem ){
 
 
 // *********************************************************
-function compareParamsVsValuesLessThanOrEqualTo( param, rowObject ){
+function compareParamsVsValuesLessThanOrEqualTo( param, paramValue, rowObject ){
 
-    console.log("compareParamsVsValuesLessThanOrEqualTo: ", param, rowObject );
-
-    debugger
-    // TODO: revisar esta seccion cambio de array a obj
-    let isLessThan = false;
-    const keysArray = Object.keys( param );
-
-    for (const key of keysArray) {
-        
-        if( rowObject[key] <= param[key] ){
-            isLessThan = true;
-        }
-    }
-    return isLessThan;
+    console.log("compareParamsVsValuesLessThanOrEqualTo: ", param, paramValue, rowObject );
+    return ( rowObject[param] <= paramValue ) ? true : false;
 }
 
 
