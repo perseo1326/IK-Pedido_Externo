@@ -109,7 +109,6 @@ section {
 
 #table-results-panel {
     padding: 0em 0.3em 0.3em 0.5em;
-    background-color: antiquewhite;
 }
 
 div.app-table-results table {
@@ -120,15 +119,23 @@ div.app-table-results table {
 }
 
 table thead {
-    background-color: yellow;
+    background-color: var(--second-color);
     position: sticky;
     top: 0;
     border: 2px solid black;
 }
 
+table thead tr th {
+    padding-top: 0.5em;
+}
+
 table thead tr th span {
     writing-mode: vertical-lr;
     transform: rotate(180deg);
+}
+
+table tbody.reduced-data {
+    background-color:rgb(177, 176, 176) ;
 }
 
 table tbody tr:nth-child(even) {
@@ -143,6 +150,10 @@ table tbody td {
     border: 0.5px solid black;
     padding: 3px;
     min-width: 2.5em;
+}
+
+table tbody td.shop-available-stock-higlighter {
+    background-color: rgb(247, 245, 172);
 }
 
 table tbody td.order {

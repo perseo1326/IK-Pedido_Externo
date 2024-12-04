@@ -788,6 +788,7 @@ function ProcessReports() {
         tableResultsPanel.classList.remove("no-visible");
 
         showTable( dataObjectElementsMap );
+        tableData.classList.remove("reduced-data");
         setCaptureManualEntry();
 
     } catch (error) {
@@ -900,10 +901,7 @@ function reduceDataTableFunction() {
 
         // Add manual row to the data structure
         if( rowArray[1].type === typeSpecialProduct.manual ){
-            // debugger;
-            console.log("FILA MANUAL: ", rowArray[1] );
             newFilteredDataMap.set( rowArray[0], rowArray[1] );
-            // console.log("Obj guardado: ", newFilteredDataMap.get( rowArray[0] ));
             continue;
         }
         
@@ -918,13 +916,13 @@ function reduceDataTableFunction() {
         }
 
         for ( const paramObject in parameters ) {
-            // console.log("Parametros reduccion: ", paramObject, parameters);
             if( compareParamsVsValuesLessThanOrEqualTo( paramObject, parameters[paramObject], rowArray[1] ) ){
                 newFilteredDataMap.set( rowArray[0], rowArray[1] );
             }
         }
     }
     showTable( newFilteredDataMap );
+    tableData.classList.add("reduced-data");
 }
 
 

@@ -110,7 +110,7 @@ function drawTableRow ( row, key ) {
     htmlRow += "</td>";
 
     // Shop Available stock
-    htmlRow += "<td title='Stock Disponible total en tienda (LV + SGF)' >";
+    htmlRow += "<td class='shop-available-stock-higlighter' title='Stock Disponible total en tienda (LV + SGF)' >";
     htmlRow += replaceDotPerComma( row.availableShopStock );
     htmlRow += "</td>";
     
