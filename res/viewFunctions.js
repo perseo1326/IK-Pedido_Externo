@@ -252,25 +252,19 @@ function initAvoidIgnoreArticlesWithText( inputElementId, paramTextArray ){
 // *********************************************************
 function saveParamsvalues() {
 
-    try {
-        saveInputListVAlues( TABLE_REDUCTION_NORMAL_PARAMS, tableReductionParameters.normalParameters );
-        saveInputListVAlues( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
-        saveInputListVAlues( PRIORITY_PARAMS, priorityParams );
+    saveInputListValues( TABLE_REDUCTION_NORMAL_PARAMS, tableReductionParameters.normalParameters );
+    saveInputListValues( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
+    saveInputListValues( PRIORITY_PARAMS, priorityParams );
 
-        saveAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS, tableReductionParameters.avoidIgnoreArticlesWithText );
+    saveAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS, tableReductionParameters.avoidIgnoreArticlesWithText );
 
-        console.log("Parametros reduce table: ", tableReductionParameters );
-        console.log("Parametros de prioridad: ", priorityParams);
-
-    } catch (error) {
-        console.log("ERROR:saveParamsvalues: " + error.message, error );
-        alert( error.message );
-    }
+    console.log("Parametros reduce table: ", tableReductionParameters );
+    console.log("Parametros de prioridad: ", priorityParams);
 }
 
 
 // *********************************************************
-function saveInputListVAlues( fielsetId, parameters ){
+function saveInputListValues( fielsetId, parameters ){
     
     const inputList = document.getElementById(fielsetId).querySelectorAll("input");
     
@@ -292,9 +286,8 @@ function assignUserValueToInput( inputElement, objectMember ){
     if( !validateNumericUserInput( inputElement.value )) {
         inputElement.classList.add("error");
         inputElement.focus();
-        throw new Error("El valor dado (" + objectMember + ") NO es un número válido.");
+        throw new Error("El valor dado ( " + objectMember + " ) NO es un número válido.");
     }
-
     return inputElement.value;
 }
 
@@ -302,6 +295,8 @@ function assignUserValueToInput( inputElement, objectMember ){
 // *********************************************************
 function validateNumericUserInput( value ){
     
+    console.log("Valor a validar: ", value, !isNaN(value) );
+
     if( isNaN(value) || value === "" ) {
         return false;
     }

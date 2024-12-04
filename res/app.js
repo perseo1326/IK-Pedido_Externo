@@ -312,11 +312,19 @@ configParamsCancel.addEventListener("click", () => {
 });
 
 configParamsOk.addEventListener("click", () => {
-    configPanel.classList.add("no-visible");
-    cleanParamsInputsErrors();
-    saveParamsvalues();
-    // show data table complete again
-    showTable( dataObjectElementsMap );
+    try {
+        cleanParamsInputsErrors();
+        saveParamsvalues();
+    
+        configPanel.classList.add("no-visible");
+        // show data table complete again
+        showTable( dataObjectElementsMap );
+        tableData.classList.remove("reduced-data");
+        
+    } catch (error) {
+        console.log("ERROR:saveParamsvalues: " + error.message, error );
+        alert( error.message );
+    }
 });
 
 configReduceDataPanelB.addEventListener("click", () => {
