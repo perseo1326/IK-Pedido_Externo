@@ -835,53 +835,53 @@ function setCaptureManualEntry(){
     const nodeList = document.querySelectorAll(".order");
 
     for ( const node of nodeList ) {
-        node.firstChild.addEventListener("blur", validateUserInput );
+        // node.firstChild.addEventListener("blur", validateUserInput );
+        node.firstChild.addEventListener("keyup", validateUserInput );
     }
 }
 
 
 // *********************************************************
-// Validate manual entry
-// *********************************************************
-// TODO: modificar event listener, colocarlo en la funcion de dibujado de la linea.
 // Collect info from the user, validate and save into data structure.
-function validateUserInput( evento ) {
+function validateUserInput(  ) {
 
-    const quantity = evento.target.value;
-    const reference = evento.target.id;
-    const DOMElement = evento.target;
+    const quantity = this.value.trim();
+    const reference = this.id;
 
-    console.log("Elemento dispara evento: ", isNaN( quantity ), DOMElement );
+    console.log("Validando: ", this.id, !isNaN( quantity ), Number.parseInt(quantity) );
 
     try {
         if(isNaN( quantity ) ){
             throw new Error("El valor ingresado debe ser numérico.");
         }
 
-        // if( quantity === "" ){
-
-        // }
+        if( quantity === "" ){
+            // console.log("Validando vacio: ", this.id);
+            this.classList.remove("error");
+            return;
+        }
 
         if( quantity > dataObjectElementsMap.get( reference ).esboStock.pallets ){
             throw new Error(`La cantidad pedida (${quantity}) supera el stock disponible (${dataObjectElementsMap.get( reference ).esboStock.pallets})`);
         }
     
+        // validation == Valid!
         dataObjectElementsMap.get( reference ).type = typeSpecialProduct.manual;
-        DOMElement.value = dataObjectElementsMap.get( reference ).manualOrderQuantity = Number.parseInt(quantity); 
-        DOMElement.classList.remove("error");
+        dataObjectElementsMap.get( reference ).manualOrderQuantity = Number.parseInt(quantity); 
+        this.classList.remove("error");
     
         console.log(`INFO:validateUserInput: Cantidad Manual (${quantity}) agregada en Referencia (${reference})` );
 
     } catch (error) {
         console.log("ERROR:validateUserInput: " + error.message, error );        
         alert( error.message );
-        DOMElement.value = "";
-        DOMElement.classList.add("error");
-        DOMElement.focus();
-        // evento.preventDefault();
+        this.value = "";
+        dataObjectElementsMap.get( reference ).manualOrderQuantity = 0;
+        dataObjectElementsMap.get( reference ).type = "";
+        this.classList.add("error");
+        this.focus();
     }
-
-    // console.log("MAPA DE DATOS: ", dataObjectElementsMap.get( reference ) );
+    // console.log("DataMap manual order: ", reference, dataObjectElementsMap.get( reference ).manualOrderQuantity );
 }
 
 
@@ -900,7 +900,10 @@ function reduceDataTableFunction() {
 
         // Add manual row to the data structure
         if( rowArray[1].type === typeSpecialProduct.manual ){
+            // debugger;
+            console.log("FILA MANUAL: ", rowArray[1] );
             newFilteredDataMap.set( rowArray[0], rowArray[1] );
+            // console.log("Obj guardado: ", newFilteredDataMap.get( rowArray[0] ));
             continue;
         }
         
@@ -921,7 +924,6 @@ function reduceDataTableFunction() {
             }
         }
     }
-    
     showTable( newFilteredDataMap );
 }
 
@@ -1042,7 +1044,7 @@ function analisysPriority ( filteredDataArray ) {
         // console.log("**************************************");
     }
     
-    console.log("Analisis Priority: ", filteredDataArray);
+    // console.log("Analisis Priority: ", filteredDataArray);
     return filteredDataArray;
 }
 

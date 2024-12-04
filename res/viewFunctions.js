@@ -121,7 +121,8 @@ function drawTableRow ( row, key ) {
 
     // Pedir
     htmlRow += "<td class='order'>"; 
-    htmlRow += `<input type="text" name="" id="${key}" maxlength="3" min="0" max="${row.esboStock.pallets}"  pattern="[0-9]" title="Rango 0 - ${row.esboStock.pallets}" />`;
+    const value = ( row.type === typeSpecialProduct.manual ) ? row.manualOrderQuantity : "";
+    htmlRow += `<input type="text" name="" id="${key}" maxlength="3" min="0" max="${row.esboStock.pallets}"  pattern="[0-9]" title="Rango 0 - ${row.esboStock.pallets}" value="${value}" />`;
     htmlRow += "</td>";
 
     // Packing List
@@ -184,7 +185,6 @@ function drawTableRow ( row, key ) {
 // *********************************************************
 function drawTableData ( dataMap ) {
 
-    // console.log("DATA MAP: ", dataMap );
     let htmlDataTable = "";
     
     dataMap.forEach( ( object, key ) => {
@@ -196,15 +196,16 @@ function drawTableData ( dataMap ) {
 
 // *********************************************************
 function showTable( dataElementsMap ) {
-    analisysPriority( dataElementsMap );
     console.log("ShowTable items: ", dataElementsMap.size );
+    analisysPriority( dataElementsMap );
+
     tableDataButton.textContent = "Copiar " + dataElementsMap.size;
 
     tableHeaders.innerHTML = drawTableHeaders( tableHeadersView );
 
-    // tableData.innerHTML = drawTableData( datos );
     tableData.innerHTML = drawTableData( dataElementsMap );
-    // tableData.isContentEditable = true;
+
+    setCaptureManualEntry();
 }
 
 
