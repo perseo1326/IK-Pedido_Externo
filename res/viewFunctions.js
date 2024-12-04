@@ -196,6 +196,7 @@ function drawTableData ( dataMap ) {
 
 // *********************************************************
 function showTable( dataElementsMap ) {
+    analisysPriority( dataElementsMap );
     console.log("ShowTable items: ", dataElementsMap.size );
     tableDataButton.textContent = "Copiar " + dataElementsMap.size;
 

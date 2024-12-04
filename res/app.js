@@ -841,6 +841,9 @@ function setCaptureManualEntry(){
 
 
 // *********************************************************
+// Validate manual entry
+// *********************************************************
+// TODO: modificar event listener, colocarlo en la funcion de dibujado de la linea.
 // Collect info from the user, validate and save into data structure.
 function validateUserInput( evento ) {
 
@@ -850,7 +853,6 @@ function validateUserInput( evento ) {
 
     console.log("Elemento dispara evento: ", isNaN( quantity ), DOMElement );
 
-    // TODO: modificar event listener, colocarlo en la funcion de dibujado de la linea.
     try {
         if(isNaN( quantity ) ){
             throw new Error("El valor ingresado debe ser numérico.");
@@ -920,7 +922,7 @@ function reduceDataTableFunction() {
         }
     }
     
-    showTable( analisysPriority ( newFilteredDataMap ) );
+    showTable( newFilteredDataMap );
 }
 
 
@@ -976,6 +978,7 @@ function compareParamsVsValuesLessThanOrEqualTo( param, paramValue, rowObject ){
 // function that mark a product with a number of priority for analisys
 function analisysPriority ( filteredDataArray ) {
 
+    console.log("INFO:analisysPriority: Ejecutando análisis de prioridades.");
     for ( const row of filteredDataArray ) {
 
         // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
