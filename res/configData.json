@@ -46,7 +46,7 @@
             "eoqQty" : 2,
             "stockWeeks" : 2
         },
-        "avoidIgnoreArticlesWithText" : [ "Tops de AOS - Alta rotación", "No Enviar - Articulo delicado" ]
+        "avoidIgnoreArticlesWithText" : [ "" ]
     },
 
     "priorityParams" : {
