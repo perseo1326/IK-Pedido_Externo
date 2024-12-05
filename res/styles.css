@@ -48,13 +48,11 @@
 
 section {
     margin: 0.2em 0;
-    /* background-color: pink; */
 }
 
 .section-div {
     display: grid;
     grid-template-columns: 30% 3em auto;
-    /* background-color: #afaeeb; */
 }
 
 .section-div div {
@@ -71,7 +69,6 @@ section {
 
 .div-reports-panel-go {
     margin: 1em;
-    /* background-color: aquamarine; */
 }
 
 .div-reports-panel-go button {
@@ -186,7 +183,6 @@ table tr:hover td.order, td.order:focus {
     z-index: 2;
     bottom: 4em;
     right: 5em;
-    /* background-color: red; */
 }
 
 .tools-icon {
@@ -270,8 +266,6 @@ div.custom-button {
     display: grid;
     grid-template-rows: auto auto 1fr;
     /* min-width: 70%; */
-    /* background-color: var(--background); */
-    /* background-color: var(--second-color); */
     background-color: #e9dbf0;
     min-height: calc(100vh * 0.5);
     border: 2px solid gray;
@@ -286,33 +280,21 @@ div.custom-button {
     color: var(--font-color);
 }
 
-.config-nav-buttons {
-    /* padding: 0 0.3em; */
-    /* background-color: red; */
-}
-
 .config-nav-buttons > ul, li {
     all: unset;
 }
 
-.config-panel-cards {
-    /* background-color: #afaeeb; */
-}
-
 .config-card {
     padding: 0.5em;
-    /* background-color: yellow; */
     width: 100%;
 }
 
 .card-params {
-    /* background-color: rgb(120, 177, 228);     */
     height: 100%;
     padding: 0.3em;
 }
 
 .card-params fieldset {
-    /* background-color: blanchedalmond; */
     height: 100%;
     padding: 0.2em;
     justify-content: space-around;
@@ -324,19 +306,15 @@ div.custom-button {
     font-size: 1.2em;
     border-bottom: 1px solid var(--first-color);
     color: var(--first-color);
-    /* background-color: orange; */
 }
 
 .param-item {
-    /* background-color: aqua; */
     padding-bottom: 0.2em;
     justify-content: space-between;
 }
 
 .param-item label {
     display: inline-block;
-    /* width: 70%;     */
-    /* background-color: lightcoral; */
     padding: 0.2em 0;
 }
 
@@ -365,15 +343,22 @@ div.custom-button {
     text-align: left;
 }
 
-
-
 .config-confirm-buttons {
     justify-content: flex-end;
     margin-bottom: 0.5em;
 }
 
-.config-confirm-buttons button {
 
+/* ********************************************************* */
+/* ***** ESTILOS PARA EL FOOTER ***** */
+/* ********************************************************* */
+
+footer {
+    justify-content:space-around;
+}
+
+footer > div {
+    padding: 0.3em;
 }
 
 
