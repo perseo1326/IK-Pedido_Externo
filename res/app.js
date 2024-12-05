@@ -908,6 +908,12 @@ function reduceDataTableFunction() {
             newFilteredDataMap.set( rowArray[0], rowArray[1] );
             continue;
         }
+
+        // Ignore rows from filter with matching text in quotes column
+        if( isAvoidIgnoreArticlesWithText( rowArray[1], tableReductionParameters.avoidIgnoreArticlesWithText )) {
+            newFilteredDataMap.set( rowArray[0], rowArray[1] );
+            continue;
+        }
         
         // clean type for new calculation
         rowArray[1].type = "";
@@ -975,6 +981,14 @@ function compareParamsVsValuesLessThanOrEqualTo( param, paramValue, rowObject ){
 
     // console.log("compareParamsVsValuesLessThanOrEqualTo: ", param, paramValue, rowObject );
     return ( rowObject[param] <= paramValue ) ? true : false;
+}
+
+
+// *********************************************************
+// function to filter a row when a text match with text in row's quote
+function isAvoidIgnoreArticlesWithText( row, parametersArray ){
+
+    return parametersArray.includes( row.quotes );
 }
 
 

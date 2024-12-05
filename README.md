@@ -10,7 +10,7 @@ Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/I
 
 ## Version 3.4
 
-* Agregada caracteristica en el menú de configuración para permitir colocar texto que evitará que un artículo en cuyas observaciones especiales tenga ese mismo texto sea excluido de la reducción de la tabla de datos.
+* Agregada caracteristica en el menú de configuración para permitir colocar un texto que evitará que un artículo en cuyas observaciones especiales tenga ese mismo texto sea excluido de la reducción de la tabla de datos.
 * Agregado el cálculo de la "Prioridad" en la tabla de datos completa.
 * Reparado problema con la validación numérica en la tabla de datos al usuario escribir un dato.
 * Reparado bug que al reducir el número de filas no mostraba la cantidades manuales en la tabla de datos.
