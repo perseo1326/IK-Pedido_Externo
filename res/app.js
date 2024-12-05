@@ -20,7 +20,7 @@ class dataObjectElement {
         this.palletQty = 0;
         // TODO: eliminar este dato
         this.openOrderLineData = 0;
-        this.packingListData = "";
+        this.packingListData = [];
         this.quotes = "";
 
         this.locations = [];
@@ -76,22 +76,26 @@ class dataObjectElement {
     // }
     
     setPackingListValues( packingListData ) {
-        let space = "";
-        if(this.packingListData != ""){
-            space = ", ";
-        }
-        this.packingListData = (this.packingListData + space + packingListData );
+        this.packingListData.push( packingListData );
     }
 
     subtractPrevOrderQuantityPallets ( prevOrderQty ) {
         this.esboStock.pallets = this.esboStock.pallets - prevOrderQty;
-        // TODO: remover la siguiente linea "stock ESBO"
         this.esboStock.stock = this.esboStock.stock - ( this.palletQty * prevOrderQty );
     }
 
+    addPreviousOrderQuantityPallets( prevOrderQty ){
+        this.shopStock.stock = this.shopStock.stock + ( prevOrderQty * this.palletQty );
+        this.shopStock.pallets = this.shopStock.pallets + prevOrderQty;
+    }
+
     setPreviousOrderValues( previousOrderData ) {
-        this.packingListData = ( "(" + previousOrderData + ") " + this.packingListData );
+        // add ordered pallets quantity to 'trucks' column
+        this.packingListData.unshift( previousOrderData );
+        // remove ordered quantity from external storage 
         this.subtractPrevOrderQuantityPallets( previousOrderData );
+        // add quantity ordered to 'shop stock'
+        this.addPreviousOrderQuantityPallets( previousOrderData );
     }
 
     setDataObsValues( quotes ){

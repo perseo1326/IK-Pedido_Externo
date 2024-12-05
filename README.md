@@ -7,6 +7,10 @@ Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/I
 ## Version 3.5
 
 * Reparado error al copiar el contenido a Excel, donde no se mostraban los valores manuales escritos por el usuario.
+* Actualización para el manejo de órdenes previas.
+  - Adiciona la cantidad del pedido previo al contenido de la columna "camiones".
+  - Reduce el stock disponible en el almacén externo en la cantidad pedida.
+  - Suma la cantidad pedida de pallets a la cantidad de pallets en SGF y por consiguiente aumentan los valores de "Stock disponible en tienda" "EOQ %" y "Semanas de Stock".
 
 ## Version 3.4
 

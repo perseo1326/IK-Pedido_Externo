@@ -126,8 +126,8 @@ function drawTableRow ( row, key ) {
     htmlRow += "</td>";
 
     // Packing List
-    htmlRow += "<td>'";
-    htmlRow += replaceDotPerComma( row.packingListData );
+    htmlRow += "<td>";
+    htmlRow += replaceDotPerComma( row.packingListData.toString() );
     htmlRow += "</td>";
 
     // Stock ESBO
@@ -153,7 +153,6 @@ function drawTableRow ( row, key ) {
     // Offer-type Column
     htmlRow += "<td>"; 
     htmlRow += row.type;
-    // console.log("Ofertas: ", row.reference );
     htmlRow += "</td>"; 
         
     // // LV stock
