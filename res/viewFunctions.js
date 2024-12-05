@@ -155,28 +155,6 @@ function drawTableRow ( row, key ) {
     htmlRow += row.type;
     htmlRow += "</td>"; 
         
-    // // LV stock
-    // htmlRow += "<td>";
-    // htmlRow += row.LVStock;
-    // htmlRow += "</td>";
-
-    // // Pallets ESBO
-    // TODO: remover columna
-    // htmlRow += "<td>";
-    // htmlRow += row.esboStock.pallets;
-    // htmlRow += "</td>";
-
-    // // Reservas
-    // TODO: eliminar esta columna
-    // htmlRow += "<td>";
-    // htmlRow += row.openOrderLineData;
-    // htmlRow += "</td>";
-
-    // // cabeceras
-    // htmlRow += "<td>";
-    // htmlRow += "'" + row.salesLocation.substr(2);
-    // htmlRow += "</td>";
-
     return htmlRow;
 }
 
@@ -228,9 +206,7 @@ function initImputListFieldset( idFieldsetElement, parameters ){
 // *********************************************************
 function getFindVariable( parameter, objectParams ){
 
-    // console.log("function findVariable: ", parameter, objectParams)
     if(objectParams.hasOwnProperty( parameter )){
-        // console.log("VALOR A devolver: ", objectParams[parameter] );
         return objectParams[parameter];
     }
     return undefined;

@@ -18,8 +18,6 @@ class dataObjectElement {
         this.wk2FCO = 0;
         this.eoq = 0;
         this.palletQty = 0;
-        // TODO: eliminar este dato
-        this.openOrderLineData = 0;
         this.packingListData = [];
         this.quotes = "";
 
@@ -28,7 +26,6 @@ class dataObjectElement {
         this.shopStock = {};
 
         this.totalStock = 0;
-        // this.LVStock = 0;
         this.availableShopStock = 0;
 
         this.eoqQty = 0;
@@ -70,11 +67,6 @@ class dataObjectElement {
         }
     }
 
-    // TODO: eliminar esta function
-    // setOpenOrderLineValues( openOrderLineData ){
-    //     this.openOrderLineData = openOrderLineData;
-    // }
-    
     setPackingListValues( packingListData ) {
         this.packingListData.push( packingListData );
     }
@@ -110,10 +102,6 @@ class dataObjectElement {
         this.esboStock.pallets = esboStock.pallets;
     }
 
-    // setLVStock(){
-    //     this.LVStock = this.totalStock - ( this.shopStock.stock + this.esboStock.stock );
-    // }
-
     setAvailableShopStock(){
         this.availableShopStock = this.totalStock - this.esboStock.stock;
     }
@@ -140,7 +128,7 @@ class dataObjectElement {
 // Shop Special locations
 let shopSpecialLocations;
 
-// producto mark with "offer", "end cap" or "zone"
+// product mark with "offer", "end cap" or "zone"
 let typeSpecialProduct;
 
 // Parameters and values used to reduce the total amount of rows in the data table. 
@@ -169,9 +157,6 @@ let dataAL010;
 
 // data from 'SA021' report 
 let dataSA021;
-
-// data from 'OPEN ORDER LINE' report 
-// let dataOOL;
 
 // data from 'Packing List' report 
 let dataPackingList;
@@ -203,7 +188,6 @@ const REPO_SDS0001 = "SDS0001";
 const REPO_SDS0002 = "SDS0002";
 const REPO_SA021 = "SA021";
 const REPO_SG010 = "SG010";
-// const REPO_OPEN_ORDER_LINE = "OOL";
 const REPO_OBS_ESPECIAL = "Obs-Especiales";
 const REPO_PACKING_LIST = "Packing-List";
 const REPO_PREVIOUS_ORDER = "Pedido-ESBO";
@@ -224,7 +208,6 @@ const SDS0001_Button = document.getElementById(REPO_SDS0001);
 const SDS0002_Button = document.getElementById(REPO_SDS0002);
 const SA021_Button = document.getElementById(REPO_SA021);
 const SG010_Button = document.getElementById(REPO_SG010);
-// const OOL_Button = document.getElementById(REPO_OPEN_ORDER_LINE);
 const PACKING_LIST_Button = document.getElementById(REPO_PACKING_LIST);
 const OBS_ESPECIAL_Button = document.getElementById(REPO_OBS_ESPECIAL);
 const previousOrder_Button = document.getElementById(REPO_PREVIOUS_ORDER);
@@ -276,13 +259,13 @@ const configPrioritiesPanelB = document.getElementById("config-priorities-panel-
 // });
 
 
-table.addEventListener("keydown", () => {
-    console.log("EVENTO TABLE Keydown: ");
-});
+// table.addEventListener("keydown", () => {
+//     console.log("EVENTO TABLE Keydown: ");
+// });
 
-table.addEventListener("onblur", ( evento ) => {
-    console.log("EVENTO on blur ", evento );
-})
+// table.addEventListener("onblur", ( evento ) => {
+//     console.log("EVENTO on blur ", evento );
+// })
 
 
 SG010_Button.addEventListener("change", loadSG010_File );
@@ -290,7 +273,6 @@ SDS0001_Button.addEventListener("change", loadSDS0001_File) ;
 SDS0002_Button.addEventListener("change", loadSDS0002_File) ;
 AL010_Button.addEventListener("change", loadAL010_File);
 SA021_Button.addEventListener("change", loadSA021_File );
-// OOL_Button.addEventListener("change", loadOOL_File );
 PACKING_LIST_Button.addEventListener("change", loadPackingList_File );
 OBS_ESPECIAL_Button.addEventListener("change", loadObservations_File );
 previousOrder_Button.addEventListener("change", loadPreviousOrder_File );
@@ -348,8 +330,6 @@ configPrioritiesPanelB.addEventListener("click", () => {
 
 
 
-
-
 // *********************************************************
 // *********************************************************
 
@@ -360,12 +340,10 @@ function initialize() {
     console.log("Cargando datos de configuración...")
 
     dataObjectElementsMap = new Map();
-    // newFilteredDataMap = new Map();
     dataSDS0001 = [];
     dataSDS0002 = [];
     dataAL010 = [];
     dataSA021 = [];
-    // dataOOL = [];
     dataPackingList = [];
     dataObs = [];
     dataPreviousOrder = [];
@@ -620,37 +598,6 @@ function loadSA021_File ( evento ) {
 
 
 // *********************************************************
-// Function to read 'OPEN_ORDER_LINE' Report selected file
-function loadOOL_File( evento ){
-
-    const report = reportsConfigMap.get( REPO_OPEN_ORDER_LINE ); 
-    const promise = loadFile( evento, report );   
-    promise.then( ( response ) => {
-
-        // validating data structure
-        if( !validateReportColumns( response, report.columns )) {
-            throw new Error("Validación de datos en '" + report.name + "' fallida!");
-        }
-        
-        response = normalizeRecord( response, report.columns[0], 8 );
-
-        // global map variable for export data
-        dataOOL = response;
-        console.log("DATA ARRAY '" + report.name + "': ", response );
-    })
-    .catch( (error) => {
-        console.log("ERROR:loadOOL_File: ", error );
-        dataOOL = [];
-        showFileNameReport( ( report.name ) + "-file-name" , "");
-        alert(error.message);
-    })
-    .finally( () => {
-        auxPanel.classList.add("no-visible");
-    });
-}
-
-
-// *********************************************************
 // Function to read 'Packing-List' Report selected file
 function loadPackingList_File( evento ){
 
@@ -756,9 +703,9 @@ function ProcessReports() {
 
         // Ask to continue if some report is not provided
         // TODO: enable/disable validation
-        // if( !forgottenReportsWarning() ){
-        //     return;
-        // }
+        if( !forgottenReportsWarning() ){
+            return;
+        }
 
         // Integrate 'SDS0001' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSDS0001Values( dataSDS0001, dataObjectElementsMap, reportsConfigMap.get( REPO_SDS0001 ).columns );
@@ -771,10 +718,6 @@ function ProcessReports() {
         
         // Integrate 'SA021' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadSA021Values( dataSA021, dataObjectElementsMap, reportsConfigMap.get( REPO_SA021 ).columns );
-
-        // Integrate 'Open Order Line OOL' data into 'dataObjectElementMap'
-        // TODO: desactivar esta "OOL" report
-        // dataObjectElementsMap = loadOpenOrderLineValues( dataOOL, dataObjectElementsMap, reportsConfigMap.get( REPO_OPEN_ORDER_LINE ).columns );
 
         // Integrate 'Packing-List' data into 'dataObjectElementMap'
         dataObjectElementsMap = loadPackingListValues( dataPackingList, dataObjectElementsMap, reportsConfigMap.get( REPO_PACKING_LIST ).columns );
@@ -890,7 +833,6 @@ function validateUserInput(  ) {
         this.classList.add("error");
         this.focus();
     }
-    // console.log("DataMap manual order: ", reference, dataObjectElementsMap.get( reference ).manualOrderQuantity );
 }
 
 
@@ -984,7 +926,6 @@ function belongsToSeasonZone ( shopSeasonZonesParams, salesLocationItem ){
 // *********************************************************
 function compareParamsVsValuesLessThanOrEqualTo( param, paramValue, rowObject ){
 
-    // console.log("compareParamsVsValuesLessThanOrEqualTo: ", param, paramValue, rowObject );
     return ( rowObject[param] <= paramValue ) ? true : false;
 }
 
@@ -1006,6 +947,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
         // camion != "" 
+        // TODO
         if( row[1].packingListData !== priorityParams.trucks ){
             // console.log("P 1", row[0]);
             row[1].analisysPriority = 1;
@@ -1158,7 +1100,6 @@ function setShopAvailibility ( dataMap ){
 
     for (const ref of dataMap.keys() ) {
 
-        // dataMap.get( ref ).setLVStock();
         dataMap.get( ref ).setAvailableShopStock();
     }
     return dataMap;

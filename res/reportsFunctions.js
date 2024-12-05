@@ -52,8 +52,6 @@ function compareColumnsArrays( objectKeysArray, mandatoryColumns ){
 // *********************************************************
 function normalizeRecord ( dataArray, refColumn, stringSize ){
 
-    // console.log("normalizeRecord: ", refColumn, stringSize, dataArray);
-
     for (let index = 0; index < dataArray.length; index++) {
 
         const reference = String( dataArray[index][refColumn]).padStart( stringSize, "0");
@@ -74,8 +72,6 @@ function filterByEsboLocation( dataArray, reference, columnSgfLocation, esboLoca
             referencesMap.set( row[reference], new dataObjectElement() );
         }
     }
-
-    // console.log("Tamaño SET: ", referencesMap.size );
     return referencesMap;
 }
 
@@ -84,7 +80,6 @@ function filterByEsboLocation( dataArray, reference, columnSgfLocation, esboLoca
 function getLocationsByRef( response, referencesMap, reference, columnSgfLocation, palletQuantity ) {
 
     for ( const row of response ) {
-        // console.log("ROW SG010 Location: ", row );
 
         if( referencesMap.has( row[reference] )){
 
@@ -94,7 +89,6 @@ function getLocationsByRef( response, referencesMap, reference, columnSgfLocatio
             };
             
             referencesMap.get( row[reference] ).locations.push( palletLocation );
-            // console.log("ROW: ", row[reference], row[columnSgfLocation]);
         }
     }
     return referencesMap;
@@ -104,16 +98,10 @@ function getLocationsByRef( response, referencesMap, reference, columnSgfLocatio
 // *********************************************************
 function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
 
-    // console.log("DATA OBJ: ", SDS0001DataArray, columns );
-    
     for (const row of SDS0001DataArray ) {
-        
-        // console.log("loadSDS0001Values: row: ", columns, row );
         
         if( dataObjectElements.has( row[ columns[1]] ) ){
             
-            // console.log("REf: ", row[ columns[1]], row );
-
             dataObjectElements.get( row[columns[1]])
                 .setSDS0001Values( 
                     //H_SLID
@@ -137,10 +125,7 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
                     // PALQ
                     row[columns[10]]
                 );
-            // console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );
         }
-        
-        // console.log("OBJECT By REF:", dataObjectElements.get( "00102065") );
     }
     return dataObjectElements;
 }
@@ -150,27 +135,18 @@ function loadSDS0001Values(SDS0001DataArray, dataObjectElements, columns) {
 // Load values from "SDS0002" Report
 function loadSDS0002Values(SDS0002DataArray, dataObjectElements, columns) {
 
-    // console.log("DATA OBJ: ", SDS0002DataArray, columns );
-
     const newFilteredArray = filterArray(SDS0002DataArray, columns[1], FORECAST_TYPE_SDS0002 );
 
     for (const row of newFilteredArray ) {
         
-        // console.log("loadSDS0001Values: row: ", columns, row );
-        
         if( dataObjectElements.has( row[ columns[0]] ) ){
             
-            // console.log("REf: ", row[ columns[0]], row );
-
             dataObjectElements.get( row[columns[0]])
                 .setSDS0002Values( 
                     row[columns[2]],
                     row[columns[3]]
                 );
-            // console.log("OBJECT: ", dataObjectElements.get( row[columns[1]]) );
         }
-        
-        // console.log("OBJECT By REF:", dataObjectElements.get( "00102065") );
     }
     return dataObjectElements;
 }
@@ -196,11 +172,8 @@ function loadAL010Values(AL010DataArray, dataMap, columns) {
 // *********************************************************
 function loadSA021Values(SA021DataArray, dataMap, columns) {
 
-    // console.log("ROW SA021: ", columns);
     for ( const row of SA021DataArray ) {
         if( dataMap.has( row[ columns[0] ])) {
-
-            // console.log("ROW SA021: ", row );
 
             dataMap.get( row[ columns[0] ]).
                 setSA021Values( 
@@ -218,32 +191,11 @@ function loadSA021Values(SA021DataArray, dataMap, columns) {
 
 
 // *********************************************************
-// TODO: eliminar esta function, no se revisan las reservas
-// function loadOpenOrderLineValues( OpenOrderLineDataArray, dataMap, columns ) {
-
-//     // console.log("ROW Open Order Line: ", columns, OpenOrderLineDataArray);
-
-//     for ( const row of OpenOrderLineDataArray ) {
-//         if( dataMap.has( row[ columns[0] ])) {
-
-//             dataMap.get( row[ columns[0] ]).
-//                 setOpenOrderLineValues( 
-//                     row[ columns[1] ]
-//                 );
-//         }
-//     }
-//     return dataMap;
-// }
-
-// *********************************************************
 function loadPackingListValues( packingListDataArray, dataMap, columns ) {
-
-    // console.log("ROW Packing list: ", columns, packingListDataArray);
 
     for ( const row of packingListDataArray ) {
         if( dataMap.has( row[ columns[0] ])) {
 
-            // console.log("ROW Packing list value: ", row );
             dataMap.get( row[ columns[0] ]).
                 setPackingListValues(
                     row[ columns[1] ]
@@ -297,7 +249,6 @@ function filterArray ( dataArray, column, value ) {
             newFilteredDataArray.push( row );
         }
     });
-    // console.log("Total filas filtradas 'SDS0002': ", newFilteredDataArray.length );
     return newFilteredDataArray;
 }
 
