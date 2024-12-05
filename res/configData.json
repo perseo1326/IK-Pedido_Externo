@@ -46,7 +46,7 @@
             "eoqQty" : 2,
             "stockWeeks" : 2
         },
-        "avoidIgnoreArticlesWithText" : [ "" ]
+        "avoidIgnoreArticlesWithText" : [ ]
     },
 
     "priorityParams" : {

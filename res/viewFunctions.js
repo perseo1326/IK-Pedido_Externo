@@ -256,7 +256,7 @@ function saveParamsvalues() {
     saveInputListValues( TABLE_REDUCTION_OFFER_PARAMS, tableReductionParameters.offerParameters );
     saveInputListValues( PRIORITY_PARAMS, priorityParams );
 
-    saveAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS, tableReductionParameters.avoidIgnoreArticlesWithText );
+    tableReductionParameters.avoidIgnoreArticlesWithText = saveAvoidIgnoreArticlesWithText( TABLE_REDUCTION_AVOID_TEXT_PARAMS );
 
     console.log("Parametros reduce table: ", tableReductionParameters );
     console.log("Parametros de prioridad: ", priorityParams);
@@ -305,8 +305,9 @@ function validateNumericUserInput( value ){
 
 
 // *********************************************************
-function saveAvoidIgnoreArticlesWithText( inputId, paramVariable ){
-    paramVariable = document.getElementById( inputId ).value.split(";");
+function saveAvoidIgnoreArticlesWithText( inputId ){
+
+    return document.getElementById( inputId ).value.split(";");
 }
 
 

@@ -898,7 +898,8 @@ function reduceDataTableFunction() {
     console.log("INFO:reduceDataTableFunction: Reduciendo valores de la tabla.");
 
     let parameters = [];
-    
+    const mustCheckQuotes = ( tableReductionParameters.avoidIgnoreArticlesWithText.length <= 0 ) ? false : true;
+
     const newFilteredDataMap = new Map();
 
     for (const rowArray of dataObjectElementsMap ) {
@@ -910,7 +911,7 @@ function reduceDataTableFunction() {
         }
 
         // Ignore rows from filter with matching text in quotes column
-        if( isAvoidIgnoreArticlesWithText( rowArray[1], tableReductionParameters.avoidIgnoreArticlesWithText )) {
+        if( mustCheckQuotes && isAvoidIgnoreArticlesWithText( rowArray[1], tableReductionParameters.avoidIgnoreArticlesWithText )) {
             newFilteredDataMap.set( rowArray[0], rowArray[1] );
             continue;
         }
