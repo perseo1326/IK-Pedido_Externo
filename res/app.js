@@ -947,8 +947,7 @@ function analisysPriority ( filteredDataArray ) {
 
         // 1.	MERCANCIA QUE VIENE DE CAMION O ESBO
         // camion != "" 
-        // TODO
-        if( row[1].packingListData !== priorityParams.trucks ){
+        if( row[1].packingListData.length !== 0 ){
             // console.log("P 1", row[0]);
             row[1].analisysPriority = 1;
             continue;

@@ -50,7 +50,7 @@
     },
 
     "priorityParams" : {
-        "trucks" : "",
+        "trucks" : [],
         "stockWeeks" : 1,
         "marketEoqQty" : 1,
         "shopStockPallets" : 1,
