@@ -282,7 +282,17 @@ function validateNumericUserInput( value ){
 // *********************************************************
 function saveAvoidIgnoreArticlesWithText( inputId ){
 
-    return document.getElementById( inputId ).value.split(";");
+    const parameters = document.getElementById( inputId ).value.split(";");
+    const filterParams = [];
+
+    while ( parameters.length > 0) {
+        const param = parameters.shift();
+        if( param !== "" ){
+            filterParams.push( param );
+        }
+    }
+
+    return filterParams;
 }
 
 
