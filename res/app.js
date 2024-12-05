@@ -178,7 +178,7 @@ let dataObs;
 // data from 'Pedido anterior ESBO' report 
 let dataPreviousOrder;
 
-const version = "3.4";
+const version = "3.5";
 
 const configDataURL = "./res/configData.json";
 const teclas = ["ArrowDown", "ArrowUp", "PageDown", "PageUp"];
@@ -844,8 +844,7 @@ function setCaptureManualEntry(){
     const nodeList = document.querySelectorAll(".order");
 
     for ( const node of nodeList ) {
-        // node.firstChild.addEventListener("blur", validateUserInput );
-        node.firstChild.addEventListener("keyup", validateUserInput );
+        node.addEventListener("keyup", validateUserInput );
     }
 }
 
@@ -854,18 +853,16 @@ function setCaptureManualEntry(){
 // Collect info from the user, validate and save into data structure.
 function validateUserInput(  ) {
 
-    const quantity = this.value.trim();
+    const quantity = this.innerText.trim();
     const reference = this.id;
 
-    console.log("Validando: ", this.id, !isNaN( quantity ), Number.parseInt(quantity) );
-
+    // console.log("Validando: ", this.id, !isNaN( quantity ), Number.parseInt(quantity) );
     try {
         if(isNaN( quantity ) ){
             throw new Error("El valor ingresado debe ser numérico.");
         }
 
         if( quantity === "" ){
-            // console.log("Validando vacio: ", this.id);
             this.classList.remove("error");
             return;
         }
@@ -877,14 +874,13 @@ function validateUserInput(  ) {
         // validation == Valid!
         dataObjectElementsMap.get( reference ).type = typeSpecialProduct.manual;
         dataObjectElementsMap.get( reference ).manualOrderQuantity = Number.parseInt(quantity); 
-        this.classList.remove("error");
-    
+        this.classList.remove("error");    
         console.log(`INFO:validateUserInput: Cantidad Manual (${quantity}) agregada en Referencia (${reference})` );
 
     } catch (error) {
         console.log("ERROR:validateUserInput: " + error.message, error );        
         alert( error.message );
-        this.value = "";
+        this.innerText = "";
         dataObjectElementsMap.get( reference ).manualOrderQuantity = 0;
         dataObjectElementsMap.get( reference ).type = "";
         this.classList.add("error");

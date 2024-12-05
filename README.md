@@ -4,6 +4,10 @@ Aplicación para seleccionar, unir y configurar la información para la generaci
 
 Link de acceso a la aplicación [Pedidos Externo](https://perseo1326.github.io/IK-Pedido_Externo/pedidosExterno.html)
 
+## Version 3.5
+
+* Reparado error al copiar el contenido a Excel, donde no se mostraban los valores manuales escritos por el usuario.
+
 ## Version 3.4
 
 * Agregada caracteristica en el menú de configuración para permitir colocar texto que evitará que un artículo en cuyas observaciones especiales tenga ese mismo texto sea excluido de la reducción de la tabla de datos.

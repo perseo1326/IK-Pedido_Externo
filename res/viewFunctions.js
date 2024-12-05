@@ -120,9 +120,9 @@ function drawTableRow ( row, key ) {
     htmlRow += "</td>";
 
     // Pedir
-    htmlRow += "<td class='order'>"; 
     const value = ( row.type === typeSpecialProduct.manual ) ? row.manualOrderQuantity : "";
-    htmlRow += `<input type="text" name="" id="${key}" maxlength="3" min="0" max="${row.esboStock.pallets}"  pattern="[0-9]" title="Rango 0 - ${row.esboStock.pallets}" value="${value}" />`;
+    htmlRow += `<td id='${key}' contentEditable='true' class='order' title='Rango 0 - ${row.esboStock.pallets}' >`; 
+    htmlRow += value;
     htmlRow += "</td>";
 
     // Packing List

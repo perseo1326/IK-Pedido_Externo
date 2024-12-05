@@ -160,14 +160,7 @@ table tbody td.order {
     background-color: rgb(164, 230, 134);
 }
 
-.order input {
-    all: unset;
-    /* background-color: #fff; */
-    padding: 0.2em;
-    max-width: 4em;
-}
-
-table tr:hover td.order input, td.order input:focus {
+table tr:hover td.order, td.order:focus {
     background-color: var(--background);
 }
 
